@@ -1,0 +1,12 @@
+﻿@using Carpare.Models.Entity
+@model Credential
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+<form action="~/Authentication/Login" method="post">
+    User ID:<br /><input type="text" name="UserId" value="@Model.UserId"><br />
+    Password:<br /><input type="password" name="Password" value="@Model.Password"><br />
+    <input type="submit" value="Login">
+</form>

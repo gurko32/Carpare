@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Carpare.Models.Entity;
+using Carpare.Models.Transaction;
+
+namespace Carpare.Models.Transaction
+{
+    public class UserManager
+    {
+        public static bool AuthenticateUser(Credential cr, HttpSessionStateBase baseState)
+        {
+            baseState["LoggedIn"] = false;
+            baseState["IsAdmin"] = false;
+
+            User user = UserPersistence.GetUser(cr.UserId);
+            if (user == null)
+            {
+                return false;
+            }
+            string passwordHash = EncryptionManager.EncodePassword(cr.Password, user.Salt);
+
+            if (passwordHash != user.PasswordHash)
+            {
+                return false;
+            }
+            else
+            {
+                baseState["LoggedIn"] = true;
+                baseState["IsAdmin"] = user.IsAdmin;
+                return true;
+            }
+        }
+        public static void LogoutUser(HttpSessionStateBase baseState)
+        {
+            baseState["LoggedIn"] = false;
+            baseState["IsAdmin"] = false;
+        }
+    }
+}
