@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Carpare.Models.Entity;
 using Carpare.Models.Transaction;
+using Carpare.Models.Persistance;
 
 namespace Carpare.Models.Transaction
 {
