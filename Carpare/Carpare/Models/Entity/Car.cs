@@ -16,16 +16,16 @@ namespace Carpare.Models.Entity
          */
         public String toString()
         {
-            return "Car Name: " + Name + ", "+ "Car Owner: " + Owner + ", "+"Year of Production: " + YearOfProduction + "," + "Car's mileage(km): " + km;
+            return "Car Name: " + Name + ", " + "Car Owner: " + Owner + ", " + "Year of Production: " + YearOfProduction + "," + "Car's mileage(km): " + km;
         }
 
         /*
-         * Compare two Pet objects.
-         * Pets match on the Name field only.
+         * Compare two Car objects.
+         * Car match on the Name field and Year of Production.
          */
         public bool Equals(Car other)
         {
-            return this.Name == other.Name;
+            return (this.Name == other.Name) && (this.YearOfProduction == other.YearOfProduction);
         }
     }
 }
