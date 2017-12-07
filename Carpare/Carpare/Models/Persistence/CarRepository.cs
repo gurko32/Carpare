@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Carpare.Models.Entity;
 
 namespace Carpare.Models.Persistence
 {
     /* This is the working respository. */
 
-    public class PetRepository
+    public class CarRepository
     {
 
         /* This is the working respository. */
-        private List<Car> Pets = new List<Car>();
+        private List<Car> Cars = new List<Car>();
 
         /*
          * Initialize the repository with a default pet.
@@ -25,7 +26,7 @@ namespace Carpare.Models.Persistence
 
     Car lassie = new Car
         {
-            Name = "Lassie",
+            Brand,
             Owner = "Timmie",
             Sex = "F",
             Species = "Dog",

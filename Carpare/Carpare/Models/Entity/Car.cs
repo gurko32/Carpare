@@ -7,7 +7,8 @@ namespace Carpare.Models.Entity
 {
     public class Car
     {
-        public String Name { get; set; }
+        public String Brand { get; set; }
+        public String Model { get; set; }
         public String Owner { get; set; }
         public DateTime YearOfProduction { get; set; }
         public int km { get; set; }
