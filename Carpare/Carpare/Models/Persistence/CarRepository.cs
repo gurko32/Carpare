@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Carpare.Models.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,15 +23,13 @@ namespace Carpare.Models.Persistence
          */
         public CarRepository()
     {
-        
 
-    Car lassie = new Car
-        {
-            Brand="Honda",
-            Model="Civic",
-            Owner = "Timmie",
-            YearOfProduction = new DateTime(1998, 04, 30),
-            km=84000
+
+            Car newCar = new Car
+            {
+                Name = "Lassie",
+                Owner = "Timmie";
+                YearOfProduction = new DateTime(1998, 04, 30);
         };
         Cars.Add(lassie);
     }

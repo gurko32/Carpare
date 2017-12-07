@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Carpare.Models.Entity;
+using Carpare.Models.Transaction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,14 +20,14 @@ namespace Carpare.Controllers
      */
 
 
-        CarController carController = new CarController();
+        CarManager carController = new CarManager();
 
         /*
          * Generate the Pet listing.
          */
         public ActionResult Listing()
         {
-            Car[] pets = carController.allPets();
+            Car[] pets = carController.allCars();
             return View(pets);  // returns /Views/Pet/Listing.cshtml
         }
 
@@ -42,7 +44,7 @@ namespace Carpare.Controllers
          * Handle the Update form submission
          */
         [HttpPost]
-        public ActionResult Update(Pet pet, string submit)
+        public ActionResult Update(Car car, string submit)
         {
             bool result = false;
 
@@ -50,10 +52,10 @@ namespace Carpare.Controllers
             switch (submit)
             {
                 case "Add Pet":
-                    result = petManager.addPet(pet);
+                    result = petManager.addPet(car);
                     break;
                 case "Delete Pet":
-                    result = petManager.deletePet(pet);
+                    result = petManager.deletePet(car);
                     break;
             }
 
