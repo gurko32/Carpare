@@ -26,11 +26,11 @@ namespace Carpare.Models.Persistence
 
     Car lassie = new Car
         {
-            Brand,
+            Brand="Honda",
+            Model="Civic",
             Owner = "Timmie",
-            Sex = "F",
-            Species = "Dog",
-            Birthdate = new DateTime(1998, 04, 30)
+            YearOfProduction = new DateTime(1998, 04, 30),
+            km=84000
         };
         Cars.Add(lassie);
     }
