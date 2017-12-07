@@ -10,15 +10,21 @@ namespace Carpare.Models.Entity
         public String Brand { get; set; }
         public String Model { get; set; }
         public String Owner { get; set; }
-        public DateTime YearOfProduction { get; set; }
+        public int YearOfProduction { get; set; }
         public int km { get; set; }
         /*
          * Return a string representation of the Pet object.
          */
-        
+        public Car(String Brand,String Model,String Owner,int YearOfProduction)
+        {
+            this.Brand = Brand;
+            this.Model = Model;
+            this.Owner = Owner;
+            this.YearOfProduction = YearOfProduction;
+        }
         public String toString()
         {
-            return "Car Name: " + Name + ", " + "Car Owner: " + Owner + ", " + "Year of Production: " + YearOfProduction + "," + "Car's mileage(km): " + km;
+            return "Car Brand: " + Brand + ", " + "Car Model: " + Model + "Car Owner: " + Owner + ", " + "Year of Production: " + YearOfProduction + "," + "Car's mileage(km): " + km;
         }
 
         /*
@@ -27,7 +33,7 @@ namespace Carpare.Models.Entity
          */
         public bool Equals(Car other)
         {
-            return (this.Name == other.Name) && (this.YearOfProduction == other.YearOfProduction);
+            return (this.Brand == other.Brand) && (this.Model == other.Model) && (this.YearOfProduction == other.YearOfProduction);
         }
     }
 }
