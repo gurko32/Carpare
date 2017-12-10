@@ -155,6 +155,7 @@
     <Compile Include="Models\Persistence\UserPersistence.cs" />
     <Compile Include="Models\Repository\CarPersistence.cs" />
     <Compile Include="Models\Repository\IRepository.cs" />
+    <Compile Include="Models\Repository\RepositoryManager.cs" />
     <Compile Include="Models\Transaction\CarManager.cs" />
     <Compile Include="Models\Transaction\EncryptionManager.cs" />
     <Compile Include="Models\Transaction\UserManager.cs" />
