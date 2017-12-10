@@ -3,12 +3,17 @@
 @{
     ViewBag.Title = "Login";
 }
-
-<h2>Login</h2>
+<div align="left"><h2>Login</h2></div>
 <div id="main">
+    <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
     <form action="~/Authentication/Login" method="post">
         User ID:<br /><input type="text" name="UserId" value="@Model.UserId"><br />
         Password:<br /><input type="password" name="Password" value="@Model.Password"><br />
         <input type="submit" value="Login">
     </form>
+    <br />
+    If you are not signed up before, <a href="~/Authentication/Signup">Sign Up!</a>
 </div>
+
+
+    
