@@ -11,6 +11,7 @@ namespace Carpare.Models.Repository
 
         /* Initialize the database */
         bool Initialize();
+        //aaaaa
 
         /* Open the database */
         bool Open();
