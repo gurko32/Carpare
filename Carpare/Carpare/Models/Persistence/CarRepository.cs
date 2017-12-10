@@ -25,11 +25,13 @@ namespace Carpare.Models.Persistence
     {
 
 
-            Car newCar = new Car
-            {
-                Name = "Lassie",
-                Owner = "Timmie";
-                YearOfProduction = new DateTime(1998, 04, 30);
+    Car lassie = new Car
+        {
+            Brand,
+            Owner = "Timmie",
+            Sex = "F",
+            Species = "Dog",
+            Birthdate = new DateTime(1998, 04, 30)
         };
         Cars.Add(lassie);
     }
