@@ -48,10 +48,10 @@ namespace Carpare.Controllers
             // add or drop
             switch (submit)
             {
-                case "Add Pet":
+                case "Add Car":
                     result = CarManager.AddNewCar(car);
                     break;
-                case "Delete Pet":
+                case "Delete Car":
                     result = CarManager.DeleteCar(car);
                     break;
             }

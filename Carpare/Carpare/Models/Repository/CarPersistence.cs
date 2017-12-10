@@ -48,6 +48,11 @@ namespace Carpare.Models.Repository
             return true;
         }
 
+        internal static bool DeleteCar(Car delCar)
+        {
+            throw new NotImplementedException();
+        }
+
         /*
          * Update a book that is in the database, replacing all field values except
          * the key field.

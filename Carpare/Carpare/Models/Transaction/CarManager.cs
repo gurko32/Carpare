@@ -1,4 +1,5 @@
 ﻿using Carpare.Models.Entity;
+using Carpare.Models.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
