@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Data.SQLite;
+using System;
+using Carpare.Models.Repository;
 
 namespace SqliteTest.Models.Repository
 {
