@@ -8,12 +8,12 @@ namespace SqliteDemo.Models.Transaction
     public class CarManager
     {
 
-        public static Car[] GetAllBooks()
+        public static Car[] GetAllCars()
         {
-            List<Car> books = CarPersistence.GetAllBooks();
+            List<Car> books = CarPersistence.GetAllCars();
             if (books != null)
             {
-                return CarPersistence.GetAllBooks().ToArray();
+                return CarPersistence.GetAllCars().ToArray();
             }
             else
             {
@@ -26,17 +26,17 @@ namespace SqliteDemo.Models.Transaction
          * Returns true iff the new book has a unique ISBN
          * and it was successfully added.
          */
-        public static bool AddNewBook(Car newBook)
+        public static bool AddNewCar(Car newCar)
         {
             // Verify that the book doesn't already exist
-            Car oldBook = CarPersistence.getBook(newBook);
+            Car oldCar = CarPersistence.getCar(newCar);
             // oldBook should be null, if this is a new book
-            if (oldBook != null)
+            if (oldCar != null)
             {
                 return false;
             }
 
-            return CarPersistence.AddBook(newBook);
+            return CarPersistence.AddCar(newCar);
         }
 
         /*
@@ -44,14 +44,14 @@ namespace SqliteDemo.Models.Transaction
          * Returns true iff the book exists in the database and
          * it was successfully deleted.
          */
-        public static bool DeleteBook(Car delBook)
+        public static bool DeleteCar(Car delCar)
         {
-            Car book = CarPersistence.getBook(delBook);
-            if (book == null)
+            Car car = CarPersistence.getCar(delCar);
+            if (car == null)
             {
                 return false;
             }
-            bool result = CarPersistence.DeleteBook(delBook);
+            bool result = CarPersistence.DeleteCar(delCar);
 
             return result;
         }
@@ -62,13 +62,13 @@ namespace SqliteDemo.Models.Transaction
          * Returns true iff the book exists in the database and
          * it was successfully changed.
          */
-        public static bool ChangeBook(Car Book)
+        public static bool ChangeCar(Car car)
         {
-            if (Book == null)
+            if (car == null)
             {
                 return false;
             }
-            bool result = CarPersistence.UpdateBook(Book);
+            bool result = CarPersistence.UpdateCar(car);
 
 
             return result;
