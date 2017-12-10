@@ -153,6 +153,7 @@
     <Compile Include="Models\Entity\Credential.cs" />
     <Compile Include="Models\Entity\User.cs" />
     <Compile Include="Models\Persistence\UserPersistence.cs" />
+    <Compile Include="Models\Repository\CarPersistence.cs" />
     <Compile Include="Models\Transaction\CarManager.cs" />
     <Compile Include="Models\Transaction\EncryptionManager.cs" />
     <Compile Include="Models\Transaction\UserManager.cs" />
@@ -199,7 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\NewFolder1\" />
     <Folder Include="Views\Car\" />
     <Folder Include="Views\Secure\" />
   </ItemGroup>
