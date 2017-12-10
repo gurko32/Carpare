@@ -7,6 +7,7 @@ namespace Carpare.Models.Entity
 {
     public class Car
     {
+        public int carId { get; set; }
         public String Brand { get; set; }
         public String Model { get; set; }
         public String Owner { get; set; }
@@ -15,8 +16,9 @@ namespace Carpare.Models.Entity
         /*
          * Return a string representation of the Pet object.
          */
-        public Car(String Brand,String Model,String Owner,int YearOfProduction)
+        public Car(int carId,String Brand,String Model,String Owner,int YearOfProduction)
         {
+            this.carId = carId;
             this.Brand = Brand;
             this.Model = Model;
             this.Owner = Owner;
@@ -33,7 +35,7 @@ namespace Carpare.Models.Entity
          */
         public bool Equals(Car other)
         {
-            return (this.Brand == other.Brand) && (this.Model == other.Model) && (this.YearOfProduction == other.YearOfProduction);
+            return (this.carId== other.carId);
         }
     }
 }
