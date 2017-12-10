@@ -1,5 +1,6 @@
 ﻿using Carpare.Models.Entity;
 using Carpare.Models.Transaction;
+using SqliteDemo.Models.Transaction;
 using System.Web.Mvc;
 
 namespace Carpare.Controllers
@@ -23,8 +24,8 @@ namespace Carpare.Controllers
          */
         public ActionResult Listing()
         {
-            Car[] pets = carController.allCars();
-            return View(pets);  // returns /Views/Pet/Listing.cshtml
+            Car[] cars = CarManager.GetAllCars();
+            return View(cars);  // returns /Views/Pet/Listing.cshtml
         }
 
         /*
@@ -48,10 +49,10 @@ namespace Carpare.Controllers
             switch (submit)
             {
                 case "Add Pet":
-                    result = petManager.addPet(car);
+                    result = CarManager.AddNewCar(car);
                     break;
                 case "Delete Pet":
-                    result = petManager.deletePet(car);
+                    result = CarManager.DeleteCar(car);
                     break;
             }
 
@@ -66,8 +67,8 @@ namespace Carpare.Controllers
                 ViewBag.message = "Transaction Failed";
             }
 
-            Pet[] pets = petManager.allPets();
-            return View("Listing", pets);   // returns /Views/Pet/Listing.cshtml
+            Car[] cars = CarManager.GetAllCars();
+            return View("Listing", cars);   // returns /Views/Pet/Listing.cshtml
         }
     }
 
