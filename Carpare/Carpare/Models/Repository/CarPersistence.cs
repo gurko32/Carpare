@@ -25,7 +25,7 @@ namespace Carpare.Models.Repository
             // Use the data from the first returned row (should be the only one) to create a Book.
             object[] dataRow = rows[0];
             //DateTime dateAdded = DateTime.Parse(dataRow[2].ToString());
-            Car car = new Car {carId=(decimal)dataRow[0], Brand= (string)dataRow[1], Model= (string)dataRow[2], Owner= (string)dataRow[3], YearOfProduction = (int)dataRow[4], km = (int)dataRow[5] };
+            Car car = new Car((int)dataRow[0], (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], (int)dataRow[4], (int)dataRow[5]);
             return car;
         }
 
@@ -35,7 +35,6 @@ namespace Carpare.Models.Repository
          */
         public static bool AddCar(Car car)
         {
-            System.Diagnostics.Debug.WriteLine("DateTime: " + car.DateAdded.ToString("yyyy-MM-dd"));
 
             string sql = "insert into car (carId, brand, model,owner, yearOfProduction, km ) values ('"
                 + car.carId + "', "
@@ -75,17 +74,7 @@ namespace Carpare.Models.Repository
 
             foreach (object[] dataRow in rows)
             {
-                DateTime dateAdded = Convert.ToDateTime(dataRow[2]);
-                Car car = new Car
-                {
-                    carId = (decimal)dataRow[0],
-                    Brand = (string)dataRow[1],
-                    Model = (string)dataRow[2,
-                    Owner = (string)dataRow[3],
-                    YearOfProduction = (decimal)dataRow[4],
-                    km = (decimal)dataRow[5],
-                    DateAdded = dateAdded
-                };
+                Car car = new Car((int)dataRow[0], (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], (int)dataRow[4], (int)dataRow[5]);
                 cars.Add(car);
             }
 

@@ -16,13 +16,14 @@ namespace Carpare.Models.Entity
         /*
          * Return a string representation of the Pet object.
          */
-        public Car(int carId,String Brand,String Model,String Owner,int YearOfProduction)
+        public Car(int carId,String Brand,String Model,String Owner,int YearOfProduction,int km)
         {
             this.carId = carId;
             this.Brand = Brand;
             this.Model = Model;
             this.Owner = Owner;
             this.YearOfProduction = YearOfProduction;
+            this.km = km;
         }
         public String toString()
         {
