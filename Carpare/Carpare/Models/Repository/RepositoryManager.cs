@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using Carpare.Models.Repository;
 namespace Carpare.Models.Repository
 {
     public class RepositoryManager
