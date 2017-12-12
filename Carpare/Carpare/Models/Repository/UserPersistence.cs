@@ -14,31 +14,22 @@ namespace Carpare.Models.Persistance
 
         static UserPersistence()
         {
-            users = new List<User>();
 
-            string salt = EncryptionManager.PasswordSalt;
-            users.Add(new User
-            {
-                UserId = "user1",
-                Name = "Alpha Romeo",
-                Salt = salt,
-                PasswordHash = EncryptionManager.EncodePassword("abc123", salt),
-                IsAdmin = false
-            });
-
-            salt = EncryptionManager.PasswordSalt;
-            users.Add(new User
-            {
-                UserId = "admin1",
-                Name = "Charlie Eagle",
-                Salt = salt,
-                PasswordHash = EncryptionManager.EncodePassword("abcd1234", salt),
-                IsAdmin = true
-            });
+            
         }
         /*
          * Get one user from the repository, identified by userId
          */
+         public static bool AddUser(Credential cr)
+        {
+            string sql = "insert into user (UserId, Name, HashedPassword,Email) values ('"
+               + cr.UserId + "', "
+               + cr.Name + ", '"
+               + cr.Password + ", '"
+               + cr.Email + "')";
+            return true;
+
+        }
         public static User GetUser(string userId)
         {
             foreach (User user in users)

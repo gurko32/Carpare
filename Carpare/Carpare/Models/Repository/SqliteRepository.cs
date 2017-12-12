@@ -121,15 +121,16 @@ namespace SqliteTest.Models.Repository
             bool openResult = Open();
             if (success & openResult)
             {
-                string sql = "CREATE TABLE book (title VARCHAR(50), isbn DECIMAL, dateadded DATE, PRIMARY KEY(isbn))";
+                string sql = "CREATE TABLE user (UserId VARCHAR(20), Name VARCHAR(50), HashedPassword VARCHAR(50),Email VARCHAR(50), PRIMARY KEY(UserId))";
                 DoCommand(sql);
-
-                sql = "insert into book (title, isbn, dateadded) values "
-                    + "('Gone With The Wind', 67890123, '2011-01-03')"
-                    + ", ('Platos Republic', 80192837, '2013-02-25')"
-                    + ", ('Selcuk Altun', 22334455778, '1944-06-15')"
-                    + ", ('Die Blechtrommel', 90897856453, '1896-07-06')";
+                sql = "CREATE TABLE car (carId INTEGER AUTOINCREMENT, Brand VARCHAR(50), Model VARCHAR(50),Owner VARCHAR(50),YearOfProduction INTEGER,KM INTEGER, PRIMARY KEY(UserId),FOREIGN KEY (owner) references user(UserId))";
                 DoCommand(sql);
+                //sql = "insert into book (title, isbn, dateadded) values "
+                //    + "('Gone With The Wind', 67890123, '2011-01-03')"
+                //    + ", ('Platos Republic', 80192837, '2013-02-25')"
+                //    + ", ('Selcuk Altun', 22334455778, '1944-06-15')"
+                //    + ", ('Die Blechtrommel', 90897856453, '1896-07-06')";
+                //DoCommand(sql);
             }
 
             return success;

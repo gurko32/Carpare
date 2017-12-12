@@ -33,10 +33,20 @@ namespace Carpare.Models.Transaction
                 return true;
             }
         }
+        
         public static void LogoutUser(HttpSessionStateBase baseState)
         {
             baseState["LoggedIn"] = false;
             baseState["IsAdmin"] = false;
+        }
+        public static bool SignUpUser(Credential cr, HttpSessionStateBase baseState)
+        {
+            baseState["LoggedIn"] = false;
+            baseState["IsAdmin"] = false;
+
+            
+            return UserPersistence.AddUser(cr);
+            
         }
     }
 }
