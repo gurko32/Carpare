@@ -39,7 +39,12 @@ namespace Carpare.Controllers
                 TempData["message"] = err;
                 return View(credential);
             }
-
+            bool res = UserManager.SignUpUser(credential,Session);
+            if (!res)
+            {
+                TempData["message"] = "Invalid credentials";
+                return View(credential);
+            }
             bool result = UserManager.AuthenticateUser(credential, Session);
             if (result)
             {

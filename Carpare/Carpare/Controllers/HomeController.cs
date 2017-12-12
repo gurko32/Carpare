@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Carpare.Models.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,21 +11,10 @@ namespace Carpare.Controllers
     {
         public ActionResult Index()
         {
+            bool result = RepositoryManager.Repository.Initialize();
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+       
     }
 }

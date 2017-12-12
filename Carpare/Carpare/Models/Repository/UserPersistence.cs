@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Carpare.Models.Entity;
 using Carpare.Models.Transaction;
-
+using Carpare.Models.Repository;
 
 namespace Carpare.Models.Persistance
 {
@@ -15,23 +15,25 @@ namespace Carpare.Models.Persistance
         static UserPersistence()
         {
 
-            
+
         }
         /*
          * Get one user from the repository, identified by userId
          */
-         public static bool AddUser(Credential cr)
+        public static bool AddUser(Credential cr)
         {
             string sql = "insert into user (UserId, Name, HashedPassword,Email) values ('"
-               + cr.UserId + "', "
-               + cr.Name + ", '"
-               + cr.Password + ", '"
-               + cr.Email + "')";
+               + cr.UserId + "', '"
+               + cr.Name + "', '"
+               + cr.Password + "', '"
+               + cr.Email + "');";
+            RepositoryManager.Repository.DoCommand(sql);
             return true;
 
         }
         public static User GetUser(string userId)
         {
+            sql
             foreach (User user in users)
             {
                 if (userId == user.UserId)
