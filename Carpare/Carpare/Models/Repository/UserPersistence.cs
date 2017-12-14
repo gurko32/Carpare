@@ -5,18 +5,13 @@ using System.Web;
 using Carpare.Models.Entity;
 using Carpare.Models.Transaction;
 using Carpare.Models.Repository;
+using System.Diagnostics;
 
 namespace Carpare.Models.Persistance
 {
     public class UserPersistence
     {
         private static List<User> users;
-
-        static UserPersistence()
-        {
-
-
-        }
         /*
          * Get one user from the repository, identified by userId
          */
@@ -55,9 +50,18 @@ namespace Carpare.Models.Persistance
         {
             return false;
         }
-        //public static List<User> GetAllUsers()
-        //{
-        //    return null;
-        //}
+       public static void PrintAllUsers()
+        {
+            string sql = "select * from user";
+            List<object[]> rows = RepositoryManager.Repository.DoQuery(sql);
+            if (rows.Count == 0)
+                return;
+            foreach(object[] a in rows)
+            {
+                User user = new User((string)a[0], (string)a[1], (string)a[2], (string)a[3]);
+                Debug.WriteLine(user.ToString());
+            }
+
+        }
     }
 }

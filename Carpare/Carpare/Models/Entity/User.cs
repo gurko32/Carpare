@@ -32,5 +32,10 @@ namespace Carpare.Models.Entity
             PasswordHash = EncryptionManager.EncodePassword(password,Salt);
             this.email = email;
         }
+        public string ToString()
+        {
+            string returnString = "Username: " + UserId + " Name: " + Name + " E-mail: " + email + " IsAdmin: " + IsAdmin;
+            return returnString;
+        }
     }
 }

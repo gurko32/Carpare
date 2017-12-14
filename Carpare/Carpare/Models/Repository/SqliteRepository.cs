@@ -3,6 +3,8 @@ using System.IO;
 using System.Data.SQLite;
 using System;
 using Carpare.Models.Repository;
+using Carpare.Models.Entity;
+using Carpare.Models.Persistance;
 
 namespace SqliteTest.Models.Repository
 {
@@ -106,9 +108,12 @@ namespace SqliteTest.Models.Repository
         public bool Initialize()
         {
             bool success = true;
-
+            UserPersistence.PrintAllUsers();
             Close();
-
+            //if (File.Exists("F://MyDatabase.sqlite"))
+            //{
+            //    return true;
+            //}
             try
             {
                 SQLiteConnection.CreateFile(databaseFile);
