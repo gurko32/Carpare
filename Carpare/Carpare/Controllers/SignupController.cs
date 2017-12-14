@@ -50,7 +50,7 @@ namespace Carpare.Controllers
             {
                 TempData["message"] = "Sign Up Successful";
                 ViewBag.message = "Sign Up Successful";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Authentication");
             }
             else
             {

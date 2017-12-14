@@ -43,7 +43,7 @@ namespace Carpare.Controllers
             if (result)
             {
                 TempData["message"] = "Login Successful";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ProfilePage", "ProfilePage");
             }
             else
             {
