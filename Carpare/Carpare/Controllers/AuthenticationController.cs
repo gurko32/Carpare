@@ -38,7 +38,7 @@ namespace Carpare.Controllers
                 TempData["message"] = err;
                 return View(credential);
             }
-
+            
             bool result = UserManager.AuthenticateUser(credential, Session);
             if (result)
             {

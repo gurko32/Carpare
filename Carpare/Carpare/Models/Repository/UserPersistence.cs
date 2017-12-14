@@ -34,8 +34,16 @@ namespace Carpare.Models.Persistance
         public static User GetUser(string userId)
         {
             string sql = "select * from user where UserId='" + userId+"';";
-            string s1=RepositoryManager.Repository.DoQuery(sql);
-            return rUser;
+            List<object[]> rows= RepositoryManager.Repository.DoQuery(sql);
+            if (rows.Count == 0)
+            {
+                return null;
+            }
+
+            // Use the data from the first returned row (should be the only one) to create a User.
+            object[] dataRow = rows[0];
+            User user = new User((string)dataRow[0],(string)dataRow[1], (string)dataRow[2], (string)dataRow[3]);
+            return user;
         }
 
         // Not Implemented
