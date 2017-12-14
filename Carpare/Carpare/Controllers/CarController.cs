@@ -68,7 +68,7 @@ namespace Carpare.Controllers
             }
 
             Car[] cars = CarManager.GetAllCars();
-            return View("Listing", cars);   // returns /Views/Pet/Listing.cshtml
+            return View("CarLister", cars);   // returns /Views/Pet/Listing.cshtml
         }
     }
 
