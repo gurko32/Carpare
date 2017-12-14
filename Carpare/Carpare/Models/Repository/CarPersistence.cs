@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Carpare.Models.Entity;
+using System.Diagnostics;
+
 namespace Carpare.Models.Repository
 {
     public class CarPersistence
@@ -25,7 +27,7 @@ namespace Carpare.Models.Repository
             // Use the data from the first returned row (should be the only one) to create a Book.
             object[] dataRow = rows[0];
             //DateTime dateAdded = DateTime.Parse(dataRow[2].ToString());
-            Car car = new Car((int)dataRow[0], (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], (int)dataRow[4], (int)dataRow[5]);
+            Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()));
             return car;
         }
 
@@ -37,12 +39,12 @@ namespace Carpare.Models.Repository
         {
 
             string sql = "insert into car (carId, brand, model,owner, yearOfProduction, km ) values ('"
-                + car.carId + "', "
-                + car.Brand + ", '"
-                + car.Model + ", '"
-                + car.Owner + ", '"
-                + car.YearOfProduction + ", '"
-                + car.km + "')";
+                + car.carId + "', '"
+                + car.Brand + "', '"
+                + car.Model + "', '"
+                + car.Owner + "', "
+                + car.YearOfProduction + ", "
+                + car.km + ")";
             RepositoryManager.Repository.DoCommand(sql);
             return true;
         }
@@ -74,7 +76,8 @@ namespace Carpare.Models.Repository
 
             foreach (object[] dataRow in rows)
             {
-                Car car = new Car((int)dataRow[0], (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], (int)dataRow[4], (int)dataRow[5]);
+                Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()));
+                Debug.WriteLine(car.ToString());
                 cars.Add(car);
             }
 
