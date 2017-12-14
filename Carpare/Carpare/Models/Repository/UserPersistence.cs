@@ -33,15 +33,9 @@ namespace Carpare.Models.Persistance
         }
         public static User GetUser(string userId)
         {
-            sql
-            foreach (User user in users)
-            {
-                if (userId == user.UserId)
-                {
-                    return user;
-                }
-            }
-            return null;
+            string sql = "select * from user where UserId='" + userId+"';";
+            string s1=RepositoryManager.Repository.DoQuery(sql);
+            return rUser;
         }
 
         // Not Implemented
@@ -53,9 +47,9 @@ namespace Carpare.Models.Persistance
         {
             return false;
         }
-        public static List<User> GetAllUsers()
-        {
-            return null;
-        }
+        //public static List<User> GetAllUsers()
+        //{
+        //    return null;
+        //}
     }
 }
