@@ -14,13 +14,27 @@ namespace Carpare.Controllers
         [HttpGet]
         public ActionResult ProfilePage()
         {
-            return View();
+            Credential cr = (Credential)TempData["credential"];
+            return View(cr);
         }
 
         [HttpPost]
-        public ActionResult UpdateUserId(Credentials cr)
+        public ActionResult UpdateUserId(Credential cr)
         {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UpdatePassword(Credential cr)
+        {
+            return View();
 
         }
+        [HttpPost]
+        public ActionResult UpdateEmail(Credential cr)
+        {
+            return View();
+
+        }
+
     }
 }

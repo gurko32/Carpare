@@ -43,6 +43,7 @@ namespace Carpare.Controllers
             if (result)
             {
                 TempData["message"] = "Login Successful";
+                TempData["credential"] = credential;
                 return RedirectToAction("ProfilePage", "ProfilePage");
             }
             else
