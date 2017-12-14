@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Carpare.Models.Entity
 {
-    public class Car
+    public class Car 
     {
         public int carId { get; set; }
         public String Brand { get; set; }

@@ -1,0 +1,33 @@
+﻿@using Carpare.Models.Entity
+@model Car[]
+@{
+    ViewBag.Title = "CarLister";
+}
+
+<h2>CarLister</h2>
+<div id="main">
+    <table border="1" cellpadding="5">
+        <caption>Pet List</caption>
+        <thead>
+            <tr>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Owner</th>
+                <th>Year Of Production</th>
+                <th>Km</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Car c in Model)
+            {
+                <tr>
+                    <td>@c.Brand</td>
+                    <td>@c.Model</td>
+                    <td>@c.YearOfProduction</td>
+                    <td>@c.km</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<p>@ViewBag.message</p>

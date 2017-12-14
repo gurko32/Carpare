@@ -1,0 +1,21 @@
+﻿@using Carpare.Models.Entity
+@model Car
+@{
+    ViewBag.Title = "Updater";
+}
+
+<h2>Updater</h2>
+
+<div id="main">
+    <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+    <form action="~/Car/Update" method="post">
+        CarId:<br /><input type="text" name="carId" value="@Model.carId"><br />
+        Brand:<br /><input type="text" name="Brand" value="@Model.Brand"><br />
+        Model:<br /><input type="text" name="Model" value="@Model.Model"><br />
+        Owner:<br /><input type="text" name="Owner" value="@Model.Owner"><br />
+        Year Of Production:<br /><input type="text" name="YearOfProduction" value="@Model.YearOfProduction"><br />
+        Km:<br /><input type="text" name="km" value="@Model.km"><br />
+        <input type="submit" value="Add Car">
+    </form>
+    <p><a href="~/Car/CarLister">List</a></p>
+</div>

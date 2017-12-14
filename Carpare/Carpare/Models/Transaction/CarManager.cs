@@ -11,8 +11,8 @@ namespace SqliteDemo.Models.Transaction
 
         public static Car[] GetAllCars()
         {
-            List<Car> books = CarPersistence.GetAllCars();
-            if (books != null)
+            List<Car> cars = CarPersistence.GetAllCars();
+            if (cars != null)
             {
                 return CarPersistence.GetAllCars().ToArray();
             }

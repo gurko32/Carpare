@@ -220,10 +220,11 @@
     <Content Include="Views\Authentication\Login.cshtml" />
     <Content Include="Views\Signup\Signup.cshtml" />
     <Content Include="Views\ProfilePage\ProfilePage.cshtml" />
+    <Content Include="Views\Car\CarLister.cshtml" />
+    <Content Include="Views\Car\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Car\" />
     <Folder Include="Views\Secure\" />
   </ItemGroup>
   <ItemGroup>

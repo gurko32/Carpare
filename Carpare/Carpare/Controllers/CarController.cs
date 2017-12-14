@@ -20,12 +20,12 @@ namespace Carpare.Controllers
         CarManager carController = new CarManager();
 
         /*
-         * Generate the Pet listing.
+         * Generate the Car listing.
          */
-        public ActionResult Listing()
+        public ActionResult CarLister()
         {
             Car[] cars = CarManager.GetAllCars();
-            return View(cars);  // returns /Views/Pet/Listing.cshtml
+            return View(cars);  // returns /Views/Car/CarLister.cshtml
         }
 
         /*
