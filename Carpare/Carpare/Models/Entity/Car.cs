@@ -25,6 +25,10 @@ namespace Carpare.Models.Entity
             this.YearOfProduction = YearOfProduction;
             this.km = km;
         }
+        public Car()
+        {
+
+        }
         public String ToString()
         {
             return "Car Brand: " + Brand + ", " + "Car Model: " + Model + "Car Owner: " + Owner + ", " + "Year of Production: " + YearOfProduction + "," + "Car's mileage(km): " + km;

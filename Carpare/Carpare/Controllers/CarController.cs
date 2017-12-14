@@ -34,7 +34,7 @@ namespace Carpare.Controllers
         [HttpGet]
         public ActionResult Update()
         {
-            return View();   // returns /Views/Pet/Update.cshtml
+            return View(new Car());   // returns /Views/Pet/Update.cshtml
         }
 
         /*
@@ -68,7 +68,7 @@ namespace Carpare.Controllers
             }
 
             Car[] cars = CarManager.GetAllCars();
-            return View("Listing", cars);   // returns /Views/Pet/Listing.cshtml
+            return View("CarLister", cars);   // returns /Views/Pet/Listing.cshtml
         }
     }
 
