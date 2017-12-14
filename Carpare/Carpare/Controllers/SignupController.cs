@@ -49,6 +49,7 @@ namespace Carpare.Controllers
             if (result)
             {
                 TempData["message"] = "Sign Up Successful";
+                ViewBag.message = "Sign Up Successful";
                 return RedirectToAction("Index", "Home");
             }
             else
