@@ -11,12 +11,6 @@ namespace Carpare.Models.Persistance
     public class UserPersistence
     {
         private static List<User> users;
-
-        static UserPersistence()
-        {
-
-
-        }
         /*
          * Get one user from the repository, identified by userId
          */
