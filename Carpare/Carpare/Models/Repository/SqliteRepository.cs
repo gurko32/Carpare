@@ -128,7 +128,7 @@ namespace SqliteTest.Models.Repository
             {
                 string sql = "CREATE TABLE user (UserId VARCHAR(50), Name VARCHAR(50), HashedPassword VARCHAR(50),Email VARCHAR(50), PRIMARY KEY(UserId));";
                 DoCommand(sql);
-                sql = "CREATE TABLE car (carId INTEGER AUTOINCREMENT PRIMARY KEY, Brand VARCHAR(50), Model VARCHAR(50),Owner VARCHAR(50),YearOfProduction INTEGER,KM INT,FOREIGN KEY (Owner) references user(UserId));";
+                sql = "CREATE TABLE car (carId INTEGER AUTOINCREMENT, Brand VARCHAR(50), Model VARCHAR(50),Owner VARCHAR(50),YearOfProduction INTEGER,KM INT,PRIMARY KEY(carId),FOREIGN KEY (Owner) references user(UserId));";
                 DoCommand(sql);
                 //sql = "insert into book (title, isbn, dateadded) values "
                 //    + "('Gone With The Wind', 67890123, '2011-01-03')"
