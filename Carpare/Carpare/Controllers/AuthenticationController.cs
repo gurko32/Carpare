@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Carpare.Models.Entity;
 using Carpare.Models.Transaction;
+using Carpare.Models.Persistance;
 
 namespace Carpare.Controllers
 {
@@ -38,13 +39,17 @@ namespace Carpare.Controllers
                 TempData["message"] = err;
                 return View(credential);
             }
-            
+
             bool result = UserManager.AuthenticateUser(credential, Session);
             if (result)
             {
                 TempData["message"] = "Login Successful";
                 TempData["credential"] = credential;
-                return RedirectToAction("ProfilePage", "ProfilePage");
+                User user = UserPersistence.GetUser(credential.UserId);
+                if (user.IsAdmin)
+                    return RedirectToAction("AdminPage", "Admin");
+                else
+                    return RedirectToAction("ProfilePage", "ProfilePage");
             }
             else
             {

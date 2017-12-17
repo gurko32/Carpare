@@ -5,6 +5,7 @@ using System;
 using Carpare.Models.Repository;
 using Carpare.Models.Entity;
 using Carpare.Models.Persistance;
+using Carpare.Models.Transaction;
 
 namespace SqliteTest.Models.Repository
 {
@@ -108,7 +109,7 @@ namespace SqliteTest.Models.Repository
         public bool Initialize()
         {
             bool success = true;
-            UserPersistence.PrintAllUsers();
+           
             Close();
             //if (File.Exists("F://MyDatabase.sqlite"))
             //{
@@ -126,16 +127,36 @@ namespace SqliteTest.Models.Repository
             bool openResult = Open();
             if (success & openResult)
             {
-                string sql = "CREATE TABLE user (UserId VARCHAR(50), Name VARCHAR(50), HashedPassword VARCHAR(50),Email VARCHAR(50), PRIMARY KEY(UserId));";
+                string salt;
+                string sql = "CREATE TABLE user (UserId VARCHAR(50), Name VARCHAR(50),Salt VARCHAR(50), HashedPassword VARCHAR(50),Email VARCHAR(50),IsAdmin BIT,Status VARCHAR(1), PRIMARY KEY(UserId));";
                 DoCommand(sql);
-                sql = "CREATE TABLE car (carId INTEGER AUTOINCREMENT, Brand VARCHAR(50), Model VARCHAR(50),Owner VARCHAR(50),YearOfProduction INTEGER,KM INT,PRIMARY KEY(carId),FOREIGN KEY (Owner) references user(UserId));";
+                sql = "CREATE TABLE car (carId INTEGER, Brand VARCHAR(50), Model VARCHAR(50),Owner VARCHAR(50),YearOfProduction INTEGER,KM INT,PRIMARY KEY(carId),FOREIGN KEY (Owner) references user(UserId));";
                 DoCommand(sql);
-                //sql = "insert into book (title, isbn, dateadded) values "
-                //    + "('Gone With The Wind', 67890123, '2011-01-03')"
-                //    + ", ('Platos Republic', 80192837, '2013-02-25')"
-                //    + ", ('Selcuk Altun', 22334455778, '1944-06-15')"
-                //    + ", ('Die Blechtrommel', 90897856453, '1896-07-06')";
-                //DoCommand(sql);
+                sql = "CREATE TABLE comment (CommentId INTEGER, carId INT, Text VARCHAR(300),FOREIGN KEY (carId) references car(carId));";
+                DoCommand(sql);
+
+                salt = User.CreateSalt();
+                sql = "insert into user (UserId, Name,Salt, HashedPassword,Email,IsAdmin,Status) values ('"
+               + "crysispeed" + "', '"
+               + "Caglar" + "', '"
+               + salt + "', '"
+               + EncryptionManager.EncodePassword("123456", salt) + "', '"
+               + "abc@gmail.com" + "',"
+               + "1" + ", '"
+               + "A" + "');";
+                DoCommand(sql);
+                salt = User.CreateSalt();
+                sql = "insert into user (UserId, Name,Salt, HashedPassword,Email,IsAdmin,Status) values ('"
+               + "gurko32" + "', '"
+               + "Gurkan" + "', '"
+               + salt + "', '"
+               + EncryptionManager.EncodePassword("123456", salt) + "', '"
+               + "def@gmail.com" + "',"
+               + "1" + ", '"
+               + "A" + "');";
+                DoCommand(sql);
+                UserPersistence.PrintAllUsers();
+
             }
 
             return success;

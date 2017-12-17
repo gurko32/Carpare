@@ -45,18 +45,13 @@ namespace Carpare.Controllers
                 TempData["message"] = "Invalid credentials";
                 return View(credential);
             }
-            bool result = UserManager.AuthenticateUser(credential, Session);
-            if (result)
+            else
             {
                 TempData["message"] = "Sign Up Successful";
                 ViewBag.message = "Sign Up Successful";
                 return RedirectToAction("Login", "Authentication");
             }
-            else
-            {
-                TempData["message"] = "Invalid credentials";
-                return View(credential);
-            }
+           
 
         }
     }

@@ -77,7 +77,7 @@ namespace Carpare.Models.Repository
             foreach (object[] dataRow in rows)
             {
                 Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()));
-                Debug.WriteLine(car.ToString());
+                Debug.WriteLine(car.toString());
                 cars.Add(car);
             }
 

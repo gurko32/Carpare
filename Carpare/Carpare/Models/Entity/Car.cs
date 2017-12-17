@@ -29,7 +29,7 @@ namespace Carpare.Models.Entity
         {
 
         }
-        public String ToString()
+        public String toString()
         {
             return "Car Id: "+ carId + " Car Brand: " + Brand + ", " + "Car Model: " + Model + "Car Owner: " + Owner + ", " + "Year of Production: " + YearOfProduction + "," + "Car's mileage(km): " + km;
         }

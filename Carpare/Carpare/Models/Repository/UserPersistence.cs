@@ -11,18 +11,23 @@ namespace Carpare.Models.Persistance
 {
     public class UserPersistence
     {
-        private static List<User> users;
         /*
          * Get one user from the repository, identified by userId
          */
         public static bool AddUser(Credential cr)
         {
-            string sql = "insert into user (UserId, Name, HashedPassword,Email) values ('"
+            string salt = User.CreateSalt();
+            string hashedPassword = EncryptionManager.EncodePassword(cr.Password,salt);
+            string sql = "insert into user (UserId, Name,Salt, HashedPassword,Email,IsAdmin,Status) values ('"
                + cr.UserId + "', '"
                + cr.Name + "', '"
-               + cr.Password + "', '"
-               + cr.Email + "');";
+               + salt + "', '"
+               + hashedPassword + "', '"
+               + cr.Email + "',"
+               + "0" + ", '"
+               + "A" + "');";
             RepositoryManager.Repository.DoCommand(sql);
+            PrintAllUsers();
             return true;
 
         }
@@ -37,7 +42,7 @@ namespace Carpare.Models.Persistance
 
             // Use the data from the first returned row (should be the only one) to create a User.
             object[] dataRow = rows[0];
-            User user = new User((string)dataRow[0],(string)dataRow[1], (string)dataRow[2], (string)dataRow[3]);
+            User user = new User((string)dataRow[0],(string)dataRow[1], (string)dataRow[2],(string)dataRow[3],(string)dataRow[4],(bool)dataRow[5]);
             return user;
         }
 
@@ -59,8 +64,8 @@ namespace Carpare.Models.Persistance
                 return;
             foreach(object[] a in rows)
             {
-                User user = new User((string)a[0], (string)a[1], (string)a[2], (string)a[3]);
-                Debug.WriteLine(user.ToString());
+                User user = new User((string)a[0], (string)a[1], (string)a[2],(string)a[3], (string)a[4],(bool)a[5]);
+                Debug.WriteLine(user.toString());
             }
 
         }
