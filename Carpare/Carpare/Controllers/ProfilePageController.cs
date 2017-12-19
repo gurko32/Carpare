@@ -14,8 +14,12 @@ namespace Carpare.Controllers
         [HttpGet]
         public ActionResult ProfilePage()
         {
-            Credential cr = (Credential)TempData["credential"];
-            return View(cr);
+            User user = (User)TempData["User"];
+            if (user.IsAdmin)
+            {
+                return RedirectToAction("AdminPage", "Admin");
+            }
+            return View(user);
         }
 
         [HttpPost]

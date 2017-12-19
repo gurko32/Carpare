@@ -1,5 +1,5 @@
 ﻿@using Carpare.Models.Entity
-@model Credential
+@model User
 @{
     ViewBag.Title = "ProfilePage";
 }
@@ -16,13 +16,13 @@
 
     <font face="verdana" color="grey">Password</font>
     <form action="~/ProfilePage/UpdatePassword" method="post">
-        New Password: <br /><input type="password" name="Password" value="@Model.Password"><br />
+        New Password: <br /><input type="password" name="Password" value="@TempData["password"]"><br />
         <input type="submit" value="Change">
     </form>
 
     <font face="verdana" color="grey">E-Mail</font>
     <form action="~/ProfilePage/UpdateEmail" method="post">
-        New E-Mail: <br /><input type="text" name="Email" value="@Model.Email"><br />
+        New E-Mail: <br /><input type="text" name="Email" value="@Model.email"><br />
         <input type="submit" value="Change">
     </form>
 </div>

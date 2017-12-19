@@ -45,9 +45,10 @@ namespace Carpare.Controllers
             {
                  
                 TempData["message"] = "Login Successful";
-                TempData["credential"] = credential;
+                
                 User user = UserPersistence.GetUser(credential.UserId);
-                Session["UserId"] = credential.UserId;
+                TempData["User"] = user;
+                Session["UserId"] = user.UserId;
                 Session["LoggedIn"] = true;
                 if (user.IsAdmin)
                     return RedirectToAction("AdminPage", "Admin");
@@ -64,6 +65,7 @@ namespace Carpare.Controllers
         public ActionResult Logout()
         {
             UserManager.LogoutUser(Session);
+            TempData["message"] = "";
             return RedirectToAction("Index", "Home");
         }
     }
