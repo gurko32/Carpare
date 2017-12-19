@@ -46,9 +46,9 @@
         <!--PHOTO-->
     <sDiv id="lel">
         <p> <img src="@c.Url" alt="Car's Photo" width="300" height="300" /> </p>
-        <p>@c.Brand    @c.Model</p>        
-        <p>@c.Owner    @c.YearOfProduction</p>        
-        <p>@c.km</p>
+        <p>Car Brand And Model: @c.Brand    @c.Model</p>        
+        <p>Owner: @c.Owner</p>    <p>Year Of Production: @c.YearOfProduction</p>        
+        <p>KM: @c.km</p>
         <a href="www.google.com.tr">DENEME</a>
         <form action="~/Car/CarLister" method="post">
             <input type="submit" value="Comment" onclick="getComment(@c.carId);">
