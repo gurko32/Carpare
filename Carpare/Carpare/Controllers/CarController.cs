@@ -33,6 +33,7 @@ namespace Carpare.Controllers
         public ActionResult CarLister(string comment,int carId)
         {
             Debug.WriteLine("asdasdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ comment);
+            Debug.WriteLine(Session["UserId"]);
             Car[] cars = CarManager.GetAllCars();
             return View(cars);  // returns /Views/Car/CarLister.cshtml
         }
@@ -54,7 +55,8 @@ namespace Carpare.Controllers
         public ActionResult Update(Car car, string submit)
         {
             bool result = false;
-
+            car.Owner = (string)Session["UserId"];
+            
             // add or drop
             switch (submit)
             {

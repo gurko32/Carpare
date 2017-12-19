@@ -43,9 +43,11 @@ namespace Carpare.Controllers
             bool result = UserManager.AuthenticateUser(credential, Session);
             if (result)
             {
+                 
                 TempData["message"] = "Login Successful";
                 TempData["credential"] = credential;
                 User user = UserPersistence.GetUser(credential.UserId);
+                Session["UserId"] = credential.UserId;
                 if (user.IsAdmin)
                     return RedirectToAction("AdminPage", "Admin");
                 else

@@ -27,7 +27,7 @@ namespace Carpare.Models.Repository
             // Use the data from the first returned row (should be the only one) to create a Book.
             object[] dataRow = rows[0];
             //DateTime dateAdded = DateTime.Parse(dataRow[2].ToString());
-            Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()),(string)dataRow[6]);
+            Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6]);
             return car;
         }
 
@@ -37,15 +37,28 @@ namespace Carpare.Models.Repository
          */
         public static bool AddCar(Car car)
         {
+            string sql = "select max(carId) AS num from car;";
+            List<object[]> rows = RepositoryManager.Repository.DoQuery(sql);
+            sql = "select * from car";
+            List<object[]> rows2 = RepositoryManager.Repository.DoQuery(sql);
 
-            string sql = "insert into car (carId, brand, model,owner, yearOfProduction, km, url  ) values ('"
+            if(rows2.Count==0)
+                { 
+                car.carId = 1000;
+            }
+            else
+            {
+                car.carId = Int32.Parse(rows[0][0].ToString()) + 1;
+            }
+
+            sql = "insert into car (carId, brand, model,owner, yearOfProduction, km, url  ) values ('"
                 + car.carId + "', '"
                 + car.Brand + "', '"
                 + car.Model + "', '"
                 + car.Owner + "', "
                 + car.YearOfProduction + ", "
-                + car.km+",'"
-                + car.Url+"')";
+                + car.km + ",'"
+                + car.Url + "')";
             RepositoryManager.Repository.DoCommand(sql);
             return true;
         }
