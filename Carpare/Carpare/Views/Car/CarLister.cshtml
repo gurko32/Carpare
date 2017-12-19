@@ -1,5 +1,6 @@
 ﻿@using Carpare.Models.Entity
 @model Car[]
+
 @{
     ViewBag.Title = "CarLister";
 }
@@ -8,62 +9,27 @@
 
 <div id="main">
     <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
-    <!--
-    <table border="1" cellpadding="5">
-        <caption>Car List</caption>
-        <thead>
-            <tr>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Owner</th>
-                <th>Year Of Production</th>
-                <th>Km</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Car c in Model)
-            {
-                <tr>
-                    <td>@c.Brand</td>
-                    <td>@c.Model</td>
-                    <td>@c.Owner</td>
-                    <td>@c.YearOfProduction</td>
-                    <td>@c.km</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    -->
-    
-        
-</div>
 
-<br />
-<br />
-<!--<img src="https://indigodergisi.com/wp-content/uploads/2017/10/yazmak-yazarin-gozunden-dilinden-720x420.jpg" alt="Girl in a jacket">-->
-@foreach (Car c in Model)
-{
+
+    <br />
+    <br />
+    @foreach (Car c in Model)
+    {
         <!--PHOTO-->
-    <sDiv id="lel">
-        <p> <img src="@c.Url" alt="Car's Photo" width="300" height="300" /> </p>
-        <p>Car Brand And Model: @c.Brand    @c.Model</p>        
-        <p>Owner: @c.Owner</p>    <p>Year Of Production: @c.YearOfProduction</p>        
-        <p>KM: @c.km</p>
-        <a href="www.google.com.tr">DENEME</a>
-        <form action="~/Car/CarLister" method="post">
-            <input type="submit" value="Comment" onclick="getComment(@c.carId);">
-           
-            <!--<input type="submit" name="submit" value=getComment(@c.carId);>-->
-        </form>     
-    </sDiv>
-}
+        <sDiv id="lel">
+            <p> <img src="@c.Url" alt="Car's Photo" width="300" height="300" /> </p>
+            <p>Car Brand And Model: @c.Brand    @c.Model</p>
+            <p>Owner: @c.Owner</p>    <p>Year Of Production: @c.YearOfProduction</p>
+            <p>KM: @c.km</p>
 
-<p>@ViewBag.message</p>
-<script type="text/javascript">
-    function getComment(carId) {
-        var retVal = prompt("Enter your comment : ", "your comment here");
-        retVal = carId + " " + retval;
-        return retVal
-        //document.write("You have entered : " + retVal);
+            <form action="~/Car/CarLister" method="post">
+                Enter Your Comment Here! <input type="text" name="comment" />
+                <input type="hidden" name="carId" value="@c.carId" />
+                <input type="submit" value="Submit">
+
+            </form>
+        </sDiv>
     }
-</script>
+
+    <p>@ViewBag.message</p>
+</div>

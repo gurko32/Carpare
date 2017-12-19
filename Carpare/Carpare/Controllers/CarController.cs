@@ -30,9 +30,9 @@ namespace Carpare.Controllers
         }
         
         [HttpPost]
-        public ActionResult CarLister(string submit)
+        public ActionResult CarLister(string comment,int carId)
         {
-            Debug.WriteLine("asdasdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+submit);
+            Debug.WriteLine("asdasdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ comment);
             Car[] cars = CarManager.GetAllCars();
             return View(cars);  // returns /Views/Car/CarLister.cshtml
         }
