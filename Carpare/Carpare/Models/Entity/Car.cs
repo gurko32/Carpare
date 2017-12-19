@@ -13,10 +13,11 @@ namespace Carpare.Models.Entity
         public String Owner { get; set; }
         public int YearOfProduction { get; set; }
         public int km { get; set; }
+        public String Url { get; set; }
         /*
          * Return a string representation of the Pet object.
          */
-        public Car(int carId,String Brand,String Model,String Owner,int YearOfProduction,int km)
+        public Car(int carId,String Brand,String Model,String Owner,int YearOfProduction,int km,String Url)
         {
             this.carId = carId;
             this.Brand = Brand;
@@ -24,6 +25,7 @@ namespace Carpare.Models.Entity
             this.Owner = Owner;
             this.YearOfProduction = YearOfProduction;
             this.km = km;
+            this.Url = Url;
         }
         public Car()
         {
@@ -31,7 +33,7 @@ namespace Carpare.Models.Entity
         }
         public String toString()
         {
-            return "Car Id: "+ carId + " Car Brand: " + Brand + ", " + "Car Model: " + Model + "Car Owner: " + Owner + ", " + "Year of Production: " + YearOfProduction + "," + "Car's mileage(km): " + km;
+            return "Car Id: "+ carId + " Car Brand: " + Brand + ", " + "Car Model: " + Model + "Car Owner: " + Owner + ", " + "Year of Production: " + YearOfProduction + "," + "Car's mileage(km): " + km+","+"Car's URL: "+Url;
         }
 
         /*

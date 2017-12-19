@@ -5,8 +5,10 @@
 }
 
 <h2>CarLister</h2>
+
 <div id="main">
     <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+    <!--
     <table border="1" cellpadding="5">
         <caption>Car List</caption>
         <thead>
@@ -31,5 +33,25 @@
             }
         </tbody>
     </table>
+    -->
+    
+        
 </div>
+
+<br />
+<br />
+<!--<img src="https://indigodergisi.com/wp-content/uploads/2017/10/yazmak-yazarin-gozunden-dilinden-720x420.jpg" alt="Girl in a jacket">-->
+@foreach (Car c in Model)
+{
+        <!--PHOTO-->
+    <sDiv id="lel">
+        <p> <img src="@c.Url" alt="Car's Photo" width="300" height="300" /> </p>
+        <p>@c.Brand    @c.Model</p>        
+        <p>@c.Owner    @c.YearOfProduction</p>        
+        <p>@c.km</p>
+        <a href="www.google.com.tr">DENEME</a>
+               
+    </sDiv>
+}
+
 <p>@ViewBag.message</p>
