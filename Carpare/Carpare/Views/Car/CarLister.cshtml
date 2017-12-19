@@ -50,8 +50,20 @@
         <p>@c.Owner    @c.YearOfProduction</p>        
         <p>@c.km</p>
         <a href="www.google.com.tr">DENEME</a>
-               
+        <form action="~/Car/CarLister" method="post">
+            <input type="submit" value="Comment" onclick="getComment(@c.carId);">
+           
+            <!--<input type="submit" name="submit" value=getComment(@c.carId);>-->
+        </form>     
     </sDiv>
 }
 
 <p>@ViewBag.message</p>
+<script type="text/javascript">
+    function getComment(carId) {
+        var retVal = prompt("Enter your comment : ", "your comment here");
+        retVal = carId + " " + retval;
+        return retVal
+        //document.write("You have entered : " + retVal);
+    }
+</script>

@@ -1,6 +1,7 @@
 ﻿using Carpare.Models.Entity;
 using Carpare.Models.Transaction;
 using SqliteDemo.Models.Transaction;
+using System.Diagnostics;
 using System.Web.Mvc;
 
 namespace Carpare.Controllers
@@ -27,15 +28,15 @@ namespace Carpare.Controllers
             Car[] cars = CarManager.GetAllCars();
             return View(cars);  // returns /Views/Car/CarLister.cshtml
         }
-        /*
+        
         [HttpPost]
-        public ActionResult CarLister()
+        public ActionResult CarLister(string submit)
         {
+            Debug.WriteLine("asdasdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+submit);
             Car[] cars = CarManager.GetAllCars();
             return View(cars);  // returns /Views/Car/CarLister.cshtml
         }
-        */
-
+        
 
         /*
          * Display the Update form
