@@ -101,11 +101,30 @@
         
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="~/Home/Index">Home</a>
-            <a href="~/Car/CarLister">Cars</a>
-            <a href="~/Car/Update">Add Car</a>
-            <a href="#">Contact</a>
-            <a href="~/Authentication/Login">Sign In/Sign Up </a>
+            @if (Session["LoggedIn"] != null)
+            {
+                if ((bool)Session["LoggedIn"] == true)
+                {
+                <a href="~/Home/Index">Home</a>
+                <a href="~/Car/CarLister">Cars</a>
+                <a href="~/Car/Update">Add Car</a>
+                <a href="~/ProfilePage/ProfilePage">Profile Page</a>
+                <a href="~/Authentication/Logout">Sign Out </a>
+                }
+
+                else
+                {
+                <a href="~/Home/Index">Home</a>
+                <a href="~/Car/CarLister">Cars</a>
+                <a href="~/Authentication/Login">Sign In/Sign Up </a>
+                }
+            }
+            else
+            {
+                <a href="~/Home/Index">Home</a>
+                <a href="~/Car/CarLister">Cars</a>
+                <a href="~/Authentication/Login">Sign In/Sign Up </a>
+            }
         </div>
     </div>
     <script>

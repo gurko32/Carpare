@@ -48,6 +48,7 @@ namespace Carpare.Controllers
                 TempData["credential"] = credential;
                 User user = UserPersistence.GetUser(credential.UserId);
                 Session["UserId"] = credential.UserId;
+                Session["LoggedIn"] = true;
                 if (user.IsAdmin)
                     return RedirectToAction("AdminPage", "Admin");
                 else
