@@ -133,7 +133,7 @@ namespace SqliteTest.Models.Repository
                 DoCommand(sql);
                 sql = "CREATE TABLE car (carId INTEGER, Brand VARCHAR(50), Model VARCHAR(50),Owner VARCHAR(50),YearOfProduction INTEGER,KM INT,Url VARCHAR(200),PRIMARY KEY(carId),FOREIGN KEY (Owner) references user(UserId));";
                 DoCommand(sql);
-                sql = "CREATE TABLE comment (CommentId INTEGER, carId INT,UserId VARCHAR(50), Text VARCHAR(300),FOREIGN KEY (carId) references car(carId),PRIMARY KEY(CommentId),FOREIGN KEY (UserId) references user(UserId));";
+                sql = "CREATE TABLE comment (CommentId INTEGER, carId INTEGER,UserId VARCHAR(50), Text VARCHAR(300),FOREIGN KEY (carId) references car(carId),PRIMARY KEY(CommentId),FOREIGN KEY (UserId) references user(UserId));";
                 DoCommand(sql);
 
                 salt = User.CreateSalt();
