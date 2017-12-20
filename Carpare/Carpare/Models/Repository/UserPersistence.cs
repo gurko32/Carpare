@@ -95,7 +95,7 @@ namespace Carpare.Models.Persistance
             List<object[]> rows = RepositoryManager.Repository.DoQuery(sql);
             if (rows.Count == 0)
                 return false;
-            users = new User[rows.Count];
+            string salt = (string)rows[0][0];
         }
         public static string CreateRandomString(int length)
         {
