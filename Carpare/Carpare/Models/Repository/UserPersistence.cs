@@ -89,6 +89,7 @@ namespace Carpare.Models.Persistance
         }
         public static bool ResetPassword(string userId)
         {
+            ////dedelerrrrrrrrrrrrr
             int result = 0;
             string newPassword = CreateRandomString(8);
             string sql = "select PasswordHash from user where UserId='"+ userId +"';";
