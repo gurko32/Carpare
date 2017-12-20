@@ -23,11 +23,14 @@
             <p>Owner: @c.Owner</p>    <p>Year Of Production: @c.YearOfProduction</p>
             <p>KM: @c.km</p>
 
-            <form action="~/Car/CarLister" method="post">
+            <form action="~/Comment/CommentAdder" method="post">
                 Enter Your Comment Here! <input type="text" name="comment" />
                 <input type="hidden" name="carId" value="@c.carId" />
                 <input type="submit" value="Submit">
-
+            </form>
+            <form action="~/Comment/CommentShower" method="post">
+                <input type="hidden" name="carId" value="@c.carId" />
+                <input type="submit" value="Show Comments">
             </form>
         </sDiv>
     }

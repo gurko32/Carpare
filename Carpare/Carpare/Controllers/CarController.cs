@@ -38,12 +38,28 @@ namespace Carpare.Controllers
         [HttpPost]
         public ActionResult CarLister(string comment,int carId)
         {
-            Debug.WriteLine("asdasdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ comment);
-            Debug.WriteLine(Session["UserId"]);
+            //Debug.WriteLine("asdasdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ comment);
+            //Debug.WriteLine(Session["UserId"]);
+
             Car[] cars = CarManager.GetAllCars();
             return View(cars);  // returns /Views/Car/CarLister.cshtml
         }
-        
+        /*
+        [HttpGet]
+        public ActionResult CommentShower()
+        {
+
+
+        }
+        [HttpPost]
+        public ActionResult CommentShower()
+        {
+
+
+        }
+        */
+
+
 
         /*
          * Display the Update form

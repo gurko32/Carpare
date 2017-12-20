@@ -164,6 +164,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CarController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfilePageController.cs" />
     <Compile Include="Controllers\SecureController.cs" />
@@ -172,13 +173,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity\Car.cs" />
+    <Compile Include="Models\Entity\Comment.cs" />
     <Compile Include="Models\Entity\Credential.cs" />
     <Compile Include="Models\Entity\User.cs" />
+    <Compile Include="Models\Repository\CommentPersistence.cs" />
     <Compile Include="Models\Repository\UserPersistence.cs" />
     <Compile Include="Models\Repository\CarPersistence.cs" />
     <Compile Include="Models\Repository\IRepository.cs" />
     <Compile Include="Models\Repository\RepositoryManager.cs" />
     <Compile Include="Models\Repository\SqliteRepository.cs" />
+    <Compile Include="Models\Transaction\CommentManager.cs" />
     <Compile Include="Models\Transaction\CarManager.cs" />
     <Compile Include="Models\Transaction\EncryptionManager.cs" />
     <Compile Include="Models\Transaction\StatisticManager.cs" />
@@ -251,6 +255,7 @@
     <Content Include="Views\Car\MyCarLister.cshtml" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
+    <Content Include="Views\Comment\CommentShower.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
