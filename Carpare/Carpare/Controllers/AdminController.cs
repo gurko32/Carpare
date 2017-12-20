@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Carpare.Models.Persistance;
+using Carpare.Models.Transaction;
 using System.Web.Mvc;
 
 namespace Carpare.Controllers
@@ -11,6 +9,38 @@ namespace Carpare.Controllers
         // GET: Admin
         [HttpGet]
         public ActionResult AdminPage()
+        {
+            return View();
+        }
+        public ActionResult ListUsers()
+        {   
+            return View(UserPersistence.GetAllUsers());
+        }
+        public ActionResult ShowStatistics()
+        {
+            return View(StatisticManager.GetStatistics());
+        }
+        [HttpGet]
+        public ActionResult ChangeUserStatus()
+        {
+            return View(UserPersistence.GetAllUsers());
+        }
+        [HttpPost]
+        public ActionResult ChangeStatus(string Status,string UserId)
+        {
+            bool result = UserPersistence.ChangeUserStatus(UserId,Status);
+            if (result)
+            {
+                ViewBag.message = "Transaction Completed.";
+            }
+            else
+            {
+                ViewBag.message = "Transaction Failed. Try Again.";
+            }
+            return View("ChangeUserStatus", UserPersistence.GetAllUsers());
+
+        }
+        public ActionResult ResetUserPassword()
         {
             return View();
         }

@@ -178,6 +178,7 @@
     <Compile Include="Models\Repository\SqliteRepository.cs" />
     <Compile Include="Models\Transaction\CarManager.cs" />
     <Compile Include="Models\Transaction\EncryptionManager.cs" />
+    <Compile Include="Models\Transaction\StatisticManager.cs" />
     <Compile Include="Models\Transaction\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -224,6 +225,9 @@
     <Content Include="Views\Car\CarLister.cshtml" />
     <Content Include="Views\Car\Update.cshtml" />
     <Content Include="Views\Admin\AdminPage.cshtml" />
+    <Content Include="Views\Admin\ListUsers.cshtml" />
+    <Content Include="Views\Admin\ShowStatistics.cshtml" />
+    <Content Include="Views\Admin\ChangeUserStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

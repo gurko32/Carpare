@@ -1,0 +1,13 @@
+﻿@model int []
+@{
+    ViewBag.Title = "ShowStatistics";
+}
+<div id="main">
+    <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+    <h2>ShowStatistics</h2>
+
+    <p>Number of Users: @Model[0] </p>
+    <p>Number of Active Users: @Model[1]</p>
+    <p>Number of Inactive Users: @Model[2]</p>
+    <p>Number of Cars In the System: @Model[3]</p>
+</div>

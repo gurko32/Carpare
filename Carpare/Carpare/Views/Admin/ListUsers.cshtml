@@ -1,0 +1,46 @@
+﻿@using Carpare.Models.Entity
+@model User[]
+@{
+    ViewBag.Title = "ListUsers";
+}
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<div id="main">
+    <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+
+    <h2>List Users</h2>
+    <table>
+        <tr>
+            <th>UserId</th>
+            <th>Name</th>
+            <th>E-Mail Address</th>
+            <th>Status</th>
+        </tr>
+        @foreach (User user in Model)
+        {
+            <tr>
+                <td>@user.UserId</td>
+                <td>@user.Name</td>
+                <td>@user.email</td>
+                <td>@user.status</td>
+            </tr>
+        }
+    </table>
+</div>

@@ -3,9 +3,10 @@
 @{
     ViewBag.Title = "Login - Carpare";
 }
-<div align="left"><h2>Login</h2></div>
 <div id="main">
     <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+    <div align="left"><h2>Login</h2></div>
+
     <form action="~/Authentication/Login" method="post">
         User ID:<br /><input type="text" name="UserId" value="@Model.UserId"><br />
         Password:<br /><input type="password" name="Password" value="@Model.Password"><br />

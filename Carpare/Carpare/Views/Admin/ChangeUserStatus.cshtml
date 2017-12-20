@@ -1,0 +1,50 @@
+﻿@using Carpare.Models.Entity
+@Model  User[]
+@{
+    ViewBag.Title = "Change User Status";
+}
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<div id="main">
+    <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+    <h2>Change User Status</h2>
+    <p>Enter "A" for "Active" or "I" for "Inactive" from one of the submit boxes to change that user's status.</p>
+    <table>
+        <tr>
+            <th>UserId</th>
+            <th>Enter "A" or "I"</th>
+        </tr>
+        @foreach (User user in Model)
+        {
+            <tr>
+                <td>@user.UserId</td>
+                <td>
+                    <form action="~/Admin/ChangeStatus" method="post">
+                        <input type="text" name="Status" value="statusUpdate">
+                        <input type="hidden" name="UserId" value="@user.UserId" />
+                        <input type="submit" value="Update">
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+    <p>@ViewBag.message</p>
+</div>
+

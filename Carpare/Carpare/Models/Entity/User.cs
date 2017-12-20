@@ -14,7 +14,7 @@ namespace Carpare.Models.Entity
         public string email { get; set; }
         public string PasswordHash { get; set; }
         public bool IsAdmin { get; set; }
-
+        public string status { get; set; }
         public User()
         {
             UserId = "";
@@ -46,6 +46,16 @@ namespace Carpare.Models.Entity
             this.PasswordHash = HashedPassword;
             this.email = email;
             this.IsAdmin = IsAdmin;
+        }
+        public User(string UserId, string Name, string Salt, string HashedPassword, string email, bool IsAdmin,string stat)
+        {
+            this.UserId = UserId;
+            this.Name = Name;
+            this.Salt = Salt;
+            PasswordHash = HashedPassword;
+            this.email = email;
+            this.IsAdmin = IsAdmin;
+            status = stat;
         }
         public static string CreateSalt()
         {

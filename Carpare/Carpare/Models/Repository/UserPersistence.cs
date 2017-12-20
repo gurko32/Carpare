@@ -56,6 +56,37 @@ namespace Carpare.Models.Persistance
         {
             return false;
         }
+        public static User[] GetAllUsers()
+        {
+            User[] users;
+            int i = 0;
+            string sql = "select * from user";
+            List<object[]> rows = RepositoryManager.Repository.DoQuery(sql);
+            if (rows.Count == 0)
+                return null;
+            users = new User[rows.Count];
+            
+            foreach (object[] a in rows)
+            {
+                User user = new User((string)a[0], (string)a[1], (string)a[2], (string)a[3], (string)a[4], (bool)a[5],(string)a[6]);
+                users[i] = user;
+                i++;
+            }
+            return users;
+        }
+        public static bool ChangeUserStatus(string userId,string stat)
+        {
+            int result = 0;
+            string sql = "update user set Status = '" + stat + "' where UserId = '"+userId+"';";
+            result = RepositoryManager.Repository.DoCommand(sql);
+
+            if (result == 0)
+            {
+                return false;
+            }
+            else
+                return true;
+        }
        public static void PrintAllUsers()
         {
             string sql = "select * from user";
