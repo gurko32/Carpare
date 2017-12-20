@@ -109,12 +109,13 @@ namespace SqliteTest.Models.Repository
         public bool Initialize()
         {
             bool success = true;
-           
+            bool openResult;
             Close();
-            //if (File.Exists("F://MyDatabase.sqlite"))
-            //{
-            //    return true;
-            //}
+            if (File.Exists("C:\\Users\\gurkan.caglar\\MyDatabase.sqlite"))
+            {
+                openResult = Open();
+                return openResult;
+            }
             try
             {
                 SQLiteConnection.CreateFile(databaseFile);
@@ -124,7 +125,7 @@ namespace SqliteTest.Models.Repository
                 success = false;
             }
 
-            bool openResult = Open();
+            openResult = Open();
             if (success & openResult)
             {
                 string salt;
