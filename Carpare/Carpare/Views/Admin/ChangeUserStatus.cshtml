@@ -1,5 +1,6 @@
 ﻿@using Carpare.Models.Entity
-@Model  User[]
+@model User[]
+
 @{
     ViewBag.Title = "Change User Status";
 }
@@ -37,7 +38,7 @@
                 <td>@user.UserId</td>
                 <td>
                     <form action="~/Admin/ChangeStatus" method="post">
-                        <input type="text" name="Status" value="statusUpdate">
+                        <input type="text" name="Status">
                         <input type="hidden" name="UserId" value="@user.UserId" />
                         <input type="submit" value="Update">
                     </form>

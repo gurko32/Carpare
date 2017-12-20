@@ -13,7 +13,7 @@ namespace Carpare.Controllers
             return View();
         }
         public ActionResult ListUsers()
-        {   
+        {
             return View(UserPersistence.GetAllUsers());
         }
         public ActionResult ShowStatistics()
@@ -26,9 +26,9 @@ namespace Carpare.Controllers
             return View(UserPersistence.GetAllUsers());
         }
         [HttpPost]
-        public ActionResult ChangeStatus(string Status,string UserId)
+        public ActionResult ChangeStatus(string Status, string UserId)
         {
-            bool result = UserPersistence.ChangeUserStatus(UserId,Status);
+            bool result = UserPersistence.ChangeUserStatus(UserId, Status);
             if (result)
             {
                 ViewBag.message = "Transaction Completed.";
@@ -46,9 +46,16 @@ namespace Carpare.Controllers
             return View(UserPersistence.GetAllUsers());
         }
         [HttpPost]
-        public ActionResult ResetPassword()
+        public ActionResult ResetPassword(string UserId)
         {
-            return View();
+            string password = UserPersistence.ResetPassword(UserId);
+            if (password != null)
+                ViewBag.message = UserId + "'s password has changed. New password is: " + password;
+            else
+            {
+                ViewBag.message = "There was a problem with transaction. Please try again.";
+            }
+            return View("ResetUserPassword", UserPersistence.GetAllUsers());
         }
     }
 }
