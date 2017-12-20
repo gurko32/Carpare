@@ -11,6 +11,7 @@ namespace Carpare.Controllers
     {
         public ActionResult Index()
         {
+            Session["UserId"] = "";
             bool result = RepositoryManager.Repository.Initialize();
             return View();
         }

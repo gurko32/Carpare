@@ -66,6 +66,7 @@ namespace Carpare.Controllers
         {
             UserManager.LogoutUser(Session);
             TempData["message"] = "";
+            Session["UserId"] = "";
             return RedirectToAction("Index", "Home");
         }
     }
