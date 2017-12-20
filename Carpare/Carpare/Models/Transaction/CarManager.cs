@@ -23,7 +23,12 @@ namespace SqliteDemo.Models.Transaction
                 return (new Car[0]);
             }
         }
+        public static Car[] GetUserCars(string UserId)
+        {
+            Car[] cars = CarPersistence.GetUserCar(UserId);
 
+            return cars;
+        }
         /*
          * Transaction: Add a new book to the database
          * Returns true iff the new book has a unique ISBN
@@ -38,7 +43,7 @@ namespace SqliteDemo.Models.Transaction
             {
                 return false;
             }
-           
+
             return CarPersistence.AddCar(newCar);
         }
 
