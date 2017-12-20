@@ -1,4 +1,5 @@
 ﻿using Carpare.Models.Entity;
+using Carpare.Models.Repository;
 using Carpare.Models.Transaction;
 using SqliteDemo.Models.Transaction;
 using System.Diagnostics;
@@ -38,8 +39,6 @@ namespace Carpare.Controllers
         [HttpPost]
         public ActionResult CarLister(string comment,int carId)
         {
-            Debug.WriteLine("asdasdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ comment);
-            Debug.WriteLine(Session["UserId"]);
             Car[] cars = CarManager.GetAllCars();
             return View(cars);  // returns /Views/Car/CarLister.cshtml
         }
@@ -53,7 +52,48 @@ namespace Carpare.Controllers
         {
             return View(new Car());   // returns /Views/Pet/Update.cshtml
         }
+        [HttpGet]
+        public ActionResult ChangeCar()
+        {
+            return View(CarManager.GetUserCars((string)Session["UserId"]));
+        }
+        [HttpPost]
+        public ActionResult ChangeCar(string carId, string Url, string Brand, string Model, string YearOfProduction,string km)
+        {
+            bool result = false;
+            if(Url != "")
+            {
+                result = CarManager.ChangeCar(Url, carId, 1);
+            }
+            if(Brand != "")
+            {
+                result = CarManager.ChangeCar(Brand, carId, 2);
+            }
+            if (Model != "")
+            {
+                result = CarManager.ChangeCar(Model, carId, 3);
+            }
+            if (YearOfProduction != "")
+            {
+                result = CarManager.ChangeCar(YearOfProduction, carId, 4);
+            }
+            if(km != "")
+            {
+                result = CarManager.ChangeCar(km, carId, 5);
+            }
+            if (result)
+            {
+                ViewBag.message = "Car successfully updated.";
+            }
+            else
+                ViewBag.message = "Car couldn't be updated. Try again.";
 
+            return View(CarManager.GetUserCars(Session["UserId"].ToString()));
+        }
+        public ActionResult DeleteCar()
+        {
+            return View();
+        }
         /*
          * Handle the Update form submission
          */

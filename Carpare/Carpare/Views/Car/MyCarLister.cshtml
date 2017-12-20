@@ -4,11 +4,11 @@
     ViewBag.Title = "My Cars";
 }
 
-<h2>My Cars</h2>
+
 
 <div id="main">
     <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
-
+    <h2>My Cars</h2>
 
     <br />
     <br />
@@ -18,8 +18,9 @@
         <!--PHOTO-->
         <sDiv id="lel">
             <p> <img src="@c.Url" alt="Car's Photo" width="300" height="300" /> </p>
+            <p>Car ID: @c.carId</p>
             <p>Car Brand And Model: @c.Brand    @c.Model</p>
-            <p>Owner: @c.Owner</p>    <p>Year Of Production: @c.YearOfProduction</p>
+            <p>Year Of Production: @c.YearOfProduction</p>
             <p>KM: @c.km</p>
         </sDiv>
     }

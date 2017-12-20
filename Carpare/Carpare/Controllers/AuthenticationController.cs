@@ -47,7 +47,7 @@ namespace Carpare.Controllers
                 TempData["message"] = "Login Successful";
                 
                 User user = UserPersistence.GetUser(credential.UserId);
-                TempData["User"] = user;
+
                 Session["UserId"] = user.UserId;
                 Session["LoggedIn"] = true;
                 if (user.IsAdmin)

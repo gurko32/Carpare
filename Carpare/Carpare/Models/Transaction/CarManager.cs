@@ -70,15 +70,9 @@ namespace SqliteDemo.Models.Transaction
          * Returns true iff the book exists in the database and
          * it was successfully changed.
          */
-        public static bool ChangeCar(Car car)
+        public static bool ChangeCar(string value, string carId, int option)
         {
-            if (car == null)
-            {
-                return false;
-            }
-            bool result = CarPersistence.UpdateCar(car);
-
-
+            bool result = CarPersistence.UpdateCar(value, option, carId);
             return result;
         }
     }

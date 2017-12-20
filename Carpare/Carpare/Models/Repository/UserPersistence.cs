@@ -47,10 +47,39 @@ namespace Carpare.Models.Persistance
         }
 
         // Not Implemented
-        public static bool UpdateUser(User user)
+        public static bool UpdateUser(string update,string userId, int option)
         {
+            string sql= "";
+            int result = 0;
+            if (option == 1)
+            {
+                sql = "update user set Name ='" + update + "' where UserId = '" + userId + "';";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
 
-            return false;
+            else if(option == 2)
+            {
+                sql = "select Salt from user where UserId='" + userId + "';";
+                List<object[]> rows = RepositoryManager.Repository.DoQuery(sql);
+                if (rows.Count == 0)
+                {
+                    return false;
+                }
+                string salt = (string)rows[0][0];
+                string hashedPassword = EncryptionManager.EncodePassword(update,salt);
+                sql = "update user set HashedPassword='" + hashedPassword + "' where UserId = '" + userId + "';";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
+            else if(option == 3)
+            {
+                sql = "update user set Email='" + update + "' where UserId = '" + userId + "';";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
+
+            if (result == 1)
+                return true;
+            else
+                return false;
         }
         public static bool DeleteUser(User user)
         {

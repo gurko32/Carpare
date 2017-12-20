@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Carpare.Models.Entity;
 using Carpare.Models.Transaction;
+using Carpare.Models.Persistance;
+using System.Diagnostics;
 
 namespace Carpare.Controllers
 {
@@ -14,7 +16,7 @@ namespace Carpare.Controllers
         [HttpGet]
         public ActionResult ProfilePage()
         {
-            User user = (User)TempData["User"];
+            User user = UserPersistence.GetUser(Session["UserId"].ToString());
             if (user.IsAdmin)
             {
                 return RedirectToAction("AdminPage", "Admin");
@@ -23,20 +25,42 @@ namespace Carpare.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateUserId(Credential cr)
+        public ActionResult UpdateUserId(string name)
         {
-            return View();
+            bool result = UserPersistence.UpdateUser(name,(string)Session["UserId"],1);
+            if(result) 
+                ViewBag.message = "Name successfully changed.";
+            else
+                ViewBag.message = "Name cannot be changed. Try again.";
+            User user = UserPersistence.GetUser((string)Session["UserId"]);
+            return View("ProfilePage",user);
         }
         [HttpPost]
-        public ActionResult UpdatePassword(Credential cr)
+        public ActionResult UpdatePassword(string Password)
         {
-            return View();
+            bool result = UserPersistence.UpdateUser(Password, (string)Session["UserId"], 2);
+
+            if (result)
+                ViewBag.message = "Password successfully changed.";
+            else
+                ViewBag.message = "Password cannot be changed. Try Again.";
+
+            User user = UserPersistence.GetUser((string)Session["UserId"]);
+            return View("ProfilePage", user);
 
         }
         [HttpPost]
-        public ActionResult UpdateEmail(Credential cr)
+        public ActionResult UpdateEmail(string Email)
         {
-            return View();
+            bool result = UserPersistence.UpdateUser(Email, (string)Session["UserId"], 3);
+
+            if (result)
+                ViewBag.message = "E-Mail successfully changed.";
+            else
+                ViewBag.message = "E-Mail cannot be changed. Try Again.";
+
+            User user = UserPersistence.GetUser((string)Session["UserId"]);
+            return View("ProfilePage", user);
 
         }
 

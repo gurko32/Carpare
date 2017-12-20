@@ -32,7 +32,7 @@ namespace Carpare.Models.Repository
         }
         public static Car[] GetUserCar(string UserId)
         {
-            string sqlQuery = "select * from car where Owner='" + UserId+"';";
+            string sqlQuery = "select * from car where Owner='" + UserId + "';";
             List<object[]> rows = RepositoryManager.Repository.DoQuery(sqlQuery);
 
             if (rows.Count == 0)
@@ -51,7 +51,7 @@ namespace Carpare.Models.Repository
             }
             return cars;
 
-        } 
+        }
         /*
          * Add a Book to the database.
          * Return true iff the add succeeds.
@@ -63,8 +63,8 @@ namespace Carpare.Models.Repository
             sql = "select * from car";
             List<object[]> rows2 = RepositoryManager.Repository.DoQuery(sql);
 
-            if(rows2.Count==0)
-                { 
+            if (rows2.Count == 0)
+            {
                 car.carId = 1000;
             }
             else
@@ -84,19 +84,52 @@ namespace Carpare.Models.Repository
             return true;
         }
 
+
         internal static bool DeleteCar(Car delCar)
         {
+
             throw new NotImplementedException();
         }
 
         /*
-         * Update a book that is in the database, replacing all field values except
+         * Update a Car that is in the database, replacing all field values except
          * the key field.
-         * Return false if the book is not found, based on key field match.
          */
-        public static bool UpdateCar(Car car)
+        public static bool UpdateCar(string value,int option,string carId)
         {
-            return true;
+            int result = 0;
+            string sql = "";
+
+            if (option == 1)
+            {
+                sql = "update car set Url ='" + value + "' where carId = " + carId + ";";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
+            else if (option == 2)
+            {
+                sql = "update car set Brand ='" + value + "' where carId = " + carId + ";";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
+            else if (option == 3)
+            {
+                sql = "update car set Model ='" + value + "' where carId = " + carId + ";";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
+            else if (option == 4)
+            {
+                sql = "update car set YearOfProduction ='" + value + "' where carId = " + carId + ";";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
+            else if (option == 5)
+            {
+                sql = "update car set KM =" + value + " where carId = " + carId + ";";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
+
+            if (result == 1)
+                return true;
+            else
+                return false;
         }
 
         /*

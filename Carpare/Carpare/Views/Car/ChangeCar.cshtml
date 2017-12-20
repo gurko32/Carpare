@@ -1,0 +1,47 @@
+﻿@using Carpare.Models.Entity
+@model Car[]
+@{
+    ViewBag.Title = "Change Car";
+}
+<head>
+    <style>
+        sDiv2 {
+            width: 33%;
+            height: 600px;
+            float: left;
+        }
+
+        #lel2 {
+            background: #CCC;
+        }
+    </style>
+
+</head>
+
+<h2>Change Car</h2>
+
+<div id="main">
+    <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+
+    <br />
+    <br />
+    <br />
+    @foreach (Car c in Model)
+    {
+        <!--PHOTO-->
+        <sDiv2 id="lel2">
+            <p> <img src="@c.Url" alt="Car's Photo" width="300" height="300" /> </p>
+            <form action="~/Car/ChangeCar" method="post">
+                (Change Photo)<input type="text" name="url"><br />
+                <p>Car ID: @c.carId</p> <input type="hidden" name="carId" value="@c.carId" />
+                <p>Car Brand: @c.Brand (Change Brand Name)<input type="text" name="Brand"></p>
+                <p>Car Model: @c.Model (Change Model Name)<input type="text" name="Model"></p>
+                <p>Year Of Production: @c.YearOfProduction (Change Year Of Production)<input type="text" name="YearOfProduction"></p>
+                <p>KM: @c.km (Change KM)<input type="text" name="km"></p>
+                <input type="submit" value="Update">
+            </form>
+        </sDiv2>
+    }
+
+    <p>@ViewBag.message</p>
+</div>

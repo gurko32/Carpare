@@ -8,21 +8,22 @@
 
     <h2>Welcome, @Model.UserId</h2>
     <h1>Update Your Profile!</h1>
-    <font face="verdana" color="grey">Username</font>
+    <font face="verdana" color="grey">Name</font>
     <form action="~/ProfilePage/UpdateUserId" method="post">
-        New Username:<br /><input type="text" name="UserId" value="@Model.UserId"><br />
+        New Name:<br /><input type="text" name="Name"><br />
         <input type="submit" value="Change">
     </form>
 
     <font face="verdana" color="grey">Password</font>
     <form action="~/ProfilePage/UpdatePassword" method="post">
-        New Password: <br /><input type="password" name="Password" value="@TempData["password"]"><br />
+        New Password: <br /><input type="password" name="Password"><br />
         <input type="submit" value="Change">
     </form>
 
     <font face="verdana" color="grey">E-Mail</font>
     <form action="~/ProfilePage/UpdateEmail" method="post">
-        New E-Mail: <br /><input type="text" name="Email" value="@Model.email"><br />
+        New E-Mail: <br /><input type="text" name="Email"><br />
         <input type="submit" value="Change">
     </form>
+    <p>@ViewBag.message</p>
 </div>
