@@ -6,6 +6,8 @@ namespace Carpare.Controllers
 {
     public class AdminController : Controller
     {
+        //just to push
+
         // GET: Admin
         [HttpGet]
         public ActionResult AdminPage()
