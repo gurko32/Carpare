@@ -40,7 +40,13 @@ namespace Carpare.Controllers
             return View("ChangeUserStatus", UserPersistence.GetAllUsers());
 
         }
+        [HttpGet]
         public ActionResult ResetUserPassword()
+        {
+            return View(UserPersistence.GetAllUsers());
+        }
+        [HttpPost]
+        public ActionResult ResetPassword()
         {
             return View();
         }

@@ -87,6 +87,28 @@ namespace Carpare.Models.Persistance
             else
                 return true;
         }
+        public static bool ResetPassword(string userId)
+        {
+            int result = 0;
+            string newPassword = CreateRandomString(8);
+            string sql = "select PasswordHash from user where UserId='"+ userId +"';";
+            List<object[]> rows = RepositoryManager.Repository.DoQuery(sql);
+            if (rows.Count == 0)
+                return false;
+            users = new User[rows.Count];
+        }
+        public static string CreateRandomString(int length)
+        {
+            Random randomGenerator = new Random();
+            string result = "";
+            string characters = "ABCDEFGHIJKLMNOPRSTUVWXYZabcdefghijklmnoprstuwxyz0123456789.,!?";
+            for(int i = 0; i < length; i++)
+            {
+                result += characters[randomGenerator.Next(characters.Length)];
+            }
+
+            return result;
+        }
        public static void PrintAllUsers()
         {
             string sql = "select * from user";
