@@ -35,6 +35,15 @@ namespace Carpare.Models.Transaction
             {
                 stats[3]++;
             }
+            for (int i = 0; i < cars.Count; i++)
+            {
+                stats[3]++;
+            }
+            List<Comment> comments = CommentPersistence.GetAllComments();
+            for (int i = 0; i < comments.Count; i++)
+            {
+                stats[4]++;
+            }
             return stats;
         }
     }

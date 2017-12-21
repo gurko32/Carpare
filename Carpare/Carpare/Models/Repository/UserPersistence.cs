@@ -6,6 +6,7 @@ using Carpare.Models.Entity;
 using Carpare.Models.Transaction;
 using Carpare.Models.Repository;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace Carpare.Models.Persistance
 {
@@ -18,14 +19,17 @@ namespace Carpare.Models.Persistance
         {
             string salt = User.CreateSalt();
             string hashedPassword = EncryptionManager.EncodePassword(cr.Password, salt);
-            string sql = "insert into user (UserId, Name,Salt, HashedPassword,Email,IsAdmin,Status) values ('"
+            string sql = "insert into user (UserId, Name,Salt, HashedPassword,Email,IsAdmin,Status,Gender,BirthDate,Location) values ('"
                + cr.UserId + "', '"
                + cr.Name + "', '"
                + salt + "', '"
                + hashedPassword + "', '"
                + cr.Email + "',"
                + "0" + ", '"
-               + "A" + "');";
+               + "A" + "','" 
+               + cr.gender + "', '"
+               + cr.BirthDate + "', '"
+               + cr.Location + "'); ";
             RepositoryManager.Repository.DoCommand(sql);
             PrintAllUsers();
             return true;
@@ -42,14 +46,14 @@ namespace Carpare.Models.Persistance
 
             // Use the data from the first returned row (should be the only one) to create a User.
             object[] dataRow = rows[0];
-            User user = new User((string)dataRow[0], (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], (string)dataRow[4], (bool)dataRow[5]);
+            User user = new User((string)dataRow[0], (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], (string)dataRow[4], (bool)dataRow[5], (string)dataRow[6], (string)dataRow[7], (string)dataRow[8], (string)dataRow[9]);
             return user;
         }
 
         // Not Implemented
-        public static bool UpdateUser(string update,string userId, int option)
+        public static bool UpdateUser(string update, string userId, int option)
         {
-            string sql= "";
+            string sql = "";
             int result = 0;
             if (option == 1)
             {
@@ -57,7 +61,7 @@ namespace Carpare.Models.Persistance
                 result = RepositoryManager.Repository.DoCommand(sql);
             }
 
-            else if(option == 2)
+            else if (option == 2)
             {
                 sql = "select Salt from user where UserId='" + userId + "';";
                 List<object[]> rows = RepositoryManager.Repository.DoQuery(sql);
@@ -66,11 +70,11 @@ namespace Carpare.Models.Persistance
                     return false;
                 }
                 string salt = (string)rows[0][0];
-                string hashedPassword = EncryptionManager.EncodePassword(update,salt);
+                string hashedPassword = EncryptionManager.EncodePassword(update, salt);
                 sql = "update user set HashedPassword='" + hashedPassword + "' where UserId = '" + userId + "';";
                 result = RepositoryManager.Repository.DoCommand(sql);
             }
-            else if(option == 3)
+            else if (option == 3)
             {
                 sql = "update user set Email='" + update + "' where UserId = '" + userId + "';";
                 result = RepositoryManager.Repository.DoCommand(sql);
@@ -97,7 +101,7 @@ namespace Carpare.Models.Persistance
 
             foreach (object[] a in rows)
             {
-                User user = new User((string)a[0], (string)a[1], (string)a[2], (string)a[3], (string)a[4], (bool)a[5], (string)a[6]);
+                User user = new User((string)a[0], (string)a[1], (string)a[2], (string)a[3], (string)a[4], (bool)a[5], (string)a[6], (string)a[7], (string)a[8], (string)a[9]);
                 users[i] = user;
                 i++;
             }
@@ -118,7 +122,7 @@ namespace Carpare.Models.Persistance
         }
         public static string ResetPassword(string userId)
         {
-        
+
             int result = 0;
             string newPassword = CreateRandomString(8);
             string sql = "select Salt from user where UserId='" + userId + "';";
@@ -158,11 +162,13 @@ namespace Carpare.Models.Persistance
         {
             string sql = "select * from user";
             List<object[]> rows = RepositoryManager.Repository.DoQuery(sql);
+
             if (rows.Count == 0)
                 return;
+
             foreach (object[] a in rows)
             {
-                User user = new User((string)a[0], (string)a[1], (string)a[2], (string)a[3], (string)a[4], (bool)a[5]);
+                User user = new User((string)a[0], (string)a[1], (string)a[2], (string)a[3], (string)a[4], (bool)a[5], (string)a[6], (string)a[7], (string)a[8], (string)a[9]);
                 Debug.WriteLine(user.toString());
             }
 

@@ -1,7 +1,7 @@
 ﻿@using Carpare.Models.Entity
 @model User[]
 @{
-    ViewBag.Title = "ListUsers";
+    ViewBag.Title = "List Users";
 }
 <head>
     <style>
@@ -32,6 +32,9 @@
             <th>Name</th>
             <th>E-Mail Address</th>
             <th>Status</th>
+            <th>Gender</th>
+            <th>Birth Date</th>
+            <th>Location</th>
         </tr>
         @foreach (User user in Model)
         {
@@ -40,6 +43,9 @@
                 <td>@user.Name</td>
                 <td>@user.email</td>
                 <td>@user.status</td>
+                <td>@user.gender</td>
+                <td>@user.BirthDate</td>
+                <td>@user.Location</td>
             </tr>
         }
     </table>

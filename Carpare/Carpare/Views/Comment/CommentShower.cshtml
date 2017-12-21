@@ -9,9 +9,11 @@
 
 <div id="main">
     <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
-    <table border="1" cellpadding="5">
-        <caption>Comments</caption>
-        <thead>
+    @if (Model != null)
+    {
+        <table border="1" cellpadding="5">
+            <caption>Comments</caption>
+
             <tr>
                 <th>CarId</th>
                 <th>Brand</th>
@@ -23,23 +25,27 @@
                 <th>Comment Owner</th>
                 <th>Comment</th>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (Comment c in Model)
-            {
-                <tr>
-                    <td>@TempData["carId"]</td>
-                    <td>@TempData["Brand"]</td>
-                    <td>@TempData["Model"]</td>
-                    <td>@TempData["Owner"]</td>
-                    <td>@TempData["YearOfProduction"]</td>
-                    <td>@TempData["km"]</td>
-                    <td><img src="@TempData["Url"]" width="200" height="200"/></td>
-                    <td>@c.UserId</td>
-                    <td>@c.comment</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+
+            <tbody>
+
+                @foreach (Comment c in Model)
+                {
+                    <tr>
+                        <td>@TempData["carId"]</td>
+                        <td>@TempData["Brand"]</td>
+                        <td>@TempData["Model"]</td>
+                        <td>@TempData["Owner"]</td>
+                        <td>@TempData["YearOfProduction"]</td>
+                        <td>@TempData["km"]</td>
+                        <td><img src="@TempData["Url"]" width="200" height="200" /></td>
+                        <td>@c.UserId</td>
+                        <td>@c.comment</td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    }
     <p>@ViewBag.message</p>
 </div>

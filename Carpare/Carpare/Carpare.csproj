@@ -258,6 +258,8 @@
     <Content Include="Views\Car\ChangeCar.cshtml" />
     <Content Include="Views\Comment\CommentShower.cshtml" />
     <Content Include="Views\Car\DeleteCar.cshtml" />
+    <Content Include="Views\Car\SearchCar.cshtml" />
+    <Content Include="Views\Car\FoundCars.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

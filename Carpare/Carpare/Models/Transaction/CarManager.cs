@@ -77,5 +77,11 @@ namespace SqliteDemo.Models.Transaction
             bool result = CarPersistence.UpdateCar(value, option, carId);
             return result;
         }
+
+        public static Car[] SearchCar(string value,string userId, int option)
+        {
+            Car[] cars = CarPersistence.SearchCar(value, userId, option);
+            return cars;
+        }
     }
 }

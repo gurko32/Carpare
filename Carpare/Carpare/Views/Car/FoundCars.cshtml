@@ -1,15 +1,14 @@
 ﻿@using Carpare.Models.Entity
 @model Car[]
+
 @{
-    ViewBag.Title = "My Cars";
+    ViewBag.Title = "Found Cars";
 }
 
-
+<h2>Found Cars</h2>
 
 <div id="main">
     <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
-    <h2>My Cars</h2>
-
     <br />
     <br />
     <br />
@@ -22,12 +21,6 @@
             <p>Car Brand And Model: @c.Brand    @c.Model</p>
             <p>Year Of Production: @c.YearOfProduction</p>
             <p>KM: @c.km</p>
-            <p>Transmission Type: @c.TransmissionType</p>
-            <p>Fuel: @c.Fuel</p>
-            <p>Top Speed (km/h): @c.TopSpeed km/h</p>
-            <p>Acceleration (0-100 km/h): @c.Acceleration s</p>
-            <p>Urban Consumption: @c.UrbanConsumption l/100km</p>
-            <p>Wheel Drive: @c.WheelDrive</p>
         </sDiv>
     }
 

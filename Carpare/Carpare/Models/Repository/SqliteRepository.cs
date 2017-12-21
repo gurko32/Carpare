@@ -129,32 +129,38 @@ namespace SqliteTest.Models.Repository
             if (success & openResult)
             {
                 string salt;
-                string sql = "CREATE TABLE user (UserId VARCHAR(50), Name VARCHAR(50),Salt VARCHAR(50), HashedPassword VARCHAR(50),Email VARCHAR(50),IsAdmin BIT,Status VARCHAR(1), PRIMARY KEY(UserId));";
+                string sql = "CREATE TABLE user (UserId VARCHAR(50), Name VARCHAR(50),Salt VARCHAR(50), HashedPassword VARCHAR(50),Email VARCHAR(50),IsAdmin BIT,Status VARCHAR(1),Gender VARCHAR(6),BirthDate VARCHAR(10), Location VARCHAR(30), PRIMARY KEY(UserId));";
                 DoCommand(sql);
-                sql = "CREATE TABLE car (carId INTEGER, Brand VARCHAR(50), Model VARCHAR(50),Owner VARCHAR(50),YearOfProduction INTEGER,KM INT,Url VARCHAR(200),PRIMARY KEY(carId),FOREIGN KEY (Owner) references user(UserId));";
+                sql = "CREATE TABLE car (carId INTEGER, Brand VARCHAR(50), Model VARCHAR(50),Owner VARCHAR(50),YearOfProduction INTEGER,KM INT,Url VARCHAR(200),TransmissionType VARCHAR(15), Fuel VARCHAR(15),TopSpeed INT, Acceleration Float,UrbanConsumption Float, WheelDrive VARCHAR(20), PRIMARY KEY(carId),FOREIGN KEY (Owner) references user(UserId));";
                 DoCommand(sql);
                 sql = "CREATE TABLE comment (CommentId INTEGER, carId INTEGER,UserId VARCHAR(50), Text VARCHAR(300),FOREIGN KEY (carId) references car(carId),PRIMARY KEY(CommentId),FOREIGN KEY (UserId) references user(UserId));";
                 DoCommand(sql);
 
                 salt = User.CreateSalt();
-                sql = "insert into user (UserId, Name,Salt, HashedPassword,Email,IsAdmin,Status) values ('"
+                sql = "insert into user (UserId, Name,Salt, HashedPassword,Email,IsAdmin,Status,Gender,BirthDate,Location) values ('"
                + "crysispeed" + "', '"
                + "Caglar" + "', '"
                + salt + "', '"
                + EncryptionManager.EncodePassword("123456", salt) + "', '"
                + "abc@gmail.com" + "',"
                + "1" + ", '"
-               + "A" + "');";
+               + "A" + "','"
+               + "Male" + "', '"
+               + "1995-08-26" + "', '"
+               + "Ankara" + "');";
                 DoCommand(sql);
                 salt = User.CreateSalt();
-                sql = "insert into user (UserId, Name,Salt, HashedPassword,Email,IsAdmin,Status) values ('"
+                sql = "insert into user (UserId, Name,Salt, HashedPassword,Email,IsAdmin,Status,Gender,BirthDate,Location) values ('"
                + "gurko32" + "', '"
                + "Gurkan" + "', '"
                + salt + "', '"
                + EncryptionManager.EncodePassword("123456", salt) + "', '"
                + "def@gmail.com" + "',"
                + "1" + ", '"
-               + "A" + "');";
+               + "A" + "', '"
+               + "Male" + "', '"
+               + "1996-10-16" + "', '"
+               + "Ankara" + "');";
                 DoCommand(sql);
                 UserPersistence.PrintAllUsers();
 

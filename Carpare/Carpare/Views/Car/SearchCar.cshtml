@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Search Car";
+}
+<div id="main">
+    <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+    <h2>Search Car</h2>
+    <form action="~/Car/FoundCars" method="post">
+        <p>Search Car by it's Brand: <input type="text" name="Brand"> <input type="submit" value="Search"></p>
+    </form>
+    <form action="~/Car/FoundCars" method="post">
+        <p>Search Car by it's Model: <input type="text" name="Model"> <input type="submit" value="Search"></p>
+    </form>
+    <form action="~/Car/FoundCars" method="post">
+        <p>Search Car by it's Year of Production: <input type="text" name="YearOfProduction"> <input type="submit" value="Search"></p>
+    </form>
+    <form action="~/Car/FoundCars" method="post">
+        <p>Search Car by it's KM: <input type="text" name="km"> <input type="submit" value="Search"></p>
+    </form>
+    <p>@ViewBag.message</p>
+</div>

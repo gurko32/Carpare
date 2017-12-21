@@ -7,7 +7,7 @@
     <style>
         sDiv2 {
             width: 33%;
-            height: 600px;
+            height: 815px;
             float: left;
         }
 
@@ -38,6 +38,33 @@
                 <p>Car Model: @c.Model (Change Model Name)<input type="text" name="Model"></p>
                 <p>Year Of Production: @c.YearOfProduction (Change Year Of Production)<input type="text" name="YearOfProduction"></p>
                 <p>KM: @c.km (Change KM)<input type="text" name="km"></p>
+                <p>
+                    Transmission Type: @c.TransmissionType (Change Transmission Type)<select name="TransmissionType">
+                        <option selected="selected"></option>
+                        <option>Manual</option>
+                        <option>Automatic</option>
+                        <option>Tiptronic</option>
+                    </select>
+                </p>
+                <p>Top Speed: @c.TopSpeed (Change Top Speed)<input type="number" step="1" name="TopSpeed"> km/h</p>
+                <p>Acceleration (0-100 km/h): @c.Acceleration (Change Acceleration) s<input type="number" step="0.1" name="Acceleration"></p>
+                <p>Urban Consumption: @c.UrbanConsumption (Change Urban Consumption) l/100km<input type="number" step="0.1" name="UrbanConsumption"></p>
+                <p>
+                    Fuel Type: @c.Fuel (Change Fuel Type)<select name="Fuel">
+                        <option selected="selected"></option>
+                        <option>Diesel Fuel</option>
+                        <option>Petrol</option>
+                    </select>
+                </p>
+                <p>
+                    Wheel Drive: @c.WheelDrive (Change Wheel Drive)<select name="WheelDrive">
+                        <option selected="selected"></option>
+                        <option>All-Wheel Drive</option>
+                        <option>4-Wheel Drive</option>
+                        <option>Rear-Wheel Drive</option>
+                        <option>Front-Wheel Drive</option>
+                    </select>
+                </p>
                 <input type="submit" value="Update">
             </form>
         </sDiv2>

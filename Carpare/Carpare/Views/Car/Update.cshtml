@@ -1,20 +1,38 @@
 ﻿@using Carpare.Models.Entity
 @model Car
 @{
-    ViewBag.Title = "Updater";
+    ViewBag.Title = "Add Car";
 }
 
-<h2>Updater</h2>
+<h2>Add Car</h2>
 
 <div id="main">
     <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
     <form action="~/Car/Update" method="post">
+
         Brand:<br /><input type="text" name="Brand" value="@Model.Brand"><br />
         Model:<br /><input type="text" name="Model" value="@Model.Model"><br />
         Year Of Production:<br /><input type="text" name="YearOfProduction" value="@Model.YearOfProduction"><br />
         Km:<br /><input type="text" name="km" value="@Model.km"><br />
-        URL:<br /><input type="text" name="Url" value="@Model.Url"><br />
-
+        Transmission Type:<br /><select name="TransmissionType">
+            <option value="@Model.TransmissionType">Manual</option>
+            <option value="@Model.TransmissionType">Automatic</option>
+            <option value="@Model.TransmissionType">Tiptronic</option>
+        </select><br />
+        Fuel:<br /><select name="Fuel">
+            <option value="@Model.Fuel">Diesel Fuel</option>
+            <option value="@Model.Fuel">Petrol</option>
+        </select><br />
+        Top Speed:<br /><input type="number" step="1" name="TopSpeed" value="@Model.TopSpeed"><br />
+        Acceleration:<br /><input type="number" step="0.01" name="Acceleration" value="@Model.Acceleration"><br />
+        Urban Consumption:<br /><input type="number" step="0.01" name="UrbanConsumption" value="@Model.UrbanConsumption"><br />
+        Wheel Drive:<br /><select name="WheelDrive">
+            <option value="@Model.WheelDrive">All-Wheel Drive</option>
+            <option value="@Model.WheelDrive">4-Wheel Drive</option>
+            <option value="@Model.WheelDrive">Rear-Wheel Drive</option>
+            <option value="@Model.WheelDrive">Front-Wheel Drive</option>
+        </select><br />
+        Car Photo URL: <br /><input type="text" name="Url" value="@Model.Url"><br />
         <input type="submit" name="submit" value="Add Car">
     </form>
     <p><a href="~/Car/CarLister">List</a></p>

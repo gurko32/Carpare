@@ -58,7 +58,7 @@ namespace Carpare.Controllers
             return View(CarManager.GetUserCars((string)Session["UserId"]));
         }
         [HttpPost]
-        public ActionResult ChangeCar(string carId, string Url, string Brand, string Model, string YearOfProduction,string km)
+        public ActionResult ChangeCar(string carId, string Url, string Brand, string Model, string YearOfProduction,string km,string TransmissionType, string TopSpeed, string Acceleration, string UrbanConsumption,string Fuel,string WheelDrive)
         {
             bool result = false;
             if(Url != "")
@@ -80,6 +80,30 @@ namespace Carpare.Controllers
             if(km != "")
             {
                 result = CarManager.ChangeCar(km, carId, 5);
+            }
+            if (TransmissionType != "")
+            {
+                result = CarManager.ChangeCar(TransmissionType, carId,6);
+            }
+            if (Fuel != "")
+            {
+                result = CarManager.ChangeCar(Fuel, carId,7);
+            }
+            if (TopSpeed != "")
+            {
+                result = CarManager.ChangeCar(TopSpeed, carId, 8);
+            }
+            if (Acceleration != "")
+            {
+                result = CarManager.ChangeCar(Acceleration, carId, 9);
+            }
+            if (UrbanConsumption != "")
+            {
+                result = CarManager.ChangeCar(UrbanConsumption, carId, 10);
+            }
+            if (WheelDrive != "")
+            {
+                result = CarManager.ChangeCar(WheelDrive, carId, 11);
             }
             if (result)
             {
@@ -104,6 +128,38 @@ namespace Carpare.Controllers
                 ViewBag.message = "Car could not be deleted.";
 
             return View(CarPersistence.GetUserCar(Session["UserId"].ToString()));
+        }
+        [HttpGet]
+        public ActionResult SearchCar()
+        {
+            return View();
+        }
+        public ActionResult FoundCars(string Brand,string Model,string YearOfProduction,string km)
+        {
+            Car[] cars = new Car[0];
+            if(Brand != null)
+            {
+               cars = CarManager.SearchCar(Brand,Session["UserId"].ToString(),1);
+            }
+            else if(Model != null)
+            {
+                cars = CarManager.SearchCar(Model, Session["UserId"].ToString(), 2);
+            }
+            else if (YearOfProduction != null)
+            {
+                cars = CarManager.SearchCar(YearOfProduction, Session["UserId"].ToString(), 3);
+            }
+            else if (km != null)
+            {
+                cars = CarManager.SearchCar(km, Session["UserId"].ToString(), 4);
+            }
+            if (cars.Length == 0)
+            {
+                ViewBag.message = "No car has been found. Please try with another keyword.";
+                return View("SearchCar");
+            }
+
+            return View(cars);
         }
         /*
          * Handle the Update form submission

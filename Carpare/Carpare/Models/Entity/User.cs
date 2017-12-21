@@ -15,6 +15,10 @@ namespace Carpare.Models.Entity
         public string PasswordHash { get; set; }
         public bool IsAdmin { get; set; }
         public string status { get; set; }
+        public string gender { get; set; }
+        public string BirthDate { get; set; }
+        public string Location { get; set; }
+
         public User()
         {
             UserId = "";
@@ -24,30 +28,8 @@ namespace Carpare.Models.Entity
             email = "";
             IsAdmin = false;
         }
-        public User(string UserId,string Name,string email)
-        {
-            this.UserId = UserId;
-            this.Name = Name;
-            Salt = EncryptionManager.PasswordSalt;           
-            this.email = email;
-        }
-        public User(string UserId, string Name,string Salt, string email)
-        {
-            this.UserId = UserId;
-            this.Name = Name;
-            this.Salt = Salt;           
-            this.email = email;
-        }
-        public User(string UserId, string Name, string Salt, string HashedPassword,  string email,bool IsAdmin)
-        {
-            this.UserId = UserId;
-            this.Name = Name;
-            this.Salt = Salt;
-            this.PasswordHash = HashedPassword;
-            this.email = email;
-            this.IsAdmin = IsAdmin;
-        }
-        public User(string UserId, string Name, string Salt, string HashedPassword, string email, bool IsAdmin,string stat)
+
+        public User(string UserId, string Name, string Salt, string HashedPassword, string email, bool IsAdmin, string stat, string gender, string date, string loc)
         {
             this.UserId = UserId;
             this.Name = Name;
@@ -56,6 +38,9 @@ namespace Carpare.Models.Entity
             this.email = email;
             this.IsAdmin = IsAdmin;
             status = stat;
+            this.gender = gender;
+            BirthDate = date;
+            Location = loc;
         }
         public static string CreateSalt()
         {
@@ -63,7 +48,8 @@ namespace Carpare.Models.Entity
         }
         public string toString()
         {
-            string returnString = "Username: " + UserId + " Name: " + Name + " E-mail: " + email + " IsAdmin: " + IsAdmin;
+            string returnString = "Username: " + UserId + " Name: " + Name + " E-mail: " + email + " IsAdmin: " + IsAdmin + " Status: " + status + " Gender: " + gender
+                + " Date: " + BirthDate + " Location: " + Location;
             return returnString;
         }
     }

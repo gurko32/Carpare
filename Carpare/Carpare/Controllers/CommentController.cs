@@ -32,6 +32,10 @@ namespace Carpare.Controllers
         [HttpGet]
         public ActionResult CommentShower(Comment[] comments)
         {
+            if(comments == null)
+            {
+                ViewBag.message = "There are no comments for this car.";
+            }
             return View(comments);
 
         }
@@ -48,11 +52,16 @@ namespace Carpare.Controllers
             TempData["Url"] = car.Url;
 
             Comment[] comments = CommentManager.GetCarComments(carId);
+            if (comments == null)
+            {
+                ViewBag.message = "There are no comments for this car.";
+            }
             return View(comments);
 
 
 
         }
+        
 
 
     }

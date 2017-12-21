@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Carpare.Models.Entity;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace Carpare.Models.Repository
 {
@@ -27,7 +28,7 @@ namespace Carpare.Models.Repository
             // Use the data from the first returned row (should be the only one) to create a Book.
             object[] dataRow = rows[0];
             //DateTime dateAdded = DateTime.Parse(dataRow[2].ToString());
-            Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6]);
+            Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6], (string)dataRow[7], (string)dataRow[8], Int32.Parse(dataRow[9].ToString()), dataRow[10].ToString(), dataRow[11].ToString(), (string)dataRow[12]);
             return car;
         }
         public static Car[] GetCar(int carId)
@@ -46,7 +47,7 @@ namespace Carpare.Models.Repository
             for (int i = 0; i < rows.Count; i++)
             {
                 dataRow = rows[i];
-                Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6]);
+                Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6], (string)dataRow[7], (string)dataRow[8], Int32.Parse(dataRow[9].ToString()), dataRow[10].ToString(), dataRow[11].ToString(), (string)dataRow[12]);
                 cars[i] = car;
             }
             return cars;
@@ -68,16 +69,83 @@ namespace Carpare.Models.Repository
             for (int i = 0; i < rows.Count; i++)
             {
                 dataRow = rows[i];
-                Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6]);
+                Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6], (string)dataRow[7], (string)dataRow[8], Int32.Parse(dataRow[9].ToString()), dataRow[10].ToString(), dataRow[11].ToString(), (string)dataRow[12]);
                 cars[i] = car;
             }
             return cars;
 
         }
+
+        internal static Car[] SearchCar(string value, string userId, int option)
+        {
+            List<object[]> rows = new List<object[]>();
+            if (option == 1)
+            {
+                string sqlQuery = "select * from car where Owner='" + userId + "' and Brand = '"+ value +"';";
+                rows = RepositoryManager.Repository.DoQuery(sqlQuery);
+            }
+            else if(option == 2)
+            {
+                string sqlQuery = "select * from car where Owner='" + userId + "' and Model = '" + value + "';";
+                rows = RepositoryManager.Repository.DoQuery(sqlQuery);
+            }
+            else if (option == 3)
+            {
+                string sqlQuery = "select * from car where Owner='" + userId + "' and YearOfProduction = " + value + ";";
+                rows = RepositoryManager.Repository.DoQuery(sqlQuery);
+            }
+            else if (option == 4)
+            {
+                string sqlQuery = "select * from car where Owner='" + userId + "' and KM = " + value + ";";
+                rows = RepositoryManager.Repository.DoQuery(sqlQuery);
+            }
+            else if (option == 5)
+            {
+                string sqlQuery = "select * from car where Owner='" + userId + "' and TransmissionType = '" + value + "';";
+                rows = RepositoryManager.Repository.DoQuery(sqlQuery);
+            }
+            else if (option == 6)
+            {
+                string sqlQuery = "select * from car where Owner='" + userId + "' and Fuel = '" + value + "';";
+                rows = RepositoryManager.Repository.DoQuery(sqlQuery);
+            }
+            else if (option == 7)
+            {
+                string sqlQuery = "select * from car where Owner='" + userId + "' and TopSpeed = " + value + ";";
+                rows = RepositoryManager.Repository.DoQuery(sqlQuery);
+            }
+            else if (option == 8)
+            {
+                string sqlQuery = "select * from car where Owner='" + userId + "' and Acceleration = " + value + ";";
+                rows = RepositoryManager.Repository.DoQuery(sqlQuery);
+            }
+            else if (option == 9)
+            {
+                string sqlQuery = "select * from car where Owner='" + userId + "' and UrbanConsumption = " + value + ";";
+                rows = RepositoryManager.Repository.DoQuery(sqlQuery);
+            }
+            else if (option == 10)
+            {
+                string sqlQuery = "select * from car where Owner='" + userId + "' and WheelDrive ='" + value + "';";
+                rows = RepositoryManager.Repository.DoQuery(sqlQuery);
+            }
+            Car[] cars = new Car[rows.Count];
+            object[] dataRow;
+
+            for (int i = 0; i < rows.Count; i++)
+            {
+                dataRow = rows[i];
+                Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6], (string)dataRow[7], (string)dataRow[8], Int32.Parse(dataRow[9].ToString()), dataRow[10].ToString(), dataRow[11].ToString(), (string)dataRow[12]);
+                cars[i] = car;
+            }
+            return cars;
+        }
+            
+
         /*
-         * Add a Book to the database.
-         * Return true iff the add succeeds.
-         */
+* Add a Book to the database.
+* Return true iff the add succeeds.
+*/
         public static bool AddCar(Car car)
         {
             string sql = "select max(carId) AS num from car;";
@@ -94,14 +162,20 @@ namespace Carpare.Models.Repository
                 car.carId = Int32.Parse(rows[0][0].ToString()) + 1;
             }
 
-            sql = "insert into car (carId, brand, model,owner, yearOfProduction, km, url  ) values ('"
+            sql = "insert into car (carId, brand, model,owner, yearOfProduction, km, url,TransmissionType,Fuel,TopSpeed,Acceleration,UrbanConsumption,WheelDrive) values ('"
                 + car.carId + "', '"
                 + car.Brand + "', '"
                 + car.Model + "', '"
                 + car.Owner + "', "
                 + car.YearOfProduction + ", "
                 + car.km + ",'"
-                + car.Url + "')";
+                + car.Url + "','"
+                + car.TransmissionType + "', '"
+                + car.Fuel + "', "
+                + car.TopSpeed + ", "
+                + car.Acceleration + ","
+                + car.UrbanConsumption + ",'"
+                + car.WheelDrive + "')";
             RepositoryManager.Repository.DoCommand(sql);
             return true;
         }
@@ -152,7 +226,36 @@ namespace Carpare.Models.Repository
                 sql = "update car set KM =" + value + " where carId = " + carId + ";";
                 result = RepositoryManager.Repository.DoCommand(sql);
             }
-
+            else if (option == 6)
+            {
+                sql = "update car set TransmissionType ='" + value + "' where carId = " + carId + ";";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
+            else if (option == 7)
+            {
+                sql = "update car set Fuel ='" + value + "' where carId = " + carId + ";";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
+            else if (option == 8)
+            {
+                sql = "update car set TopSpeed =" + value + " where carId = " + carId + ";";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
+            else if (option == 9)
+            {
+                sql = "update car set Acceleration =" + value + " where carId = " + carId + ";";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
+            else if (option == 10)
+            {
+                sql = "update car set UrbanConsumption =" + value + " where carId = " + carId + ";";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
+            else if (option == 11)
+            {
+                sql = "update car set WheelDrive ='" + value + "' where carId = " + carId + ";";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
             if (result == 1)
                 return true;
             else
@@ -171,7 +274,7 @@ namespace Carpare.Models.Repository
 
             foreach (object[] dataRow in rows)
             {
-                Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6]);
+                Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6], (string)dataRow[7], (string)dataRow[8], Int32.Parse(dataRow[9].ToString()), dataRow[10].ToString(), dataRow[11].ToString(), (string)dataRow[12]);
                 Debug.WriteLine(car.toString());
                 cars.Add(car);
             }
