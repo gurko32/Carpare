@@ -12,16 +12,17 @@
     <table border="1" cellpadding="5">
         <caption>Comments</caption>
         <thead>
-        <tr>
-            <th>CarId</th>
-            <th>Brand</th>
-            <th>Model</th>
-            <th>Comment Owner</th>
-            <th>Year Of Production</th>
-            <th>KM</th>
-            <th>URL</th>
-            <th>Comment</th>
-        </tr>
+            <tr>
+                <th>CarId</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Car Owner</th>
+                <th>Year Of Production</th>
+                <th>KM</th>
+                <th>URL</th>
+                <th>Comment Owner</th>
+                <th>Comment</th>
+            </tr>
         </thead>
         <tbody>
             @foreach (Comment c in Model)
@@ -33,11 +34,12 @@
                     <td>@TempData["Owner"]</td>
                     <td>@TempData["YearOfProduction"]</td>
                     <td>@TempData["km"]</td>
-                    <td>@TempData["Url"]</td>
+                    <td><img src="@TempData["Url"]" width="200" height="200"/></td>
+                    <td>@c.UserId</td>
                     <td>@c.comment</td>
                 </tr>
             }
-            </tbody>
+        </tbody>
     </table>
     <p>@ViewBag.message</p>
 </div>
