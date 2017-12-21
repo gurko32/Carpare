@@ -29,6 +29,11 @@ namespace SqliteDemo.Models.Transaction
 
             return cars;
         }
+        public static Car GetUserCars(int carId)
+        {
+            Car[] cars = CarPersistence.GetCar(carId);
+            return cars[0];
+        }
         /*
          * Transaction: Add a new book to the database
          * Returns true iff the new book has a unique ISBN
