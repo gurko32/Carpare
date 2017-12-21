@@ -13,7 +13,13 @@
         <caption>Comments</caption>
         <thead>
         <tr>
+            <th>CarId</th>
+            <th>Brand</th>
+            <th>Model</th>
             <th>Comment Owner</th>
+            <th>Year Of Production</th>
+            <th>KM</th>
+            <th>URL</th>
             <th>Comment</th>
         </tr>
         </thead>
@@ -21,7 +27,13 @@
             @foreach (Comment c in Model)
             {
                 <tr>
-                    <td>@c.UserId</td>
+                    <td>@TempData["carId"]</td>
+                    <td>@TempData["Brand"]</td>
+                    <td>@TempData["Model"]</td>
+                    <td>@TempData["Owner"]</td>
+                    <td>@TempData["YearOfProduction"]</td>
+                    <td>@TempData["km"]</td>
+                    <td>@TempData["Url"]</td>
                     <td>@c.comment</td>
                 </tr>
             }

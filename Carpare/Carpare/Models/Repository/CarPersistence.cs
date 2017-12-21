@@ -30,6 +30,28 @@ namespace Carpare.Models.Repository
             Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6]);
             return car;
         }
+        public static Car[] GetCar(int carId)
+        {
+            string sqlQuery = "select * from car where carId='" + carId + "';";
+            List<object[]> rows = RepositoryManager.Repository.DoQuery(sqlQuery);
+
+            if (rows.Count == 0)
+            {
+                return null;
+            }
+
+            Car[] cars = new Car[rows.Count];
+            object[] dataRow;
+
+            for (int i = 0; i < rows.Count; i++)
+            {
+                dataRow = rows[i];
+                Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6]);
+                cars[i] = car;
+            }
+            return cars;
+        }
+
         public static Car[] GetUserCar(string UserId)
         {
             string sqlQuery = "select * from car where Owner='" + UserId + "';";

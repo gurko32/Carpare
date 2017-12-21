@@ -23,6 +23,11 @@ namespace SqliteDemo.Models.Transaction
                 return (new Car[0]);
             }
         }
+        public static Car GetUserCars(int carId)
+        {
+            Car[] cars = CarPersistence.GetCar(carId);
+            return cars[0];
+        }
         public static Car[] GetUserCars(string UserId)
         {
             Car[] cars = CarPersistence.GetUserCar(UserId);
