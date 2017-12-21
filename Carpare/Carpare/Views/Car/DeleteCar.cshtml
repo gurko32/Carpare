@@ -1,0 +1,59 @@
+﻿@using Carpare.Models.Entity
+@model Car[]
+
+@{
+    ViewBag.Title = "Delete Car";
+}
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+<div id="main">
+    <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+    <h2>Delete Car</h2>
+    <table>
+        <tr>
+            <th>CarId</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Year Of Production</th>
+            <th>KM</th>
+            <th>Delete</th>
+        </tr>
+        @foreach (Car car in Model)
+        {
+            <tr>
+                <td>@car.carId</td>
+                <td>@car.Brand</td>
+                <td>@car.Model</td>
+                <td>@car.YearOfProduction</td>
+                <td>@car.km</td>
+                <td>
+                    <form action="~/Car/DeleteCar" method="post">
+                        <input type="hidden" name="CarId" value="@car.carId" />
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+    <p>@ViewBag.message</p>
+</div>
+
+

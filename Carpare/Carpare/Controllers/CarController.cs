@@ -92,7 +92,18 @@ namespace Carpare.Controllers
         }
         public ActionResult DeleteCar()
         {
-            return View();
+            return View(CarPersistence.GetUserCar(Session["UserId"].ToString()));
+        }
+        [HttpPost]
+        public ActionResult DeleteCar(string carId)
+        {
+            bool result = CarManager.DeleteCar(carId);
+            if(result)
+                ViewBag.message = "Car successfully deleted.";
+            else
+                ViewBag.message = "Car could not be deleted.";
+
+            return View(CarPersistence.GetUserCar(Session["UserId"].ToString()));
         }
         /*
          * Handle the Update form submission
@@ -109,9 +120,7 @@ namespace Carpare.Controllers
                 case "Add Car":
                     result = CarManager.AddNewCar(car);
                     break;
-                case "Delete Car":
-                    result = CarManager.DeleteCar(car);
-                    break;
+                
             }
 
             // ViewBag is a general purpose data dictionary for passing data

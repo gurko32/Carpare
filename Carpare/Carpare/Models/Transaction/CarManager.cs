@@ -58,14 +58,10 @@ namespace SqliteDemo.Models.Transaction
          * Returns true iff the book exists in the database and
          * it was successfully deleted.
          */
-        public static bool DeleteCar(Car delCar)
+        public static bool DeleteCar(string carId)
         {
-            Car car = CarPersistence.getCar(delCar);
-            if (car == null)
-            {
-                return false;
-            }
-            bool result = CarPersistence.DeleteCar(delCar);
+            
+            bool result = CarPersistence.DeleteCar(carId);
 
             return result;
         }

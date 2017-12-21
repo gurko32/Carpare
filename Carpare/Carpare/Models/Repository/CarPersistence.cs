@@ -107,10 +107,15 @@ namespace Carpare.Models.Repository
         }
 
 
-        internal static bool DeleteCar(Car delCar)
+        internal static bool DeleteCar(string CarId)
         {
+            string sql = "delete from car where carId = " + CarId + ";";
+            int result = RepositoryManager.Repository.DoCommand(sql);
 
-            throw new NotImplementedException();
+            if (result == 0)
+                return false;
+            else
+                return true;
         }
 
         /*

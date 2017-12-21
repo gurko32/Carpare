@@ -257,6 +257,7 @@
     <Content Include="Scripts\jquery-3.2.1.min.map" />
     <Content Include="Views\Car\ChangeCar.cshtml" />
     <Content Include="Views\Comment\CommentShower.cshtml" />
+    <Content Include="Views\Car\DeleteCar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
