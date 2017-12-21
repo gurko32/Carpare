@@ -47,15 +47,6 @@ namespace Carpare.Controllers
             TempData["km"] = car.km;
             TempData["Url"] = car.Url;
 
-            Car car = CarManager.GetUserCars(carId);
-            TempData["carId"] = car.carId;
-            TempData["Brand"] = car.Brand;
-            TempData["Model"] = car.Model;
-            TempData["Owner"] = car.Owner;
-            TempData["YearOfProduction"] = car.YearOfProduction;
-            TempData["km"] = car.km;
-            TempData["Url"] = car.Url;
-
             Comment[] comments = CommentManager.GetCarComments(carId);
             return View(comments);
 
