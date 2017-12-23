@@ -15,44 +15,7 @@
 
 <div id="main">
     <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
-    @*@if (Model != null)
-        {
-            <table border="1" cellpadding="5">
-                <caption>Comments</caption>
 
-                <tr>
-                    <th>CarId</th>
-                    <th>Brand</th>
-                    <th>Model</th>
-                    <th>Car Owner</th>
-                    <th>Year Of Production</th>
-                    <th>KM</th>
-                    <th>URL</th>
-                    <th>Comment Owner</th>
-                    <th>Comment</th>
-                </tr>
-
-                <tbody>
-
-                    @foreach (Comment c in Model)
-                    {
-                        <tr>
-                            <td>@TempData["carId"]</td>
-                            <td>@TempData["Brand"]</td>
-                            <td>@TempData["Model"]</td>
-                            <td>@TempData["Owner"]</td>
-                            <td>@TempData["YearOfProduction"]</td>
-                            <td>@TempData["km"]</td>
-                            <td><img src="@TempData["Url"]" width="200" height="200" /></td>
-                            <td>@c.UserId</td>
-                            <td>@c.comment</td>
-                        </tr>
-                    }
-
-
-                </tbody>
-            </table>
-        }*@
     <sDiv id="lel">
         <p> <img src="@TempData["Url"]" alt="Car's Photo" width="300" height="300" /> </p>
         <p>Car ID: @TempData["carId"]</p>
@@ -67,12 +30,19 @@
         <p>Wheel Drive: @TempData["WheelDrive"]</p>
     </sDiv>
     <div>
-        @foreach (Comment c in Model)
+        @if (Model != null)
         {
-            <p><em><ins>@c.UserId</ins></em></p>
-            <p class="double">@c.comment</p>
+            foreach (Comment c in Model)
+            {
+                <p><em><ins>@c.UserId</ins></em></p>
+                <p class="double">@c.comment</p>
+            }
         }
-        
+        else
+        {
+            <p>@ViewBag.message</p>
+        }
 
+        
     </div>
 </div>

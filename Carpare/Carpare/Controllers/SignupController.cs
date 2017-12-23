@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
@@ -66,6 +67,15 @@ namespace Carpare.Controllers
 
             Match match = Regex.Match(credential.UserId, validUserId);
 
+            try
+            {
+                MailAddress m = new MailAddress(credential.Email);
+            }
+            catch (FormatException)
+            {
+                ViewBag.message = "Invalid E-Mail format. Please enter a valid E-Mail";
+                return View(credential);
+            }
             if (match.Success)
             {
                 Match match2 = Regex.Match(credential.Password, validPassword);
