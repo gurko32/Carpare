@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -40,6 +41,8 @@ namespace Carpare.Controllers
                 TempData["message"] = err;
                 return View(credential);
             }
+
+            /*
             bool res = UserManager.SignUpUser(credential,Session);
             if (!res)
             {
@@ -52,8 +55,44 @@ namespace Carpare.Controllers
                 ViewBag.message = "Sign Up Successful";
                 return RedirectToAction("Login", "Authentication");
             }
-           
+            */
 
+
+            //these are for checking the validity of inputs
+
+            string validUserId = @"^[a-z][a-z0-9]*$";
+            string validPassword = @"^[a-z0-9!@#$*]{4,12}$";
+            string validLocation = @"^[A-Za-z]*$";
+
+            Match match = Regex.Match(credential.UserId, validUserId);
+
+            if (match.Success)
+            {
+                Match match2 = Regex.Match(credential.Password, validPassword);
+                if (match2.Success)
+                {
+                    Match match3 = Regex.Match(credential.Location, validLocation);
+                    if (match3.Success)
+                    {
+                        credential.Name = credential.Name.Replace("'", "&apos;");
+                        credential.Email = credential.Email.Replace("'", "&apos;");
+                        credential.Location = credential.Location.Replace("'", "&apos;");
+                        UserManager.SignUpUser(credential, Session);
+                        TempData["message"] = "Sign Up Successful";
+                        ViewBag.message = "Sign Up Successful";
+                        return RedirectToAction("Login", "Authentication");
+                    }
+                    ViewBag.message = "Invalid Location";
+                    TempData["message"] = "Invalid Location";
+                    return View(credential);
+                }
+                ViewBag.message = "Invalid Password";
+                TempData["message"] = "Invalid Password";
+                return View(credential);
+            }
+            ViewBag.message = "Invalid UserId";
+            TempData["message"] = "Invalid UserId";
+            return View(credential);
         }
     }
 }

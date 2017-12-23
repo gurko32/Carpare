@@ -111,6 +111,7 @@ namespace SqliteTest.Models.Repository
             bool success = true;
             bool openResult;
             Close();
+            ///*
             if (File.Exists("F:\\MyDatabase.sqlite"))
             {
                 openResult = Open();
@@ -124,7 +125,7 @@ namespace SqliteTest.Models.Repository
             {
                 success = false;
             }
-
+            //*/
             openResult = Open();
             if (success & openResult)
             {
