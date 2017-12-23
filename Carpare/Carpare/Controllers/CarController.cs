@@ -139,31 +139,31 @@ namespace Carpare.Controllers
             Car[] cars = new Car[0];
             if (Brand != null)
             {
-                cars = CarManager.SearchCar(Brand, Session["UserId"].ToString(), 1);
+                cars = CarManager.SearchCar(Brand.Replace("'", "&apos;"), Session["UserId"].ToString(), 1);
             }
             else if (Model != null)
             {
-                cars = CarManager.SearchCar(Model, Session["UserId"].ToString(), 2);
+                cars = CarManager.SearchCar(Model.Replace("'", "&apos;"), Session["UserId"].ToString(), 2);
             }
             else if (YearOfProduction != null)
             {
-                cars = CarManager.SearchCar(YearOfProduction, Session["UserId"].ToString(), 3);
+                cars = CarManager.SearchCar(YearOfProduction.Replace("'", "&apos;"), Session["UserId"].ToString(), 3);
             }
             else if (km != null)
             {
-                cars = CarManager.SearchCar(km, Session["UserId"].ToString(), 4);
+                cars = CarManager.SearchCar(km.Replace("'", "&apos;"), Session["UserId"].ToString(), 4);
             }
             else if (TransmissionType != null)
             {
-                cars = CarManager.SearchCar(TransmissionType, Session["UserId"].ToString(), 5);
+                cars = CarManager.SearchCar(TransmissionType.Replace("'", "&apos;"), Session["UserId"].ToString(), 5);
             }
             else if (Fuel != null)
             {
-                cars = CarManager.SearchCar(Fuel, Session["UserId"].ToString(), 6);
+                cars = CarManager.SearchCar(Fuel.Replace("'", "&apos;"), Session["UserId"].ToString(), 6);
             }
             else if (WheelDrive != null)
             {
-                cars = CarManager.SearchCar(WheelDrive, Session["UserId"].ToString(), 10);
+                cars = CarManager.SearchCar(WheelDrive.Replace("'", "&apos;"), Session["UserId"].ToString(), 10);
             }
             if (cars.Length == 0)
             {
