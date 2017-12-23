@@ -29,14 +29,14 @@ namespace Carpare.Controllers
         {
             if (credential == null)
                 return View(new Credential());
-            if (credential.Password == null || credential.UserId == null||credential.Email == null)
+            if (credential.Password == null || credential.UserId == null || credential.Email == null)
             {
                 string err = "Both User ID and Password are required. Please try again.";
                 TempData["message"] = err;
                 return View(credential);
             }
 
-            if (credential.Password.Length == 0 || credential.UserId.Length == 0||credential.Email.Length == 0)
+            if (credential.Password.Length == 0 || credential.UserId.Length == 0 || credential.Email.Length == 0)
             {
                 string err = "Both User ID and Password are required. Please try again.";
                 TempData["message"] = err;
