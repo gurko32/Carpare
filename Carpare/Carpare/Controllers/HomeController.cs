@@ -11,11 +11,12 @@ namespace Carpare.Controllers
     {
         public ActionResult Index()
         {
-            Session["UserId"] = "";
+            if (Session["UserId"] == null)
+                Session["UserId"] = "";
             bool result = RepositoryManager.Repository.Initialize();
             return View();
         }
 
-       
+
     }
 }

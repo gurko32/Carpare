@@ -25,5 +25,23 @@
         New E-Mail: <br /><input type="text" name="Email"><br />
         <input type="submit" value="Change">
     </form>
+    <form action="~/ProfilePage/UpdateGender" method="post">
+        <font face="verdana" color="grey">Gender</font><br />
+        Change Your Gender: <br /><select name="Gender">
+            <option>Male</option>
+            <option>Female</option>
+        </select><br />
+        <input type="submit" value="Change">
+    </form>
+    <font face="verdana" color="grey">Birth Date</font>
+    <form action="~/ProfilePage/UpdateBirthDate" method="post">
+        Update Your Birth Date:<br /><input type="date" name="BirthDate"><br />
+        <input type="submit" value="Change">
+    </form>
+    <font face="verdana" color="grey">Location</font>
+    <form action="~/ProfilePage/UpdateLocation" method="post">
+        Update Your Location:<br /><input type="text" name="Location"><br />
+        <input type="submit" value="Change">
+    </form>
     <p>@ViewBag.message</p>
 </div>

@@ -17,5 +17,37 @@
     <form action="~/Car/FoundCars" method="post">
         <p>Search Car by it's KM: <input type="text" name="km"> <input type="submit" value="Search"></p>
     </form>
+    <form action="~/Car/FoundCars" method="post">
+        <p>
+            Search Car by it's Transmission Type: <select name="TransmissionType">
+                <option selected="selected"></option>
+                <option>Manual</option>
+                <option>Automatic</option>
+                <option>Tiptronic</option>
+            </select> <input type="submit" value="Search">
+        </p>
+    </form>
+    <form action="~/Car/FoundCars" method="post">
+        <p>
+            Search Car by it's Fuel: <select name="Fuel">
+                <option selected="selected"></option>
+                <option>Diesel Fuel</option>
+                <option>Petrol</option>
+            </select> <input type="submit" value="Search">
+        </p>
+    </form>
+    <form action="~/Car/FoundCars" method="post">
+        <p>
+            Search Car by it's Wheel Drive: <select name="WheelDrive">
+                <option selected="selected"></option>
+                <option>All-Wheel Drive</option>
+                <option>4-Wheel Drive</option>
+                <option>Rear-Wheel Drive</option>
+                <option>Front-Wheel Drive</option>
+            </select> <input type="submit" value="Search">
+        </p>
+    </form>
+
+
     <p>@ViewBag.message</p>
 </div>

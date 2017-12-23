@@ -33,16 +33,16 @@ namespace Carpare.Controllers
         public ActionResult MyCarLister()
         {
             string UserId = (string)Session["UserId"];
-            Car [] cars = CarManager.GetUserCars(UserId);
+            Car[] cars = CarManager.GetUserCars(UserId);
             return View(cars);
         }
         [HttpPost]
-        public ActionResult CarLister(string comment,int carId)
+        public ActionResult CarLister(string comment, int carId)
         {
             Car[] cars = CarManager.GetAllCars();
             return View(cars);  // returns /Views/Car/CarLister.cshtml
         }
-        
+
 
         /*
          * Display the Update form
@@ -58,14 +58,14 @@ namespace Carpare.Controllers
             return View(CarManager.GetUserCars((string)Session["UserId"]));
         }
         [HttpPost]
-        public ActionResult ChangeCar(string carId, string Url, string Brand, string Model, string YearOfProduction,string km,string TransmissionType, string TopSpeed, string Acceleration, string UrbanConsumption,string Fuel,string WheelDrive)
+        public ActionResult ChangeCar(string carId, string Url, string Brand, string Model, string YearOfProduction, string km, string TransmissionType, string TopSpeed, string Acceleration, string UrbanConsumption, string Fuel, string WheelDrive)
         {
             bool result = false;
-            if(Url != "")
+            if (Url != "")
             {
                 result = CarManager.ChangeCar(Url, carId, 1);
             }
-            if(Brand != "")
+            if (Brand != "")
             {
                 result = CarManager.ChangeCar(Brand, carId, 2);
             }
@@ -77,17 +77,17 @@ namespace Carpare.Controllers
             {
                 result = CarManager.ChangeCar(YearOfProduction, carId, 4);
             }
-            if(km != "")
+            if (km != "")
             {
                 result = CarManager.ChangeCar(km, carId, 5);
             }
             if (TransmissionType != "")
             {
-                result = CarManager.ChangeCar(TransmissionType, carId,6);
+                result = CarManager.ChangeCar(TransmissionType, carId, 6);
             }
             if (Fuel != "")
             {
-                result = CarManager.ChangeCar(Fuel, carId,7);
+                result = CarManager.ChangeCar(Fuel, carId, 7);
             }
             if (TopSpeed != "")
             {
@@ -122,7 +122,7 @@ namespace Carpare.Controllers
         public ActionResult DeleteCar(string carId)
         {
             bool result = CarManager.DeleteCar(carId);
-            if(result)
+            if (result)
                 ViewBag.message = "Car successfully deleted.";
             else
                 ViewBag.message = "Car could not be deleted.";
@@ -134,14 +134,14 @@ namespace Carpare.Controllers
         {
             return View();
         }
-        public ActionResult FoundCars(string Brand,string Model,string YearOfProduction,string km)
+        public ActionResult FoundCars(string Brand, string Model, string YearOfProduction, string km, string TransmissionType, string Fuel, string WheelDrive)
         {
             Car[] cars = new Car[0];
-            if(Brand != null)
+            if (Brand != null)
             {
-               cars = CarManager.SearchCar(Brand,Session["UserId"].ToString(),1);
+                cars = CarManager.SearchCar(Brand, Session["UserId"].ToString(), 1);
             }
-            else if(Model != null)
+            else if (Model != null)
             {
                 cars = CarManager.SearchCar(Model, Session["UserId"].ToString(), 2);
             }
@@ -152,6 +152,18 @@ namespace Carpare.Controllers
             else if (km != null)
             {
                 cars = CarManager.SearchCar(km, Session["UserId"].ToString(), 4);
+            }
+            else if (TransmissionType != null)
+            {
+                cars = CarManager.SearchCar(TransmissionType, Session["UserId"].ToString(), 5);
+            }
+            else if (Fuel != null)
+            {
+                cars = CarManager.SearchCar(Fuel, Session["UserId"].ToString(), 6);
+            }
+            else if (WheelDrive != null)
+            {
+                cars = CarManager.SearchCar(WheelDrive, Session["UserId"].ToString(), 10);
             }
             if (cars.Length == 0)
             {
@@ -169,14 +181,14 @@ namespace Carpare.Controllers
         {
             bool result = false;
             car.Owner = (string)Session["UserId"];
-            
+
             // add or drop
             switch (submit)
             {
                 case "Add Car":
                     result = CarManager.AddNewCar(car);
                     break;
-                
+
             }
 
             // ViewBag is a general purpose data dictionary for passing data

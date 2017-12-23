@@ -50,6 +50,12 @@ namespace Carpare.Controllers
             TempData["YearOfProduction"] = car.YearOfProduction;
             TempData["km"] = car.km;
             TempData["Url"] = car.Url;
+            TempData["TransmissionType"] = car.TransmissionType;
+            TempData["Fuel"] = car.Fuel;
+            TempData["TopSpeed"] = car.TopSpeed;
+            TempData["Acceleration"] = car.Acceleration;
+            TempData["UrbanConsumption"] = car.UrbanConsumption;
+            TempData["WheelDrive"] = car.WheelDrive;
 
             Comment[] comments = CommentManager.GetCarComments(carId);
             if (comments == null)

@@ -34,6 +34,12 @@
             <th>Model</th>
             <th>Year Of Production</th>
             <th>KM</th>
+            <th>Transmission Type</th>
+            <th>Fuel</th>
+            <th>Top Speed</th>
+            <th>Acceleration</th>
+            <th>Urban Consumption</th>
+            <th>Wheel Drive</th>
             <th>Delete</th>
         </tr>
         @foreach (Car car in Model)
@@ -44,6 +50,12 @@
                 <td>@car.Model</td>
                 <td>@car.YearOfProduction</td>
                 <td>@car.km</td>
+                <td>@car.TransmissionType</td>
+                <td>@car.Fuel</td>
+                <td>@car.TopSpeed</td>
+                <td>@car.Acceleration</td>
+                <td>@car.UrbanConsumption</td>
+                <td>@car.WheelDrive</td>
                 <td>
                     <form action="~/Car/DeleteCar" method="post">
                         <input type="hidden" name="CarId" value="@car.carId" />

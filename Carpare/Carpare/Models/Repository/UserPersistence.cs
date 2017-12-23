@@ -80,6 +80,21 @@ namespace Carpare.Models.Persistance
                 result = RepositoryManager.Repository.DoCommand(sql);
             }
 
+            else if (option == 4)
+            {
+                sql = "update user set Gender='" + update + "' where UserId = '" + userId + "';";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
+            else if (option == 5)
+            {
+                sql = "update user set BirthDate='" + update + "' where UserId = '" + userId + "';";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
+            else if (option == 6)
+            {
+                sql = "update user set Location='" + update + "' where UserId = '" + userId + "';";
+                result = RepositoryManager.Repository.DoCommand(sql);
+            }
             if (result == 1)
                 return true;
             else
