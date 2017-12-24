@@ -9,9 +9,11 @@ namespace Carpare.Models.Persistance
 {
     public class UserPersistence
     {
-        /*
-         * Get one user from the repository, identified by userId
-         */
+        /// <summary>
+        /// Adds User Over Credential to the database
+        /// </summary>
+        /// <param name="cr"></param>
+        /// <returns></returns>
         public static bool AddUser(Credential cr)
         {
             string salt = User.CreateSalt();
@@ -30,8 +32,13 @@ namespace Carpare.Models.Persistance
             RepositoryManager.Repository.DoCommand(sql);
             PrintAllUsers();
             return true;
-
         }
+        
+        /// <summary>
+        /// Returns user with userId from database
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public static User GetUser(string userId)
         {
             string sql = "select * from user where UserId='" + userId + "';";
@@ -47,7 +54,13 @@ namespace Carpare.Models.Persistance
             return user;
         }
 
-        // Not Implemented
+        /// <summary>
+        /// Updates user information over options and userId and alters database
+        /// </summary>
+        /// <param name="update"></param>
+        /// <param name="userId"></param>
+        /// <param name="option"></param>
+        /// <returns></returns>
         public static bool UpdateUser(string update, string userId, int option)
         {
             string sql = "";
@@ -97,10 +110,11 @@ namespace Carpare.Models.Persistance
             else
                 return false;
         }
-        public static bool DeleteUser(User user)
-        {
-            return false;
-        }
+
+        /// <summary>
+        /// Returns all users from the database
+        /// </summary>
+        /// <returns></returns>
         public static User[] GetAllUsers()
         {
             User[] users;
@@ -119,6 +133,13 @@ namespace Carpare.Models.Persistance
             }
             return users;
         }
+
+        /// <summary>
+        /// Changes the status of User by updating the database table
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="stat"></param>
+        /// <returns></returns>
         public static bool ChangeUserStatus(string userId, string stat)
         {
             int result = 0;
@@ -132,6 +153,12 @@ namespace Carpare.Models.Persistance
             else
                 return true;
         }
+
+        /// <summary>
+        /// Resets The Password then encodes the new given one and writes back to database
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public static string ResetPassword(string userId)
         {
 
@@ -158,6 +185,12 @@ namespace Carpare.Models.Persistance
             }
 
         }
+
+        /// <summary>
+        /// We return a random string to use on password
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public static string CreateRandomString(int length)
         {
             Random randomGenerator = new Random();
@@ -170,6 +203,10 @@ namespace Carpare.Models.Persistance
 
             return result;
         }
+
+        /// <summary>
+        /// Gets users from the database
+        /// </summary>
         public static void PrintAllUsers()
         {
             string sql = "select * from user";

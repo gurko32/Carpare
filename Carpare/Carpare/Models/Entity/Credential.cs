@@ -10,6 +10,9 @@
         public string BirthDate { get; set; }
         public string Location { get; set; }
 
+        /// <summary>
+        /// Constructor for Credential
+        /// </summary>
         public Credential()
         {
             UserId = "";

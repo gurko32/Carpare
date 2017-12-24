@@ -7,27 +7,29 @@ namespace Carpare.Models.Repository
 {
     public class CommentPersistence
     {
-        /*
-         * Retrieve from the database the book matching the ISBN field of
-         * the parameter.
-         * Return null if the book can't be found.
-         */
+        /// <summary>
+        /// Returns the comment from database
+        /// </summary>
+        /// <param name="keyComment"></param>
+        /// <returns></returns>
         public static Comment getComment(Comment keyComment)
         {
             string sqlQuery = "select * from comment where commentId=" + keyComment.commentId;
             List<object[]> rows = RepositoryManager.Repository.DoQuery(sqlQuery);
-            //System.Console.WriteLine("$$rows: " + rows.Count);
             if (rows.Count == 0)
             {
                 return null;
             }
-
-            // Use the data from the first returned row (should be the only one) to create a Book.
             object[] dataRow = rows[0];
-            //DateTime dateAdded = DateTime.Parse(dataRow[2].ToString());
             Comment comment = new Comment(Int32.Parse(dataRow[0].ToString()), Int32.Parse(dataRow[1].ToString()), (string)dataRow[2], (string)dataRow[3]);
             return comment;
         }
+
+        /// <summary>
+        /// Gets the user comment from the database
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         public static Comment[] GetUserComment(string UserId)
         {
             string sqlQuery = "select * from comment where UserId='" + UserId + "';";
@@ -51,7 +53,11 @@ namespace Carpare.Models.Repository
 
         }
 
-
+        /// <summary>
+        /// Returns every comment for choosen car 
+        /// </summary>
+        /// <param name="CarId"></param>
+        /// <returns></returns>
         public static Comment[] GetCarComment(int CarId)
         {
             string sqlQuery = "select * from comment where carId='" + CarId + "';";
@@ -74,10 +80,12 @@ namespace Carpare.Models.Repository
             return comments;
 
         }
-        /*
-         * Add a Book to the database.
-         * Return true iff the add succeeds.
-         */
+        
+        /// <summary>
+        /// Adds the comment to database
+        /// </summary>
+        /// <param name="comment"></param>
+        /// <returns></returns>
         public static bool AddComment(Comment comment)
         {
             string sql = "select max(CommentId) AS num from comment;";
@@ -103,31 +111,25 @@ namespace Carpare.Models.Repository
             return true;
         }
 
+        /// <summary>
+        /// Deletes the comment from database
+        /// </summary>
+        /// <param name="CommentId"></param>
+        /// <returns></returns>
         internal static bool DeleteComment(string CommentId)
         {
             string sql = "delete from comment where commentId = " + CommentId + ";";
             int result = RepositoryManager.Repository.DoCommand(sql);
-            //sql = "delete from favourites where carId = " + CarId + ";";
-            //result = RepositoryManager.Repository.DoCommand(sql);
             if (result == 0)
                 return false;
             else
                 return true;
         }
 
-        /*
-         * Update a book that is in the database, replacing all field values except
-         * the key field.
-         * Return false if the book is not found, based on key field match.
-         */
-        public static bool UpdateComment(Comment comment)
-        {
-            return true;
-        }
-
-        /*
-         * Get all Book data from the database and return an array of Books.
-         */
+        /// <summary>
+        /// Gets every comment
+        /// </summary>
+        /// <returns></returns>
         public static List<Comment> GetAllComments()
         {
             List<Comment> comments = new List<Comment>();
@@ -141,7 +143,6 @@ namespace Carpare.Models.Repository
                 Debug.WriteLine(comment.toString());
                 comments.Add(comment);
             }
-
             return comments;
         }
     }

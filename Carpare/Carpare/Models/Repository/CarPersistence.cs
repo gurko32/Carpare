@@ -7,28 +7,29 @@ namespace Carpare.Models.Repository
 {
     public class CarPersistence
     {
-        /*
-         * Retrieve from the database the book matching the ISBN field of
-         * the parameter.
-         * Return null if the book can't be found.
-         */
+        /// <summary>
+        /// Gets the car from database
+        /// </summary>
+        /// <param name="carId"></param>
+        /// <returns></returns>
         public static Car getCar(int carId)
         {
             string sqlQuery = "select * from car where carId=" + carId;
             List<object[]> rows = RepositoryManager.Repository.DoQuery(sqlQuery);
-            //System.Console.WriteLine("$$rows: " + rows.Count);
             if (rows.Count == 0)
             {
                 return null;
             }
-
-            // Use the data from the first returned row (should be the only one) to create a Book.
             object[] dataRow = rows[0];
-            //DateTime dateAdded = DateTime.Parse(dataRow[2].ToString());
             Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6], (string)dataRow[7], (string)dataRow[8], Int32.Parse(dataRow[9].ToString()), dataRow[10].ToString(), dataRow[11].ToString(), (string)dataRow[12]);
             return car;
         }
 
+        /// <summary>
+        /// returns favorite cars
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         internal static Car[] GetFavCars(string userId)
         {
             Car[] cars;
@@ -56,9 +57,13 @@ namespace Carpare.Models.Repository
                 cars[i] = newCar;
             }
             return cars;
-
         }
-
+        
+        /// <summary>
+        /// Gets cars with given id from database
+        /// </summary>
+        /// <param name="carId"></param>
+        /// <returns></returns>
         public static Car[] GetCar(int carId)
         {
             string sqlQuery = "select * from car where carId='" + carId + "';";
@@ -81,6 +86,12 @@ namespace Carpare.Models.Repository
             return cars;
         }
 
+        /// <summary>
+        /// Adds car to Favourites
+        /// </summary>
+        /// <param name="carId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         internal static int AddToFavourites(string carId, string userId)
         {
             string sqlQuery = "insert into favourites (UserId,carId) values('" + userId + "'," + carId + ");";
@@ -88,6 +99,12 @@ namespace Carpare.Models.Repository
             return result;
         }
 
+        /// <summary>
+        /// Returns favorite cars from databse
+        /// </summary>
+        /// <param name="carId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         internal static bool CheckFavCar(string carId, string userId)
         {
             string sqlQuery = "select * from favourites where carId=" + carId + " and UserId = '" + userId + "';";
@@ -101,6 +118,11 @@ namespace Carpare.Models.Repository
                 return false;
         }
 
+        /// <summary>
+        /// Gets the users cars
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         public static Car[] GetUserCar(string UserId)
         {
             string sqlQuery = "select * from car where Owner='" + UserId + "';";
@@ -124,6 +146,13 @@ namespace Carpare.Models.Repository
 
         }
 
+        /// <summary>
+        /// Searchs for the car with given parameters
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="userId"></param>
+        /// <param name="option"></param>
+        /// <returns></returns>
         internal static Car[] SearchCar(string value, string userId, int option)
         {
             List<object[]> rows = new List<object[]>();
@@ -188,12 +217,12 @@ namespace Carpare.Models.Repository
             }
             return cars;
         }
-
-
-        /*
-* Add a Book to the database.
-* Return true iff the add succeeds.
-*/
+      
+        /// <summary>
+        /// Adds car to database
+        /// </summary>
+        /// <param name="car"></param>
+        /// <returns></returns>
         public static bool AddCar(Car car)
         {
             string sql = "select max(carId) AS num from car;";
@@ -228,7 +257,11 @@ namespace Carpare.Models.Repository
             return true;
         }
 
-
+        /// <summary>
+        /// Deletes car from car table and favorites table
+        /// </summary>
+        /// <param name="CarId"></param>
+        /// <returns></returns>
         internal static bool DeleteCar(string CarId)
         {
             string sql = "delete from car where carId = " + CarId + ";";
@@ -241,10 +274,13 @@ namespace Carpare.Models.Repository
                 return true;
         }
 
-        /*
-         * Update a Car that is in the database, replacing all field values except
-         * the key field.
-         */
+        /// <summary>
+        /// Updates with given value as input
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="option"></param>
+        /// <param name="carId"></param>
+        /// <returns></returns>
         public static bool UpdateCar(string value, int option, string carId)
         {
             int result = 0;
@@ -311,9 +347,7 @@ namespace Carpare.Models.Repository
                 return false;
         }
 
-        /*
-         * Get all Book data from the database and return an array of Books.
-         */
+        //returns every car from database
         public static List<Car> GetAllCars()
         {
             List<Car> cars = new List<Car>();

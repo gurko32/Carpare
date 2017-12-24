@@ -6,7 +6,10 @@ namespace SqliteDemo.Models.Transaction
 {
     public class CommentManager
     {
-
+        /// <summary>
+        /// Returns every comment
+        /// </summary>
+        /// <returns></returns>
         public static Comment[] GetAllComments()
         {
             List<Comment> comments = CommentPersistence.GetAllComments();
@@ -19,6 +22,12 @@ namespace SqliteDemo.Models.Transaction
                 return (new Comment[0]);
             }
         }
+
+        /// <summary>
+        /// Gets users comments
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
         public static Comment[] GetUserComments(string UserId)
         {
             Comment[] comments = CommentPersistence.GetUserComment(UserId);
@@ -26,6 +35,11 @@ namespace SqliteDemo.Models.Transaction
             return comments;
         }
 
+        /// <summary>
+        /// Gets car's comments
+        /// </summary>
+        /// <param name="CarId"></param>
+        /// <returns></returns>
         public static Comment[] GetCarComments(int CarId)
         {
             Comment[] comments = CommentPersistence.GetCarComment(CarId);
@@ -34,16 +48,14 @@ namespace SqliteDemo.Models.Transaction
         }
 
 
-        /*
-         * Transaction: Add a new book to the database
-         * Returns true iff the new book has a unique ISBN
-         * and it was successfully added.
-         */
+        /// <summary>
+        /// Adds the comment
+        /// </summary>
+        /// <param name="newComment"></param>
+        /// <returns></returns>
         public static bool AddNewComment(Comment newComment)
         {
-            // Verify that the book doesn't already exist
             Comment oldComment = CommentPersistence.getComment(newComment);
-            // oldBook should be null, if this is a new book
             if (oldComment != null)
             {
                 return false;
@@ -52,26 +64,14 @@ namespace SqliteDemo.Models.Transaction
             return CommentPersistence.AddComment(newComment);
         }
 
+        /// <summary>
+        /// Deletes the comment with given commentId
+        /// </summary>
+        /// <param name="commentId"></param>
+        /// <returns></returns>
         public static bool DeleteComment(string commentId)
         {
             bool result = CommentPersistence.DeleteComment(commentId);
-            return result;
-        }
-
-        /*
-         * Transaction: Update a book in the database
-         * Returns true iff the book exists in the database and
-         * it was successfully changed.
-         */
-        public static bool ChangeComment(Comment comment)
-        {
-            if (comment == null)
-            {
-                return false;
-            }
-            bool result = CommentPersistence.UpdateComment(comment);
-
-
             return result;
         }
     }
