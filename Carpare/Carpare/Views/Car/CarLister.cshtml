@@ -14,7 +14,7 @@
     <br />
     <br />
     <br />
-    
+
     @foreach (Car c in Model)
     {
         <!--PHOTO-->
@@ -43,13 +43,15 @@
                 <input type="hidden" name="carId" value="@c.carId" />
                 <input type="submit" value="Show Comments">
             </form>
-            <form action="~/Car/AddToFavourites" method="post">
-                <input type="hidden" name="carId" value="@c.carId" />
-                <input type="submit" value="Add To Favourites">
-            </form>
-        </sDiv>
+            @if (Session["UserId"].ToString() != "") { 
+                <form action="~/Car/AddToFavourites" method="post">
+                    <input type="hidden" name="carId" value="@c.carId" />
+                    <input type="submit" value="Add To Favourites">
+                </form>
+                }
+            </sDiv>
     }
     <br />
     <br />
-    
+
 </div>
