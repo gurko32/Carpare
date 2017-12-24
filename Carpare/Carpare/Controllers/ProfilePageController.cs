@@ -18,7 +18,7 @@ namespace Carpare.Controllers
         {
             User user = UserPersistence.GetUser(Session["UserId"].ToString());
 
-            if (user.IsAdmin)
+            if (user!= null && user.IsAdmin)
             {
                 return RedirectToAction("AdminPage", "Admin");
             }
