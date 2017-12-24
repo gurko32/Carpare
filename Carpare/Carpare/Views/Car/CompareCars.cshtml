@@ -1,7 +1,34 @@
-﻿
+﻿@using Carpare.Models.Entity
+@model Car[]
 @{
     ViewBag.Title = "Compare Cars";
 }
 
 <h2>Compare Cars</h2>
 
+From here, you can compare 2 cars which are in your favourite list.
+
+@if (Model == null || Model.Length <= 1)
+{
+    ViewBag.message = "We cannot compare your cars. You need at least 2 cars in your favourite list to compare cars.";
+}
+else
+{
+    <form action="~/Car/Compare" method="post">
+        <select name="Car1">
+            <option selected="selected"></option>
+            @foreach (Car a in Model)
+            {
+                <option>@a.carId: @a.Brand @a.Model</option>
+            }
+        </select>
+        <select name="Car2">
+            <option selected="selected"></option>
+            @foreach (Car a in Model)
+            {
+                <option>@a.carId: @a.Brand @a.Model</option>
+            }
+        </select>
+        <input type="submit" value="Compare">
+    </form>
+}
