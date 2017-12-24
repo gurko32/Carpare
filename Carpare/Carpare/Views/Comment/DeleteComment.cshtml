@@ -1,0 +1,63 @@
+﻿@using Carpare.Models.Entity
+@model Comment[]
+
+@{
+    ViewBag.Title = "DeleteComment";
+}
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+<div id="main">
+    <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+    <h2>Delete Comment</h2>
+
+    @if (Model != null)
+    {
+        <table>
+            <tr>
+                <th>CommentId</th>
+                <th>CarId</th>
+                <th>UserId</th>
+                <th>Comment</th>
+                <th>Delete</th>
+            </tr>
+            @foreach (Comment comment in Model)
+            {
+                <tr>
+                    <td>@comment.commentId</td>
+                    <td>@comment.carId</td>
+                    <td>@comment.UserId</td>
+                    <td>@comment.comment</td>
+                    <td>
+                        <form action="~/Comment/DeleteComment" method="post">
+                            <input type="hidden" name="CommentId" value="@comment.commentId" />
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        ViewBag.message = "You have no comments.";
+    }
+    <p>@ViewBag.message</p>
+</div>

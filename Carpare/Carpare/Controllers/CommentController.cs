@@ -1,4 +1,5 @@
 ﻿using Carpare.Models.Entity;
+using Carpare.Models.Repository;
 using SqliteDemo.Models.Transaction;
 using System;
 using System.Web.Mvc;
@@ -57,9 +58,22 @@ namespace Carpare.Controllers
                 ViewBag.message = "There are no comments for this car.";
             }
             return View(comments);
+        }
+        [HttpGet]
+        public ActionResult DeleteComment()
+        {
+            return View(CommentPersistence.GetUserComment(Session["UserId"].ToString()));
+        }
+        [HttpPost]
+        public ActionResult DeleteComment(string CommentId)
+        {
+            bool result = CommentManager.DeleteComment(CommentId);
+            if (result)
+                ViewBag.message = "Comment successfully deleted.";
+            else
+                ViewBag.message = "Comment could not be deleted.";
 
-
-
+            return View(CommentPersistence.GetUserComment(Session["UserId"].ToString()));
         }
 
 

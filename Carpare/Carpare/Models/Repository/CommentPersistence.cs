@@ -103,9 +103,16 @@ namespace Carpare.Models.Repository
             return true;
         }
 
-        internal static bool DeleteComment(Comment delComment)
+        internal static bool DeleteComment(string CommentId)
         {
-            throw new NotImplementedException();
+            string sql = "delete from comment where commentId = " + CommentId + ";";
+            int result = RepositoryManager.Repository.DoCommand(sql);
+            //sql = "delete from favourites where carId = " + CarId + ";";
+            //result = RepositoryManager.Repository.DoCommand(sql);
+            if (result == 0)
+                return false;
+            else
+                return true;
         }
 
         /*

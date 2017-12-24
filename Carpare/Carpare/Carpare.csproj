@@ -263,6 +263,7 @@
     <Content Include="Views\Car\FavouriteCars.cshtml" />
     <Content Include="Views\Car\CompareCars.cshtml" />
     <Content Include="Views\Car\Compare.cshtml" />
+    <Content Include="Views\Comment\DeleteComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

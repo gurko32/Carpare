@@ -106,6 +106,7 @@ namespace Carpare.Controllers
 
             return View(CarManager.GetUserCars(Session["UserId"].ToString()));
         }
+        [HttpGet]
         public ActionResult DeleteCar()
         {
             return View(CarPersistence.GetUserCar(Session["UserId"].ToString()));

@@ -52,23 +52,11 @@ namespace SqliteDemo.Models.Transaction
             return CommentPersistence.AddComment(newComment);
         }
 
-        /*
-         * Transaction: Delete a book from the database
-         * Returns true iff the book exists in the database and
-         * it was successfully deleted.
-         */
-        public static bool DeleteComment(Comment delComment)
+        public static bool DeleteComment(string commentId)
         {
-            Comment comment = CommentPersistence.getComment(delComment);
-            if (comment == null)
-            {
-                return false;
-            }
-            bool result = CommentPersistence.DeleteComment(delComment);
-
+            bool result = CommentPersistence.DeleteComment(commentId);
             return result;
         }
-
 
         /*
          * Transaction: Update a book in the database
