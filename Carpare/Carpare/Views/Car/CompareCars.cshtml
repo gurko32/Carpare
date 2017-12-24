@@ -3,33 +3,35 @@
 @{
     ViewBag.Title = "Compare Cars";
 }
+<div id="main">
+    <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+    <h2>Compare Cars</h2>
 
-<h2>Compare Cars</h2>
+    From here, you can compare 2 cars which are in your favourite list.
 
-From here, you can compare 2 cars which are in your favourite list.
-
-@if (Model == null || Model.Length <= 1)
-{
-    ViewBag.message = "We cannot compare your cars. You need at least 2 cars in your favourite list to compare cars.";
-
-}
-else
-{
-    <form action="~/Car/Compare" method="post">
-        <select name="Car1">
-            <option selected="selected"></option>
-            @foreach (Car a in Model)
-            {
-                <option>@a.carId: @a.Brand @a.Model</option>
-            }
-        </select>
-        <select name="Car2">
-            <option selected="selected"></option>
-            @foreach (Car a in Model)
-            {
-                <option>@a.carId: @a.Brand @a.Model</option>
-            }
-        </select>
-        <input type="submit" value="Compare">
-    </form>
-}
+    @if (Model == null || Model.Length <= 1)
+    {
+        ViewBag.message = "We cannot compare your cars. You need at least 2 cars in your favourite list to compare cars.";
+    }
+    else
+    {
+        <form action="~/Car/Compare" method="post">
+            <select name="Car1">
+                <option selected="selected"></option>
+                @foreach (Car a in Model)
+                {
+                    <option>@a.carId: @a.Brand @a.Model</option>
+                }
+            </select>
+            <select name="Car2">
+                <option selected="selected"></option>
+                @foreach (Car a in Model)
+                {
+                    <option>@a.carId: @a.Brand @a.Model</option>
+                }
+            </select>
+            <input type="submit" value="Compare">
+        </form>
+    }
+    <p>@ViewBag.message</p>
+</div>
