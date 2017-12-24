@@ -37,13 +37,6 @@ namespace Carpare.Controllers
             Car[] cars = CarManager.GetUserCars(UserId);
             return View(cars);
         }
-        [HttpPost]
-        public ActionResult CarLister(string comment, int carId)
-        {
-            Car[] cars = CarManager.GetAllCars();
-            return View(cars);  // returns /Views/Car/CarLister.cshtml
-        }
-
 
         /*
          * Display the Update form

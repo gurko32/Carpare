@@ -19,10 +19,6 @@ namespace Carpare.Controllers
         [HttpPost]
         public ActionResult CommentAdder(string comment, int carId)
         {
-            //Debug.WriteLine("asdasdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ comment);
-            //Debug.WriteLine(Session["UserId"]);
-            //Car[] cars = CarManager.GetAllCars();
-
             Comment com = new Comment(10, carId, (String)Session["UserId"], comment);
             CommentManager.AddNewComment(com);
             return RedirectToAction("CarLister","Car");  // returns /Views/Car/CarLister.cshtml

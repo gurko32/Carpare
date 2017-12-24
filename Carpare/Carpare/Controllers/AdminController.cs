@@ -30,7 +30,7 @@ namespace Carpare.Controllers
         [HttpPost]
         public ActionResult ChangeStatus(string Status, string UserId)
         {
-            bool result = UserPersistence.ChangeUserStatus(UserId, Status);
+            bool result = UserPersistence.ChangeUserStatus(UserId.Replace("'", "&apos;"), Status.Replace("'", "&apos;"));
             if (result)
             {
                 ViewBag.message = "Transaction Completed.";
@@ -50,7 +50,7 @@ namespace Carpare.Controllers
         [HttpPost]
         public ActionResult ResetPassword(string UserId)
         {
-            string password = UserPersistence.ResetPassword(UserId);
+            string password = UserPersistence.ResetPassword(UserId.Replace("'", "&apos;"));
             if (password != null)
                 ViewBag.message = UserId + "'s password has changed. New password is: " + password;
             else
