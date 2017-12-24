@@ -7,21 +7,26 @@ namespace Carpare.Controllers
 {
     public class AuthenticationController : Controller
     {
-        // GET: Authentication
-        public ActionResult Index()
-        {
-            return View();
-        }
+        /// <summary>
+        /// Returns the login page View.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Login()
         {
             return View(new Credential());
         }
+        /// <summary>
+        /// Applies the login procedure with checking the parameters whether they are correct or not.
+        /// </summary>
+        /// <param name="credential">Username and password to check the database, then login.</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Login(Credential credential)
         {
             if (credential == null)
                 return View(new Credential());
+
             if (credential.Password == null || credential.UserId == null)
             {
                 string err = "Both User ID and Password are required. Please try again.";
@@ -35,11 +40,12 @@ namespace Carpare.Controllers
                 TempData["message"] = err;
                 return View(credential);
             }
-            User user = UserPersistence.GetUser(credential.UserId);
-            if (user.status != "I")
+
+            User user = UserPersistence.GetUser(credential.UserId); // Get the user
+            if (user.status != "I") // If user is active, Authenticate the user.
             {
                 bool result = UserManager.AuthenticateUser(credential, Session);
-                if (result)
+                if (result) //If username or password is matched with the database value, login the user.
                 {
                     TempData["message"] = "";
                     Session["UserId"] = user.UserId;
@@ -55,7 +61,7 @@ namespace Carpare.Controllers
                     return View(credential);
                 }
             }
-            else
+            else // If user is inactive, do not login the user.
             {
                 TempData["invalid"] = "Your account has been banned";
                 return RedirectToAction("Index", "Home");
@@ -63,6 +69,10 @@ namespace Carpare.Controllers
 
 
         }
+        /// <summary>
+        /// Starts the logout procedure and redirects to the home page.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Logout()
         {
             UserManager.LogoutUser(Session);

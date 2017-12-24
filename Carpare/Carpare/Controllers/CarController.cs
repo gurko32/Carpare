@@ -8,26 +8,20 @@ namespace Carpare.Controllers
 {
     public class CarController : Controller
     {
-        // GET: Car
-        public ActionResult Index()
-        {
-            return View();
-        }
-        /*
-     * This class handles all HTTP requests related to Pets.
-     */
-
-
-        CarManager carController = new CarManager();
-
-        /*
-         * Generate the Car listing.
-         */
+        /// <summary>
+        /// returns the View that contains all cars in the database.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult CarLister()
         {
             Car[] cars = CarManager.GetAllCars();
             return View(cars);  // returns /Views/Car/CarLister.cshtml
         }
+
+        /// <summary>
+        /// Returns the View that contains only the user's cars.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult MyCarLister()
         {
@@ -36,19 +30,40 @@ namespace Carpare.Controllers
             return View(cars);
         }
 
-        /*
-         * Display the Update form
-         */
+        /// <summary>
+        /// Returns the View where you can add your new car.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Update()
         {
-            return View(new Car());   // returns /Views/Pet/Update.cshtml
+            return View(new Car());
         }
+        /// <summary>
+        /// Returns the View where you can change your cars' specifications.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult ChangeCar()
         {
             return View(CarManager.GetUserCars((string)Session["UserId"]));
         }
+        /// <summary>
+        /// Changes the car's specifications which is entered by the user.
+        /// </summary>
+        /// <param name="carId">Car that we want to change.</param>
+        /// <param name="Url">Url of the photo of the car.</param>
+        /// <param name="Brand">Brand of the car.</param>
+        /// <param name="Model">Model of the car.</param>
+        /// <param name="YearOfProduction">Year of production of the car.</param>
+        /// <param name="km">Car's mileage (km).</param>
+        /// <param name="TransmissionType">Transmission type of the car.</param>
+        /// <param name="TopSpeed">Top speed of the car.</param>
+        /// <param name="Acceleration">Acceleration of the car.</param>
+        /// <param name="UrbanConsumption">Urban consumption of the car.</param>
+        /// <param name="Fuel">Fuel of the car.</param>
+        /// <param name="WheelDrive">Wheel drive of the car.</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult ChangeCar(string carId, string Url, string Brand, string Model, string YearOfProduction, string km, string TransmissionType, string TopSpeed, string Acceleration, string UrbanConsumption, string Fuel, string WheelDrive)
         {
@@ -106,11 +121,20 @@ namespace Carpare.Controllers
 
             return View(CarManager.GetUserCars(Session["UserId"].ToString()));
         }
+        /// <summary>
+        /// Returns the car list that you can delete the cars.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult DeleteCar()
         {
             return View(CarPersistence.GetUserCar(Session["UserId"].ToString()));
         }
+        /// <summary>
+        /// Deletes the selected car.
+        /// </summary>
+        /// <param name="carId">Car that user wants to delete.</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult DeleteCar(string carId)
         {
@@ -122,11 +146,26 @@ namespace Carpare.Controllers
 
             return View(CarPersistence.GetUserCar(Session["UserId"].ToString()));
         }
+        /// <summary>
+        /// Returns the view where you can search the car with the keywords.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult SearchCar()
         {
             return View();
         }
+        /// <summary>
+        /// Looks for the cars that user entered to the search tab in the web page.
+        /// </summary>
+        /// <param name="Brand">Brand that user looks.</param>
+        /// <param name="Model">Model that user looks.</param>
+        /// <param name="YearOfProduction">Year of Production that user looks.</param>
+        /// <param name="km">Car's km that user looks.</param>
+        /// <param name="TransmissionType">Transmission type that user looks.</param>
+        /// <param name="Fuel">Fuel type that user looks.</param>
+        /// <param name="WheelDrive">Wheel drive type that user looks.</param>
+        /// <returns></returns>
         public ActionResult FoundCars(string Brand, string Model, string YearOfProduction, string km, string TransmissionType, string Fuel, string WheelDrive)
         {
             Car[] cars = new Car[0];
@@ -166,26 +205,19 @@ namespace Carpare.Controllers
 
             return View(cars);
         }
-        /*
-         * Handle the Update form submission
-         */
+        
+        /// <summary>
+        /// Adds the new car into the database.
+        /// </summary>
+        /// <param name="car">Car that needs to be added.</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Update(Car car, string submit)
+        public ActionResult Update(Car car)
         {
             bool result = false;
             car.Owner = (string)Session["UserId"];
-
-            // add or drop
-            switch (submit)
-            {
-                case "Add Car":
-                    result = CarManager.AddNewCar(car);
-                    break;
-
-            }
-
-            // ViewBag is a general purpose data dictionary for passing data
-            // between Controller & View
+            result = CarManager.AddNewCar(car);
+            
             if (result)
             {
                 ViewBag.message = "Transaction Completed";
@@ -198,11 +230,19 @@ namespace Carpare.Controllers
             Car[] cars = CarManager.GetAllCars();
             return View("CarLister", cars);   // returns /Views/Pet/Listing.cshtml
         }
-
+        /// <summary>
+        /// Returns the view where you can see your cars that you added them into your favourites tab.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult FavouriteCars()
         {
             return View(CarManager.GetFavouriteCars((string)Session["UserId"]));
         }
+        /// <summary>
+        /// Adds the car into your favourite database.
+        /// </summary>
+        /// <param name="carId">Car that wants to be added to favourites.</param>
+        /// <returns></returns>
         public ActionResult AddToFavourites(string carId)
         {
             bool result = CarManager.AddToFavourites(carId, (string)Session["UserId"]);
@@ -216,15 +256,25 @@ namespace Carpare.Controllers
             }
             return RedirectToAction("FavouriteCars");
         }
-
+        /// <summary>
+        /// Returns the view where you can compare two cars.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult CompareCars()
         {
             return View(CarManager.GetFavouriteCars(Session["UserId"].ToString()));
         }
+        /// <summary>
+        /// Gathers the two cars from the database and and returns the view where you can see these two cars.
+        /// </summary>
+        /// <param name="Car1">First car.</param>
+        /// <param name="Car2">Second car.</param>
+        /// <returns></returns>
         public ActionResult Compare(string Car1, string Car2)
         {
-            int index1 = Car1.IndexOf(':');
+            int index1 = Car1.IndexOf(':'); // We are doing this because the string has the form: "carId: Brand Model" and we want only the carId.
             int index2 = Car2.IndexOf(':');
+
             string car1Id, car2Id;
             car1Id = Car1.Substring(0, index1);
             car2Id = Car2.Substring(0, index2);
