@@ -1,12 +1,13 @@
 ﻿@using Carpare.Models.Entity
 @model Credential
 @{
-    ViewBag.Title = "Signup";
+    ViewBag.Title = "Sign Up";
 }
 
-<h2>Sign Up</h2>
+
 <div id="main">
     <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+    <h2>Sign Up</h2>
     <form action="~/Signup/Signup" method="post">
         User ID:<br /><input type="text" name="UserId" value="@Model.UserId"><br />
         Password:<br /><input type="password" name="Password" value="@Model.Password"><br />
