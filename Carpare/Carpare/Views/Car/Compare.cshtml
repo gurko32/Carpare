@@ -5,12 +5,80 @@
 }
 
 <h2>Compare</h2>
-<div align="left">
-    <p> <img src="@Model[0].Url" alt="Car 1's Photo" width="300" height="300" /> </p>
-</div>
-<div align="center">
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-</div>
-<div align="right">
-    <p> <img src="@Model[1].Url" alt="Car 2's Photo" width="300" height="300" /> </p>
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<div id="main">
+    <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+    <br />
+    <br />
+    <br />
+    <p> <img align="left" src="@Model[0].Url" alt="Car 1's Photo" width="300" height="300" /> <img align="right" src="@Model[1].Url" alt="Car 2's Photo" width="300" height="300" /></p>
+    <table>
+        <tr>
+            <th>Feaures</th>
+            <th>Car 1</th>
+            <th>Car 2</th>
+
+        </tr>
+        <tr>
+            <td>Brand And Model</td>
+            <td>@Model[0].Brand @Model[0].Model</td>
+            <td>@Model[1].Brand @Model[1].Model</td>
+        </tr>
+        <tr>
+            <td>Year Of Production</td>
+            <td>@Model[0].YearOfProduction</td>
+            <td>@Model[1].YearOfProduction</td>
+        </tr>
+        <tr>
+            <td>Transmission Type</td>
+            <td>@Model[0].TransmissionType</td>
+            <td>@Model[1].TransmissionType</td>
+        </tr>
+        <tr>
+            <td>Fuel Type</td>
+            <td>@Model[0].Fuel</td>
+            <td>@Model[1].Fuel</td>
+        </tr>
+        <tr>
+            <td>Top Speed</td>
+            <td>@Model[0].TopSpeed km/h</td>
+            <td>@Model[1].TopSpeed km/h</td>
+        </tr>
+        <tr>
+            <td>Acceleration (0 - 100 km/h)</td>
+            <td>@Model[0].Acceleration s</td>
+            <td>@Model[1].Acceleration s</td>
+        </tr>
+        <tr>
+            <td>Urban Consumption</td>
+            <td>@Model[0].UrbanConsumption l/100km</td>
+            <td>@Model[1].UrbanConsumption l/100km</td>
+        </tr>
+        <tr>
+            <td>Wheel Drive</td>
+            <td>@Model[0].WheelDrive</td>
+            <td>@Model[1].WheelDrive</td>
+        </tr>
+    </table>
+
+
+
 </div>
