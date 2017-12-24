@@ -223,9 +223,14 @@ namespace Carpare.Controllers
             }
             return RedirectToAction("FavouriteCars");
         }
+
         public ActionResult CompareCars()
         {
             return View(CarManager.GetFavouriteCars(Session["UserId"].ToString()));
+        }
+        public ActionResult Compare(string Car1,string Car2)
+        {
+            return View();
         }
 
     }
