@@ -39,26 +39,32 @@ namespace Carpare.Controllers
                 TempData["message"] = err;
                 return View(credential);
             }
-
-            bool result = UserManager.AuthenticateUser(credential, Session);
-            if (result)
+            User user = UserPersistence.GetUser(credential.UserId);
+            if(user.status != "I")
             {
-
-
-                User user = UserPersistence.GetUser(credential.UserId);
-                TempData["message"] = "";
-                Session["UserId"] = user.UserId;
-                Session["LoggedIn"] = true;
-                if (user.IsAdmin)
-                    return RedirectToAction("AdminPage", "Admin");
+                bool result = UserManager.AuthenticateUser(credential, Session);
+                if (result)
+                {
+                    TempData["message"] = "";
+                    Session["UserId"] = user.UserId;
+                    Session["LoggedIn"] = true;
+                    if (user.IsAdmin)
+                        return RedirectToAction("AdminPage", "Admin");
+                    else
+                        return RedirectToAction("ProfilePage", "ProfilePage");
+                }
                 else
-                    return RedirectToAction("ProfilePage", "ProfilePage");
+                {
+                    TempData["message"] = "Invalid login credentials";
+                    return View(credential);
+                }
             }
             else
             {
-                TempData["message"] = "Invalid login credentials";
-                return View(credential);
+                TempData["invalid"]="Your account has been banned";
+                return RedirectToAction("Index", "Home");
             }
+            
 
         }
         public ActionResult Logout()
