@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Carpare.Models.Entity;
 using Carpare.Models.Transaction;
 using Carpare.Models.Persistance;
@@ -40,7 +36,7 @@ namespace Carpare.Controllers
                 return View(credential);
             }
             User user = UserPersistence.GetUser(credential.UserId);
-            if(user.status != "I")
+            if (user.status != "I")
             {
                 bool result = UserManager.AuthenticateUser(credential, Session);
                 if (result)
@@ -61,10 +57,10 @@ namespace Carpare.Controllers
             }
             else
             {
-                TempData["invalid"]="Your account has been banned";
+                TempData["invalid"] = "Your account has been banned";
                 return RedirectToAction("Index", "Home");
             }
-            
+
 
         }
         public ActionResult Logout()

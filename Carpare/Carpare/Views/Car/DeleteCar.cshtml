@@ -27,44 +27,52 @@
 <div id="main">
     <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
     <h2>Delete Car</h2>
-    <table>
-        <tr>
-            <th>CarId</th>
-            <th>Brand</th>
-            <th>Model</th>
-            <th>Year Of Production</th>
-            <th>KM</th>
-            <th>Transmission Type</th>
-            <th>Fuel</th>
-            <th>Top Speed</th>
-            <th>Acceleration</th>
-            <th>Urban Consumption</th>
-            <th>Wheel Drive</th>
-            <th>Delete</th>
-        </tr>
-        @foreach (Car car in Model)
-        {
+
+    @if (Model != null)
+    {
+        <table>
             <tr>
-                <td>@car.carId</td>
-                <td>@car.Brand</td>
-                <td>@car.Model</td>
-                <td>@car.YearOfProduction</td>
-                <td>@car.km</td>
-                <td>@car.TransmissionType</td>
-                <td>@car.Fuel</td>
-                <td>@car.TopSpeed</td>
-                <td>@car.Acceleration</td>
-                <td>@car.UrbanConsumption</td>
-                <td>@car.WheelDrive</td>
-                <td>
-                    <form action="~/Car/DeleteCar" method="post">
-                        <input type="hidden" name="CarId" value="@car.carId" />
-                        <input type="submit" value="Delete">
-                    </form>
-                </td>
+                <th>CarId</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Year Of Production</th>
+                <th>KM</th>
+                <th>Transmission Type</th>
+                <th>Fuel</th>
+                <th>Top Speed</th>
+                <th>Acceleration</th>
+                <th>Urban Consumption</th>
+                <th>Wheel Drive</th>
+                <th>Delete</th>
             </tr>
-        }
-    </table>
+            @foreach (Car car in Model)
+            {
+                <tr>
+                    <td>@car.carId</td>
+                    <td>@car.Brand</td>
+                    <td>@car.Model</td>
+                    <td>@car.YearOfProduction</td>
+                    <td>@car.km</td>
+                    <td>@car.TransmissionType</td>
+                    <td>@car.Fuel</td>
+                    <td>@car.TopSpeed</td>
+                    <td>@car.Acceleration</td>
+                    <td>@car.UrbanConsumption</td>
+                    <td>@car.WheelDrive</td>
+                    <td>
+                        <form action="~/Car/DeleteCar" method="post">
+                            <input type="hidden" name="CarId" value="@car.carId" />
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        ViewBag.message = "You have no cars.";
+    }
     <p>@ViewBag.message</p>
 </div>
 

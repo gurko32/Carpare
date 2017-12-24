@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using Carpare.Models.Entity;
-using Carpare.Models.Transaction;
 using Carpare.Models.Persistance;
 
 namespace Carpare.Models.Transaction
@@ -33,7 +29,7 @@ namespace Carpare.Models.Transaction
                 return true;
             }
         }
-        
+
         public static void LogoutUser(HttpSessionStateBase baseState)
         {
             baseState["LoggedIn"] = false;
@@ -44,9 +40,9 @@ namespace Carpare.Models.Transaction
             baseState["LoggedIn"] = false;
             baseState["IsAdmin"] = false;
 
-            
+
             return UserPersistence.AddUser(cr);
-            
+
         }
     }
 }

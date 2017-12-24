@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Carpare.Models.Entity;
 using System.Diagnostics;
 
@@ -32,7 +30,7 @@ namespace Carpare.Models.Repository
         }
         public static Comment[] GetUserComment(string UserId)
         {
-            string sqlQuery = "select * from comment where UserId='" + UserId+"';";
+            string sqlQuery = "select * from comment where UserId='" + UserId + "';";
             List<object[]> rows = RepositoryManager.Repository.DoQuery(sqlQuery);
 
             if (rows.Count == 0)
@@ -53,7 +51,7 @@ namespace Carpare.Models.Repository
 
         }
 
-        
+
         public static Comment[] GetCarComment(int CarId)
         {
             string sqlQuery = "select * from comment where carId='" + CarId + "';";
@@ -87,8 +85,8 @@ namespace Carpare.Models.Repository
             sql = "select * from comment";
             List<object[]> rows2 = RepositoryManager.Repository.DoQuery(sql);
 
-            if(rows2.Count==0)
-                { 
+            if (rows2.Count == 0)
+            {
                 comment.commentId = 1000;
             }
             else

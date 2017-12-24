@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Carpare.Models.Entity;
 using Carpare.Models.Transaction;
 using Carpare.Models.Repository;
 using System.Diagnostics;
-using System.Globalization;
 
 namespace Carpare.Models.Persistance
 {
@@ -26,7 +23,7 @@ namespace Carpare.Models.Persistance
                + hashedPassword + "', '"
                + cr.Email + "',"
                + "0" + ", '"
-               + "A" + "','" 
+               + "A" + "','"
                + cr.gender + "', '"
                + cr.BirthDate + "', '"
                + cr.Location + "'); ";

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Data.SQLite;
-using System;
 using Carpare.Models.Repository;
 using Carpare.Models.Entity;
 using Carpare.Models.Persistance;
@@ -109,8 +108,8 @@ namespace SqliteTest.Models.Repository
         public bool Initialize()
         {
             bool openResult;
-        
-            if (File.Exists("F:\\MyDatabase.sqlite"))
+
+            if (File.Exists("F:\\MyDatabase.sqlite") && new FileInfo(databaseFile).Length > 10)
             {
                 openResult = Open();
                 return openResult;
@@ -118,8 +117,7 @@ namespace SqliteTest.Models.Repository
 
             bool success = true;
             Close();
-            ///*
-            
+
             try
             {
                 SQLiteConnection.CreateFile(databaseFile);
@@ -128,7 +126,7 @@ namespace SqliteTest.Models.Repository
             {
                 success = false;
             }
-            //*/
+
             openResult = Open();
             if (success & openResult)
             {

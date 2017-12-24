@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Carpare</title>
     <style>
-        html,body {
+        html, body {
             font-family: "Lato", sans-serif;
             transition: background-color .5s;
             height: 100%;
@@ -15,9 +15,11 @@
         h1, h3, h4 {
             text-align: center;
         }
+
         h2 {
             text-align: left;
         }
+
         img {
             display: block;
             margin: auto;
@@ -71,11 +73,13 @@
                     font-size: 18px;
                 }
         }
+
         sDiv {
             width: 33%;
             height: 765px;
             float: left;
         }
+
         #lol {
             background: #DDD;
         }
@@ -92,37 +96,38 @@
             background: #444;
         }
     </style>
-    
+
 </head>
 <body>
     @RenderBody()
 
     <div class="navbar navbar-inverse navbar-fixed-top">
-        
+
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             @if (Session["LoggedIn"] != null)
             {
                 if ((bool)Session["LoggedIn"] == true)
                 {
-                <a href="~/Home/Index">Home</a>
-                <a href="~/Car/CarLister">All Cars</a>
-                <a href="~/Car/MyCarLister">My Cars</a>
-                <a href="~/Car/Update">Add Car</a>
-                <a href="~/Car/ChangeCar">Change Car</a>
-                <a href="~/Car/DeleteCar">Delete Car</a>
-                <a href="~/Car/SearchCar">Search Car</a>
-                <a href="~/Car/FavouriteCars">Favourite Cars</a>
-                <a href="~/Car/CompareCars">Compare Cars</a>
-                <a href="~/ProfilePage/ProfilePage">Profile Page</a>
-                <a href="~/Authentication/Logout">Sign Out </a>
+                    <a>Welcome, @Session["UserId"]</a>
+                    <a href="~/Home/Index">Home</a>
+                    <a href="~/Car/CarLister">All Cars</a>
+                    <a href="~/Car/MyCarLister">My Cars</a>
+                    <a href="~/Car/Update">Add Car</a>
+                    <a href="~/Car/ChangeCar">Change Car</a>
+                    <a href="~/Car/DeleteCar">Delete Car</a>
+                    <a href="~/Car/SearchCar">Search Car</a>
+                    <a href="~/Car/FavouriteCars">Favourite Cars</a>
+                    <a href="~/Car/CompareCars">Compare Cars</a>
+                    <a href="~/ProfilePage/ProfilePage">Profile Page</a>
+                    <a href="~/Authentication/Logout">Sign Out </a>
                 }
 
                 else
                 {
-                <a href="~/Home/Index">Home</a>
-                <a href="~/Car/CarLister">Cars</a>
-                <a href="~/Authentication/Login">Sign In/Sign Up </a>
+                    <a href="~/Home/Index">Home</a>
+                    <a href="~/Car/CarLister">Cars</a>
+                    <a href="~/Authentication/Login">Sign In/Sign Up </a>
                 }
             }
             else

@@ -1,16 +1,17 @@
 ﻿@using Carpare.Models.Entity
 @model User
 @{
-    ViewBag.Title = "ProfilePage";
+    ViewBag.Title = "Profile Page";
 }
 
-<h2>Profile Page</h2>
 
-@if (Model != null)
-{
-    <div id="main">
-        <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+<div id="main">
+    <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+    <h2>Profile Page</h2>
+    @if (Model != null)
+    {
 
+        
         <h2>Welcome, @Model.UserId</h2>
         <h1>Update Your Profile!</h1>
         <font face="verdana" color="grey">Name</font>
@@ -49,5 +50,6 @@
             <input type="submit" value="Change">
         </form>
         <p>@ViewBag.message</p>
-    </div>
-}
+
+    }
+</div>

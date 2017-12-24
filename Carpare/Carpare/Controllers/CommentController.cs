@@ -1,9 +1,6 @@
 ﻿using Carpare.Models.Entity;
 using SqliteDemo.Models.Transaction;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Carpare.Controllers
@@ -21,14 +18,15 @@ namespace Carpare.Controllers
         {
             Comment com = new Comment(10, carId, (String)Session["UserId"], comment);
             CommentManager.AddNewComment(com);
-            return RedirectToAction("CarLister","Car");  // returns /Views/Car/CarLister.cshtml
+            TempData["CommentMessage"] = "Comment successfully added.";
+            return RedirectToAction("CarLister", "Car");  // returns /Views/Car/CarLister.cshtml
         }
-        
+
 
         [HttpGet]
         public ActionResult CommentShower(Comment[] comments)
         {
-            if(comments == null)
+            if (comments == null)
             {
                 ViewBag.message = "There are no comments for this car.";
             }
@@ -63,7 +61,7 @@ namespace Carpare.Controllers
 
 
         }
-        
+
 
 
     }

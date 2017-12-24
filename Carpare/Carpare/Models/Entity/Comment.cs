@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Carpare.Models.Entity
 {
@@ -17,7 +14,7 @@ namespace Carpare.Models.Entity
 
         }
 
-        public Comment(int commentId,int carId,String UserId, String comment)
+        public Comment(int commentId, int carId, String UserId, String comment)
         {
             this.commentId = commentId;
             this.carId = carId;
@@ -27,7 +24,7 @@ namespace Carpare.Models.Entity
 
         public String toString()
         {
-            return "Comment Id: " + commentId + ", carId: " + carId + ", UserId: " + UserId +",Comment: "+comment;
+            return "Comment Id: " + commentId + ", carId: " + carId + ", UserId: " + UserId + ",Comment: " + comment;
         }
 
         public bool Equals(Comment other)

@@ -1,9 +1,7 @@
 ﻿using Carpare.Models.Entity;
 using Carpare.Models.Repository;
-using Carpare.Models.Transaction;
 using SqliteDemo.Models.Transaction;
 using System;
-using System.Diagnostics;
 using System.Web.Mvc;
 
 namespace Carpare.Controllers
@@ -222,22 +220,22 @@ namespace Carpare.Controllers
         {
             return View(CarManager.GetFavouriteCars(Session["UserId"].ToString()));
         }
-        public ActionResult Compare(string Car1,string Car2)
+        public ActionResult Compare(string Car1, string Car2)
         {
             int index1 = Car1.IndexOf(':');
             int index2 = Car2.IndexOf(':');
-            string car1Id,car2Id;
-            car1Id = Car1.Substring(0,index1);
+            string car1Id, car2Id;
+            car1Id = Car1.Substring(0, index1);
             car2Id = Car2.Substring(0, index2);
 
             Car car1 = CarPersistence.getCar(Int32.Parse(car1Id));
             Car car2 = CarPersistence.getCar(Int32.Parse(car2Id));
 
-            Car[] cars = {car1,car2};
+            Car[] cars = { car1, car2 };
             return View(cars);
         }
 
     }
-    
+
 
 }

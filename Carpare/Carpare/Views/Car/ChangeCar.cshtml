@@ -18,11 +18,11 @@
 
 </head>
 
-<h2>Change Car</h2>
+
 
 <div id="main">
     <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
-
+    <h2>Change Car</h2>
     <br />
     <br />
     <br />
@@ -72,6 +72,9 @@
             </sDiv2>
         }
     }
-
+    else
+    {
+        ViewBag.message = "You have no cars.";
+    }
     <p>@ViewBag.message</p>
 </div>

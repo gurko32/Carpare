@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Carpare.Models.Entity;
 using System.Diagnostics;
-using System.Globalization;
 
 namespace Carpare.Models.Repository
 {
@@ -49,7 +46,11 @@ namespace Carpare.Models.Repository
             {
                 carId = rows[i][1].ToString();
                 sqlQuery = "select * from car where carId='" + carId + "';";
-                List <object[]> car = RepositoryManager.Repository.DoQuery(sqlQuery);
+                List<object[]> car = RepositoryManager.Repository.DoQuery(sqlQuery);
+
+                if (car.Count == 0)
+                    continue;
+
                 dataRow = car[0];
                 Car newCar = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6], (string)dataRow[7], (string)dataRow[8], Int32.Parse(dataRow[9].ToString()), dataRow[10].ToString(), dataRow[11].ToString(), (string)dataRow[12]);
                 cars[i] = newCar;
@@ -232,7 +233,8 @@ namespace Carpare.Models.Repository
         {
             string sql = "delete from car where carId = " + CarId + ";";
             int result = RepositoryManager.Repository.DoCommand(sql);
-
+            sql = "delete from favourites where carId = " + CarId + ";";
+            result = RepositoryManager.Repository.DoCommand(sql);
             if (result == 0)
                 return false;
             else

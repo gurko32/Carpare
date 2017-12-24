@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Carpare.Models.Entity
 {
-    public class Car 
+    public class Car
     {
         public int carId { get; set; }
         public String Brand { get; set; }
@@ -23,7 +20,7 @@ namespace Carpare.Models.Entity
         /*
          * Return a string representation of the Pet object.
          */
-        public Car(int carId,String Brand,String Model,String Owner,int YearOfProduction,int km,String Url,string tt,string f,int ts, string a, string uc, string wd)
+        public Car(int carId, String Brand, String Model, String Owner, int YearOfProduction, int km, String Url, string tt, string f, int ts, string a, string uc, string wd)
         {
             this.carId = carId;
             this.Brand = Brand;
@@ -45,7 +42,7 @@ namespace Carpare.Models.Entity
         }
         public String toString()
         {
-            return "Car Id: "+ carId + " Car Brand: " + Brand + ", " + "Car Model: " + Model + "Car Owner: " + Owner + ", " + "Year of Production: " + YearOfProduction + "," + "Car's mileage(km): " + km+","+"Car's URL: "+Url;
+            return "Car Id: " + carId + " Car Brand: " + Brand + ", " + "Car Model: " + Model + "Car Owner: " + Owner + ", " + "Year of Production: " + YearOfProduction + "," + "Car's mileage(km): " + km + "," + "Car's URL: " + Url;
         }
 
         /*
@@ -54,7 +51,7 @@ namespace Carpare.Models.Entity
          */
         public bool Equals(Car other)
         {
-            return (this.carId== other.carId);
+            return (this.carId == other.carId);
         }
     }
 }

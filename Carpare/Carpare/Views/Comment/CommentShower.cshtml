@@ -2,7 +2,7 @@
 @model Comment[]
 
 @{
-    ViewBag.Title = "CommentShower";
+    ViewBag.Title = "Comments for " + TempData["Brand"] + " " + TempData["Model"];
 }
 <head>
     <style>
@@ -11,11 +11,11 @@
         }
     </style>
 </head>
-<h2>CommentShower</h2>
+
 
 <div id="main">
     <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
-
+    <h2>Comments for @TempData["Brand"] @TempData["Model"]</h2>
     <sDiv id="lel">
         <p> <img src="@TempData["Url"]" alt="Car's Photo" width="300" height="300" /> </p>
         <p>Car ID: @TempData["carId"]</p>

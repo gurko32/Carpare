@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Carpare.Models.Entity;
-using Carpare.Models.Transaction;
 using Carpare.Models.Persistance;
-using System.Diagnostics;
 
 namespace Carpare.Controllers
 {
@@ -18,7 +12,7 @@ namespace Carpare.Controllers
         {
             User user = UserPersistence.GetUser(Session["UserId"].ToString());
 
-            if (user!= null && user.IsAdmin)
+            if (user != null && user.IsAdmin)
             {
                 return RedirectToAction("AdminPage", "Admin");
             }
