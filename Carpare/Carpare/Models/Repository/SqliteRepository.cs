@@ -108,15 +108,18 @@ namespace SqliteTest.Models.Repository
          */
         public bool Initialize()
         {
-            bool success = true;
             bool openResult;
-            Close();
-            ///*
+        
             if (File.Exists("F:\\MyDatabase.sqlite"))
             {
                 openResult = Open();
                 return openResult;
             }
+
+            bool success = true;
+            Close();
+            ///*
+            
             try
             {
                 SQLiteConnection.CreateFile(databaseFile);
@@ -135,6 +138,8 @@ namespace SqliteTest.Models.Repository
                 sql = "CREATE TABLE car (carId INTEGER, Brand VARCHAR(50), Model VARCHAR(50),Owner VARCHAR(50),YearOfProduction INTEGER,KM INT,Url VARCHAR(200),TransmissionType VARCHAR(15), Fuel VARCHAR(15),TopSpeed INT, Acceleration Float,UrbanConsumption Float, WheelDrive VARCHAR(20), PRIMARY KEY(carId),FOREIGN KEY (Owner) references user(UserId));";
                 DoCommand(sql);
                 sql = "CREATE TABLE comment (CommentId INTEGER, carId INTEGER,UserId VARCHAR(50), Text VARCHAR(300),FOREIGN KEY (carId) references car(carId),PRIMARY KEY(CommentId),FOREIGN KEY (UserId) references user(UserId));";
+                DoCommand(sql);
+                sql = "CREATE TABLE favourites (UserId VARCHAR(12), carId INTEGER,FOREIGN KEY (carId) references car(carId),FOREIGN KEY (UserId) references user(UserId));";
                 DoCommand(sql);
 
                 salt = User.CreateSalt();

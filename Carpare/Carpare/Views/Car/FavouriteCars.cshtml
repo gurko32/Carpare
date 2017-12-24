@@ -1,0 +1,41 @@
+﻿@using Carpare.Models.Entity
+@model Car[]
+@{
+    ViewBag.Title = "Favourite Cars";
+}
+<div id="main">
+    <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+    <h2>Favourite Cars</h2>
+    
+    <p>@TempData["message"]</p>
+    <br />
+    <br />
+    <br />
+    @if (Model != null)
+    {
+
+        foreach (Car c in Model)
+        {
+        <!--PHOTO-->
+            <sDiv id="lel">
+                <p> <img src="@c.Url" alt="Car's Photo" width="300" height="300" /> </p>
+                <p>Car ID: @c.carId</p>
+                <p>Car Brand And Model: @c.Brand    @c.Model</p>
+                <p>Year Of Production: @c.YearOfProduction</p>
+                <p>KM: @c.km</p>
+                <p>Transmission Type: @c.TransmissionType</p>
+                <p>Fuel: @c.Fuel</p>
+                <p>Top Speed (km/h): @c.TopSpeed km/h</p>
+                <p>Acceleration (0-100 km/h): @c.Acceleration s</p>
+                <p>Urban Consumption: @c.UrbanConsumption l/100km</p>
+                <p>Wheel Drive: @c.WheelDrive</p>
+            </sDiv>
+        }
+    }
+    else
+    {
+        ViewBag.message = "There are no cars that are your favourite.";
+    }
+    <p>@ViewBag.message</p>
+    
+</div>

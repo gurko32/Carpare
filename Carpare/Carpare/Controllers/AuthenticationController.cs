@@ -43,11 +43,10 @@ namespace Carpare.Controllers
             bool result = UserManager.AuthenticateUser(credential, Session);
             if (result)
             {
-                 
-                TempData["message"] = "Login Successful";
-                
-                User user = UserPersistence.GetUser(credential.UserId);
 
+
+                User user = UserPersistence.GetUser(credential.UserId);
+                TempData["message"] = "";
                 Session["UserId"] = user.UserId;
                 Session["LoggedIn"] = true;
                 if (user.IsAdmin)

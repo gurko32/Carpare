@@ -31,6 +31,33 @@ namespace Carpare.Models.Repository
             Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6], (string)dataRow[7], (string)dataRow[8], Int32.Parse(dataRow[9].ToString()), dataRow[10].ToString(), dataRow[11].ToString(), (string)dataRow[12]);
             return car;
         }
+
+        internal static Car[] GetFavCars(string userId)
+        {
+            Car[] cars;
+            string sqlQuery = "select * from favourites where UserId='" + userId + "';";
+            List<object[]> rows = RepositoryManager.Repository.DoQuery(sqlQuery);
+
+            if (rows.Count == 0)
+            {
+                return null;
+            }
+            string carId = "";
+            object[] dataRow;
+            cars = new Car[rows.Count];
+            for (int i = 0; i < rows.Count; i++)
+            {
+                carId = rows[i][1].ToString();
+                sqlQuery = "select * from car where carId='" + carId + "';";
+                List <object[]> car = RepositoryManager.Repository.DoQuery(sqlQuery);
+                dataRow = car[0];
+                Car newCar = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6], (string)dataRow[7], (string)dataRow[8], Int32.Parse(dataRow[9].ToString()), dataRow[10].ToString(), dataRow[11].ToString(), (string)dataRow[12]);
+                cars[i] = newCar;
+            }
+            return cars;
+
+        }
+
         public static Car[] GetCar(int carId)
         {
             string sqlQuery = "select * from car where carId='" + carId + "';";
@@ -51,6 +78,26 @@ namespace Carpare.Models.Repository
                 cars[i] = car;
             }
             return cars;
+        }
+
+        internal static int AddToFavourites(string carId, string userId)
+        {
+            string sqlQuery = "insert into favourites (UserId,carId) values('" + userId + "'," + carId + ");";
+            int result = RepositoryManager.Repository.DoCommand(sqlQuery);
+            return result;
+        }
+
+        internal static bool CheckFavCar(string carId, string userId)
+        {
+            string sqlQuery = "select * from favourites where carId=" + carId + " and UserId = '" + userId + "';";
+            List<object[]> rows = RepositoryManager.Repository.DoQuery(sqlQuery);
+
+            if (rows.Count == 0)
+            {
+                return true;
+            }
+            else
+                return false;
         }
 
         public static Car[] GetUserCar(string UserId)
@@ -81,10 +128,10 @@ namespace Carpare.Models.Repository
             List<object[]> rows = new List<object[]>();
             if (option == 1)
             {
-                string sqlQuery = "select * from car where Owner='" + userId + "' and Brand = '"+ value +"';";
+                string sqlQuery = "select * from car where Owner='" + userId + "' and Brand = '" + value + "';";
                 rows = RepositoryManager.Repository.DoQuery(sqlQuery);
             }
-            else if(option == 2)
+            else if (option == 2)
             {
                 string sqlQuery = "select * from car where Owner='" + userId + "' and Model = '" + value + "';";
                 rows = RepositoryManager.Repository.DoQuery(sqlQuery);
@@ -140,7 +187,7 @@ namespace Carpare.Models.Repository
             }
             return cars;
         }
-            
+
 
         /*
 * Add a Book to the database.
@@ -196,7 +243,7 @@ namespace Carpare.Models.Repository
          * Update a Car that is in the database, replacing all field values except
          * the key field.
          */
-        public static bool UpdateCar(string value,int option,string carId)
+        public static bool UpdateCar(string value, int option, string carId)
         {
             int result = 0;
             string sql = "";

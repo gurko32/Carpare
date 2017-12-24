@@ -28,6 +28,11 @@ namespace SqliteDemo.Models.Transaction
             Car[] cars = CarPersistence.GetCar(carId);
             return cars[0];
         }
+        public static Car [] GetFavouriteCars(string userId)
+        {
+            Car[] cars = CarPersistence.GetFavCars(userId);
+            return cars;
+        }
         public static Car[] GetUserCars(string UserId)
         {
             Car[] cars = CarPersistence.GetUserCar(UserId);
@@ -82,6 +87,26 @@ namespace SqliteDemo.Models.Transaction
         {
             Car[] cars = CarPersistence.SearchCar(value, userId, option);
             return cars;
+        }
+
+        internal static bool AddToFavourites(string carId,string userId)
+        {
+            bool result = CarPersistence.CheckFavCar(carId,userId);
+            if (result)
+            {
+                int res = CarPersistence.AddToFavourites(carId,userId);
+                if(res == 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
     }
 }

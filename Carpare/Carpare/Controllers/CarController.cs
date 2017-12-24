@@ -205,6 +205,30 @@ namespace Carpare.Controllers
             Car[] cars = CarManager.GetAllCars();
             return View("CarLister", cars);   // returns /Views/Pet/Listing.cshtml
         }
+
+        public ActionResult FavouriteCars()
+        {
+            return View(CarManager.GetFavouriteCars((string)Session["UserId"]));
+        }
+        public ActionResult AddToFavourites(string carId)
+        {
+            bool result = CarManager.AddToFavourites(carId, (string)Session["UserId"]);
+            if (result)
+            {
+                TempData["message"] = "Car successfully added to your favourites.";
+            }
+            else
+            {
+                TempData["message"] = "There was something wrong about transaction. Probably you have this car already in your favourite list.";
+            }
+            return RedirectToAction("FavouriteCars");
+        }
+        public ActionResult CompareCars()
+        {
+            return View(CarManager.GetFavouriteCars(Session["UserId"].ToString()));
+        }
+
     }
+    
 
 }
