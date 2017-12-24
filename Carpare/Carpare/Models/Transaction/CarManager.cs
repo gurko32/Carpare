@@ -28,7 +28,7 @@ namespace SqliteDemo.Models.Transaction
             Car[] cars = CarPersistence.GetCar(carId);
             return cars[0];
         }
-        public static Car [] GetFavouriteCars(string userId)
+        public static Car[] GetFavouriteCars(string userId)
         {
             Car[] cars = CarPersistence.GetFavCars(userId);
             return cars;
@@ -39,7 +39,7 @@ namespace SqliteDemo.Models.Transaction
 
             return cars;
         }
-        
+
         /*
          * Transaction: Add a new book to the database
          * Returns true iff the new book has a unique ISBN
@@ -48,13 +48,6 @@ namespace SqliteDemo.Models.Transaction
         public static bool AddNewCar(Car newCar)
         {
             // Verify that the book doesn't already exist
-            Car oldCar = CarPersistence.getCar(newCar);
-            // oldBook should be null, if this is a new book
-            if (oldCar != null)
-            {
-                return false;
-            }
-
             return CarPersistence.AddCar(newCar);
         }
 
@@ -65,7 +58,7 @@ namespace SqliteDemo.Models.Transaction
          */
         public static bool DeleteCar(string carId)
         {
-            
+
             bool result = CarPersistence.DeleteCar(carId);
 
             return result;
@@ -83,19 +76,19 @@ namespace SqliteDemo.Models.Transaction
             return result;
         }
 
-        public static Car[] SearchCar(string value,string userId, int option)
+        public static Car[] SearchCar(string value, string userId, int option)
         {
             Car[] cars = CarPersistence.SearchCar(value, userId, option);
             return cars;
         }
 
-        internal static bool AddToFavourites(string carId,string userId)
+        internal static bool AddToFavourites(string carId, string userId)
         {
-            bool result = CarPersistence.CheckFavCar(carId,userId);
+            bool result = CarPersistence.CheckFavCar(carId, userId);
             if (result)
             {
-                int res = CarPersistence.AddToFavourites(carId,userId);
-                if(res == 1)
+                int res = CarPersistence.AddToFavourites(carId, userId);
+                if (res == 1)
                 {
                     return true;
                 }
@@ -106,7 +99,7 @@ namespace SqliteDemo.Models.Transaction
             {
                 return false;
             }
-            
+
         }
     }
 }

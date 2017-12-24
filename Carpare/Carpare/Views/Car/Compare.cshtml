@@ -1,0 +1,16 @@
+﻿@using Carpare.Models.Entity
+@model Car[]
+@{
+    ViewBag.Title = "Compare";
+}
+
+<h2>Compare</h2>
+<div align="left">
+    <p> <img src="@Model[0].Url" alt="Car 1's Photo" width="300" height="300" /> </p>
+</div>
+<div align="center">
+
+</div>
+<div align="right">
+    <p> <img src="@Model[1].Url" alt="Car 2's Photo" width="300" height="300" /> </p>
+</div>

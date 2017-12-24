@@ -262,6 +262,7 @@
     <Content Include="Views\Car\FoundCars.cshtml" />
     <Content Include="Views\Car\FavouriteCars.cshtml" />
     <Content Include="Views\Car\CompareCars.cshtml" />
+    <Content Include="Views\Car\Compare.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

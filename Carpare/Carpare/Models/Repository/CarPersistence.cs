@@ -15,9 +15,9 @@ namespace Carpare.Models.Repository
          * the parameter.
          * Return null if the book can't be found.
          */
-        public static Car getCar(Car keyCar)
+        public static Car getCar(int carId)
         {
-            string sqlQuery = "select * from car where carId=" + keyCar.carId;
+            string sqlQuery = "select * from car where carId=" + carId;
             List<object[]> rows = RepositoryManager.Repository.DoQuery(sqlQuery);
             //System.Console.WriteLine("$$rows: " + rows.Count);
             if (rows.Count == 0)
