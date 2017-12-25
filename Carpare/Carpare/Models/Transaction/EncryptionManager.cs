@@ -5,9 +5,14 @@ using System.Text;
 
 namespace Carpare.Models.Transaction
 {
+    /// <summary>
+    /// Handles the encryptions for creating password hash.
+    /// </summary>
     public class EncryptionManager
     {
-        /* Generate a random salt value */
+        /// <summary>
+        /// Generate a random salt value.
+        /// </summary>
         public static string PasswordSalt
         {
             get
@@ -19,7 +24,13 @@ namespace Carpare.Models.Transaction
             }
         }
 
-        /* Hash a password */
+        
+        /// <summary>
+        /// Hash a password to protect the password in case of database attacks.
+        /// </summary>
+        /// <param name="password">Password that wanted to be hashed.</param>
+        /// <param name="salt">The salt value which will be used to encode.</param>
+        /// <returns>The string that is encoded.</returns>
         public static string EncodePassword(string password, string salt)
         {
             byte[] bytes = Encoding.Unicode.GetBytes(password);

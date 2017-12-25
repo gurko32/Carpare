@@ -7,19 +7,25 @@ using System.Web.Mvc;
 
 namespace Carpare.Controllers
 {
+    /// <summary>
+    /// Represents the controller for sign up operations.
+    /// </summary>
     public class SignupController : Controller
     {
-        // GET: Signup
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        /// <summary>
+        /// Returns the sign up page View.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Signup()
         {
             return View(new Credential());
         }
+        /// <summary>
+        /// Checks the credentials which is entered by the user. If they are all valid, enters a new entry into database as a new user.
+        /// </summary>
+        /// <param name="credential">Credentials that user entered.</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Signup(Credential credential)
         {
@@ -43,7 +49,7 @@ namespace Carpare.Controllers
             string validPassword = @"^[a-z0-9!@#$*]{4,12}$";
             string validLocation = @"^[A-Za-z]*$";
 
-            Match match = Regex.Match(credential.UserId, validUserId);
+            
             if (credential.BirthDate == null)
             {
                 ViewBag.message = "Please enter a valid birth date.";
@@ -80,14 +86,14 @@ namespace Carpare.Controllers
 
             try
             {
-                MailAddress m = new MailAddress(credential.Email);
+                MailAddress m = new MailAddress(credential.Email); // This method checks if the E-Mail format is valid.
             }
             catch (FormatException)
             {
                 ViewBag.message = "Invalid E-Mail format. Please enter a valid E-Mail";
                 return View(credential);
             }
-
+            Match match = Regex.Match(credential.UserId, validUserId);
             if (match.Success)
             {
                 Match match2 = Regex.Match(credential.Password, validPassword);
@@ -96,9 +102,10 @@ namespace Carpare.Controllers
                     Match match3 = Regex.Match(credential.Location, validLocation);
                     if (match3.Success)
                     {
-                        credential.Name = credential.Name.Replace("'", "&apos;");
+                        credential.Name = credential.Name.Replace("'", "&apos;"); // Replace the "'" character with the escape character in case of attacks.
                         credential.Email = credential.Email.Replace("'", "&apos;");
                         credential.Location = credential.Location.Replace("'", "&apos;");
+
                         UserManager.SignUpUser(credential, Session);
                         TempData["message"] = "Sign Up Successful";
                         ViewBag.message = "Sign Up Successful";

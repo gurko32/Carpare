@@ -7,13 +7,16 @@ using System.Diagnostics;
 
 namespace Carpare.Models.Persistance
 {
+    /// <summary>
+    /// Handles the database queries and commands for the user transactions.
+    /// </summary>
     public class UserPersistence
     {
         /// <summary>
-        /// Adds User Over Credential to the database
+        /// Adds user over credential to the database.
         /// </summary>
-        /// <param name="cr"></param>
-        /// <returns></returns>
+        /// <param name="cr">New user's information is kept in credential object.</param>
+        /// <returns>Boolean value whether the transaction is happened or not.</returns>
         public static bool AddUser(Credential cr)
         {
             string salt = User.CreateSalt();
@@ -35,10 +38,10 @@ namespace Carpare.Models.Persistance
         }
         
         /// <summary>
-        /// Returns user with userId from database
+        /// Returns user with userId from database.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="userId">User that is looking for.</param>
+        /// <returns>An User object which contains the desired user.</returns>
         public static User GetUser(string userId)
         {
             string sql = "select * from user where UserId='" + userId + "';";
@@ -55,12 +58,12 @@ namespace Carpare.Models.Persistance
         }
 
         /// <summary>
-        /// Updates user information over options and userId and alters database
+        /// Updates user information over options and userId and alters the database.
         /// </summary>
-        /// <param name="update"></param>
-        /// <param name="userId"></param>
-        /// <param name="option"></param>
-        /// <returns></returns>
+        /// <param name="update">New value which is wanted to change.</param>
+        /// <param name="userId">User that wants to make the change.</param>
+        /// <param name="option">The value (Ranged from 1 to 6) to determine which field will be changed.</param>
+        /// <returns>Boolean value whether the transaction is happened or not.</returns>
         public static bool UpdateUser(string update, string userId, int option)
         {
             string sql = "";
@@ -112,9 +115,9 @@ namespace Carpare.Models.Persistance
         }
 
         /// <summary>
-        /// Returns all users from the database
+        /// Returns all users from the database.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Array of users which contains all users in the database.</returns>
         public static User[] GetAllUsers()
         {
             User[] users;
@@ -135,11 +138,11 @@ namespace Carpare.Models.Persistance
         }
 
         /// <summary>
-        /// Changes the status of User by updating the database table
+        /// Changes the status of User by updating the database table.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="stat"></param>
-        /// <returns></returns>
+        /// <param name="userId">The user which will be active or inactive.</param>
+        /// <param name="stat">New value which is wanted to change.("A" or "I")</param>
+        /// <returns>Boolean value whether the transaction is happened or not.</returns>
         public static bool ChangeUserStatus(string userId, string stat)
         {
             int result = 0;
@@ -155,10 +158,10 @@ namespace Carpare.Models.Persistance
         }
 
         /// <summary>
-        /// Resets The Password then encodes the new given one and writes back to database
+        /// Resets the password,creates a string with the length of 8, encodes the new password and writes back into database.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="userId">User that password will be resetted.</param>
+        /// <returns>string value which contains the new password.</returns>
         public static string ResetPassword(string userId)
         {
 
@@ -187,10 +190,10 @@ namespace Carpare.Models.Persistance
         }
 
         /// <summary>
-        /// We return a random string to use on password
+        /// Returns a random string to use on ResetPassword method.
         /// </summary>
-        /// <param name="length"></param>
-        /// <returns></returns>
+        /// <param name="length">Length of the password.</param>
+        /// <returns>The string which contains a random password.</returns>
         public static string CreateRandomString(int length)
         {
             Random randomGenerator = new Random();
@@ -198,14 +201,14 @@ namespace Carpare.Models.Persistance
             string characters = "ABCDEFGHIJKLMNOPRSTUVWXYZabcdefghijklmnoprstuwxyz0123456789.,!?";
             for (int i = 0; i < length; i++)
             {
-                result += characters[randomGenerator.Next(characters.Length)];
+                result += characters[randomGenerator.Next(characters.Length)]; // Get a random character from the characters string and add it to the new password.
             }
 
             return result;
         }
 
         /// <summary>
-        /// Gets users from the database
+        /// Prints all of the users in the database.
         /// </summary>
         public static void PrintAllUsers()
         {

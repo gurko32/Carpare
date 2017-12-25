@@ -4,9 +4,15 @@ using Carpare.Models.Persistance;
 
 namespace Carpare.Controllers
 {
+    /// <summary>
+    /// Represents the controller for the profile page operations.
+    /// </summary>
     public class ProfilePageController : Controller
     {
-        // GET: ProfilePage
+        /// <summary>
+        /// Returns the profile page View where user can modify their profile informations.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult ProfilePage()
         {
@@ -19,9 +25,13 @@ namespace Carpare.Controllers
 
             return View(user);
         }
-
+        /// <summary>
+        /// Updates the name with the new name.
+        /// </summary>
+        /// <param name="name">New name that wanted to be changed.</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult UpdateUserId(string name)
+        public ActionResult UpdateName(string name)
         {
             bool result = UserPersistence.UpdateUser(name.Replace("'", "&apos;"), (string)Session["UserId"], 1);
             if (result)
@@ -35,6 +45,12 @@ namespace Carpare.Controllers
             }
             return View("ProfilePage", user);
         }
+
+        /// <summary>
+        /// Changes the password which is entered by the user.
+        /// </summary>
+        /// <param name="Password">New password that user wants to change.</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult UpdatePassword(string Password)
         {
@@ -53,6 +69,11 @@ namespace Carpare.Controllers
             return View("ProfilePage", user);
 
         }
+        /// <summary>
+        /// Change the E-Mail which is entered by the user.
+        /// </summary>
+        /// <param name="Email">New E-Mail that user wants to change.</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult UpdateEmail(string Email)
         {
@@ -71,6 +92,11 @@ namespace Carpare.Controllers
             return View("ProfilePage", user);
 
         }
+        /// <summary>
+        /// Change the gender which is entered by the user.
+        /// </summary>
+        /// <param name="Gender">New gender that user wants to change.</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult UpdateGender(string Gender)
         {
@@ -89,6 +115,11 @@ namespace Carpare.Controllers
             return View("ProfilePage", user);
 
         }
+        /// <summary>
+        /// Change the birth date which is entered by the user.
+        /// </summary>
+        /// <param name="BirthDate">New birth date that user wants to change.</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult UpdateBirthDate(string BirthDate)
         {
@@ -107,6 +138,11 @@ namespace Carpare.Controllers
             return View("ProfilePage", user);
 
         }
+        /// <summary>
+        /// Change the location which is entered by the user.
+        /// </summary>
+        /// <param name="Location">New location that user wants to change.</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult UpdateLocation(string Location)
         {

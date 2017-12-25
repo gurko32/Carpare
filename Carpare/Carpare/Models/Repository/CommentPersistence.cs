@@ -5,31 +5,16 @@ using System.Diagnostics;
 
 namespace Carpare.Models.Repository
 {
+    /// <summary>
+    /// Handles the database queries and commands for the comment transactions.
+    /// </summary>
     public class CommentPersistence
     {
         /// <summary>
-        /// Returns the comment from database
+        /// Gets the user comments from the database.
         /// </summary>
-        /// <param name="keyComment"></param>
-        /// <returns></returns>
-        public static Comment getComment(Comment keyComment)
-        {
-            string sqlQuery = "select * from comment where commentId=" + keyComment.commentId;
-            List<object[]> rows = RepositoryManager.Repository.DoQuery(sqlQuery);
-            if (rows.Count == 0)
-            {
-                return null;
-            }
-            object[] dataRow = rows[0];
-            Comment comment = new Comment(Int32.Parse(dataRow[0].ToString()), Int32.Parse(dataRow[1].ToString()), (string)dataRow[2], (string)dataRow[3]);
-            return comment;
-        }
-
-        /// <summary>
-        /// Gets the user comment from the database
-        /// </summary>
-        /// <param name="UserId"></param>
-        /// <returns></returns>
+        /// <param name="UserId">User which wants his/her comments.</param>
+        /// <returns>Array of Comments which is found from the database.</returns>
         public static Comment[] GetUserComment(string UserId)
         {
             string sqlQuery = "select * from comment where UserId='" + UserId + "';";
@@ -54,10 +39,10 @@ namespace Carpare.Models.Repository
         }
 
         /// <summary>
-        /// Returns every comment for choosen car 
+        /// Returns every comment for chosen car.
         /// </summary>
-        /// <param name="CarId"></param>
-        /// <returns></returns>
+        /// <param name="CarId">Car that user wants to see its comments.</param>
+        /// <returns>Array of comments which is entered for that car.</returns>
         public static Comment[] GetCarComment(int CarId)
         {
             string sqlQuery = "select * from comment where carId='" + CarId + "';";
@@ -80,12 +65,12 @@ namespace Carpare.Models.Repository
             return comments;
 
         }
-        
+
         /// <summary>
-        /// Adds the comment to database
+        /// Adds the comment into database.
         /// </summary>
-        /// <param name="comment"></param>
-        /// <returns></returns>
+        /// <param name="comment">Comment which is wanted to be added.</param>
+        /// <returns>Boolean value whether the transaction is happened or not.</returns>
         public static bool AddComment(Comment comment)
         {
             string sql = "select max(CommentId) AS num from comment;";
@@ -93,11 +78,11 @@ namespace Carpare.Models.Repository
             sql = "select * from comment";
             List<object[]> rows2 = RepositoryManager.Repository.DoQuery(sql);
 
-            if (rows2.Count == 0)
+            if (rows2.Count == 0) // If there is no comment found in the database, start the comment ID from 1000.
             {
                 comment.commentId = 1000;
             }
-            else
+            else // Else, find the max value for the CommentId which is in the database, add 1 to it and assign it to the new comment.
             {
                 comment.commentId = Int32.Parse(rows[0][0].ToString()) + 1;
             }
@@ -112,10 +97,10 @@ namespace Carpare.Models.Repository
         }
 
         /// <summary>
-        /// Deletes the comment from database
+        /// Deletes the comment from the database.
         /// </summary>
-        /// <param name="CommentId"></param>
-        /// <returns></returns>
+        /// <param name="CommentId">Comment ID that is wanted to be deleted.</param>
+        /// <returns>Boolean value whether the transaction is happened or not.</returns>
         internal static bool DeleteComment(string CommentId)
         {
             string sql = "delete from comment where commentId = " + CommentId + ";";
@@ -127,9 +112,9 @@ namespace Carpare.Models.Repository
         }
 
         /// <summary>
-        /// Gets every comment
+        /// Gets all the comments from the database.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of comments that contains all comments in the database.</returns>
         public static List<Comment> GetAllComments()
         {
             List<Comment> comments = new List<Comment>();

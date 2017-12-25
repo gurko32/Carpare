@@ -4,6 +4,9 @@ using System.Web.Mvc;
 
 namespace Carpare.Controllers
 {
+    /// <summary>
+    /// Represents the controller for admin page.
+    /// </summary>
     public class AdminController : Controller
     {
         /// <summary>
@@ -46,7 +49,7 @@ namespace Carpare.Controllers
         /// </summary>
         /// <param name="Status">Status parameter that we want to change.</param>
         /// <param name="UserId">User that we want to change his/her status.</param>
-        /// <returns></returns>
+        /// <returns>View that contains change status view with proper viewbag message.</returns>
         [HttpPost]
         public ActionResult ChangeStatus(string Status, string UserId)
         {

@@ -6,6 +6,9 @@ using System.Web.Mvc;
 
 namespace Carpare.Controllers
 {
+    /// <summary>
+    /// Represents the controller which handles the comment operations.
+    /// </summary>
     public class CommentController : Controller
     {
         /// <summary>
@@ -46,7 +49,7 @@ namespace Carpare.Controllers
         [HttpPost]
         public ActionResult CommentShower(int carId)
         {
-            Car car = CarManager.GetUserCars(carId); //Gather the car and assign them to the TempData since we can't use two Models in the View.
+            Car car = CarManager.GetCar(carId); //Gather the car and assign them to the TempData since we can't use two Models in the View.
             TempData["carId"] = car.carId;
             TempData["Brand"] = car.Brand;
             TempData["Model"] = car.Model;

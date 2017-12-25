@@ -4,30 +4,17 @@ using System.Collections.Generic;
 
 namespace SqliteDemo.Models.Transaction
 {
+    /// <summary>
+    /// Handles the transactions about comments.
+    /// </summary>
     public class CommentManager
     {
-        /// <summary>
-        /// Returns every comment
-        /// </summary>
-        /// <returns></returns>
-        public static Comment[] GetAllComments()
-        {
-            List<Comment> comments = CommentPersistence.GetAllComments();
-            if (comments != null)
-            {
-                return CommentPersistence.GetAllComments().ToArray();
-            }
-            else
-            {
-                return (new Comment[0]);
-            }
-        }
 
         /// <summary>
-        /// Gets users comments
+        /// Gets users comments.
         /// </summary>
-        /// <param name="UserId"></param>
-        /// <returns></returns>
+        /// <param name="UserId">User that wants to see his/her comments.</param>
+        /// <returns>Comments that user enters to cars.</returns>
         public static Comment[] GetUserComments(string UserId)
         {
             Comment[] comments = CommentPersistence.GetUserComment(UserId);
@@ -36,10 +23,10 @@ namespace SqliteDemo.Models.Transaction
         }
 
         /// <summary>
-        /// Gets car's comments
+        /// Gets car's comments which is selected by user.
         /// </summary>
-        /// <param name="CarId"></param>
-        /// <returns></returns>
+        /// <param name="CarId">Car which user wants to look at its comments.</param>
+        /// <returns>Comments that entered to this car.</returns>
         public static Comment[] GetCarComments(int CarId)
         {
             Comment[] comments = CommentPersistence.GetCarComment(CarId);
@@ -49,26 +36,20 @@ namespace SqliteDemo.Models.Transaction
 
 
         /// <summary>
-        /// Adds the comment
+        /// Adds the comment into the database.
         /// </summary>
-        /// <param name="newComment"></param>
-        /// <returns></returns>
+        /// <param name="newComment">Comment that wanted to be added.</param>
+        /// <returns>Boolean value whether the transaction is happened or not.</returns>
         public static bool AddNewComment(Comment newComment)
         {
-            Comment oldComment = CommentPersistence.getComment(newComment);
-            if (oldComment != null)
-            {
-                return false;
-            }
-
-            return CommentPersistence.AddComment(newComment);
+           return CommentPersistence.AddComment(newComment);
         }
 
         /// <summary>
-        /// Deletes the comment with given commentId
+        /// Deletes the comment with given commentId.
         /// </summary>
-        /// <param name="commentId"></param>
-        /// <returns></returns>
+        /// <param name="commentId">Comment that is wanted to be deleted.</param>
+        /// <returns>Boolean value whether the transaction is happened or not.</returns>
         public static bool DeleteComment(string commentId)
         {
             bool result = CommentPersistence.DeleteComment(commentId);

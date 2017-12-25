@@ -6,10 +6,13 @@ using System.Web.Mvc;
 
 namespace Carpare.Controllers
 {
+    /// <summary>
+    /// Represents the controller for the operations of the cars.
+    /// </summary>
     public class CarController : Controller
     {
         /// <summary>
-        /// returns the View that contains all cars in the database.
+        /// Returns the View that contains all cars in the database.
         /// </summary>
         /// <returns></returns>
         public ActionResult CarLister()
@@ -63,7 +66,7 @@ namespace Carpare.Controllers
         /// <param name="UrbanConsumption">Urban consumption of the car.</param>
         /// <param name="Fuel">Fuel of the car.</param>
         /// <param name="WheelDrive">Wheel drive of the car.</param>
-        /// <returns></returns>
+        /// <returns>View for changing car page.</returns>
         [HttpPost]
         public ActionResult ChangeCar(string carId, string Url, string Brand, string Model, string YearOfProduction, string km, string TransmissionType, string TopSpeed, string Acceleration, string UrbanConsumption, string Fuel, string WheelDrive)
         {
@@ -134,7 +137,7 @@ namespace Carpare.Controllers
         /// Deletes the selected car.
         /// </summary>
         /// <param name="carId">Car that user wants to delete.</param>
-        /// <returns></returns>
+        /// <returns>View that contains delete page.</returns>
         [HttpPost]
         public ActionResult DeleteCar(string carId)
         {

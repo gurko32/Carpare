@@ -5,6 +5,9 @@ using Carpare.Models.Persistance;
 
 namespace Carpare.Controllers
 {
+    /// <summary>
+    /// Represents the controller for Login and Logout.
+    /// </summary>
     public class AuthenticationController : Controller
     {
         /// <summary>
@@ -20,7 +23,7 @@ namespace Carpare.Controllers
         /// Applies the login procedure with checking the parameters whether they are correct or not.
         /// </summary>
         /// <param name="credential">Username and password to check the database, then login.</param>
-        /// <returns></returns>
+        /// <returns>View for proper response.</returns>
         [HttpPost]
         public ActionResult Login(Credential credential)
         {
@@ -72,7 +75,7 @@ namespace Carpare.Controllers
         /// <summary>
         /// Starts the logout procedure and redirects to the home page.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>View for home page.</returns>
         public ActionResult Logout()
         {
             UserManager.LogoutUser(Session);

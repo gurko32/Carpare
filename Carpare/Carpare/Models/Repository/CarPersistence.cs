@@ -5,13 +5,16 @@ using System.Diagnostics;
 
 namespace Carpare.Models.Repository
 {
+    /// <summary>
+    /// Handles the database queries and commands for the car transactions.
+    /// </summary>
     public class CarPersistence
     {
         /// <summary>
-        /// Gets the car from database
+        /// Gets the car from database.
         /// </summary>
-        /// <param name="carId"></param>
-        /// <returns></returns>
+        /// <param name="carId">Car that wanted to find.</param>
+        /// <returns>Car that is wanted by the user.</returns>
         public static Car getCar(int carId)
         {
             string sqlQuery = "select * from car where carId=" + carId;
@@ -26,26 +29,26 @@ namespace Carpare.Models.Repository
         }
 
         /// <summary>
-        /// returns favorite cars
+        /// Returns the favorite cars of the user.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="userId">User ID for gather favourite cars.</param>
+        /// <returns>An array which contains favourite cars of the user.</returns>
         internal static Car[] GetFavCars(string userId)
         {
             Car[] cars;
-            string sqlQuery = "select * from favourites where UserId='" + userId + "';";
+            string sqlQuery = "select * from favourites where UserId='" + userId + "';"; // Check the database if there are cars in the user which are favourite.
             List<object[]> rows = RepositoryManager.Repository.DoQuery(sqlQuery);
 
-            if (rows.Count == 0)
+            if (rows.Count == 0) // If not, return null.
             {
                 return null;
             }
             string carId = "";
             object[] dataRow;
             cars = new Car[rows.Count];
-            for (int i = 0; i < rows.Count; i++)
+            for (int i = 0; i < rows.Count; i++) // This loop gets the cars and puts into an array.
             {
-                carId = rows[i][1].ToString();
+                carId = rows[i][1].ToString();  // Get the car ID.
                 sqlQuery = "select * from car where carId='" + carId + "';";
                 List<object[]> car = RepositoryManager.Repository.DoQuery(sqlQuery);
 
@@ -54,17 +57,17 @@ namespace Carpare.Models.Repository
 
                 dataRow = car[0];
                 Car newCar = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6], (string)dataRow[7], (string)dataRow[8], Int32.Parse(dataRow[9].ToString()), dataRow[10].ToString(), dataRow[11].ToString(), (string)dataRow[12]);
-                cars[i] = newCar;
+                cars[i] = newCar; // Add the car to the array.
             }
             return cars;
         }
         
         /// <summary>
-        /// Gets cars with given id from database
+        /// Gets the cars with given ID from database.
         /// </summary>
-        /// <param name="carId"></param>
-        /// <returns></returns>
-        public static Car[] GetCar(int carId)
+        /// <param name="carId">Car that user wants.</param>
+        /// <returns>A Car object which is desired.</returns>
+        public static Car GetCar(int carId)
         {
             string sqlQuery = "select * from car where carId='" + carId + "';";
             List<object[]> rows = RepositoryManager.Repository.DoQuery(sqlQuery);
@@ -75,23 +78,19 @@ namespace Carpare.Models.Repository
             }
 
             Car[] cars = new Car[rows.Count];
-            object[] dataRow;
+            object[] dataRow = rows[0];
+            Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6], (string)dataRow[7], (string)dataRow[8], Int32.Parse(dataRow[9].ToString()), dataRow[10].ToString(), dataRow[11].ToString(), (string)dataRow[12]);
 
-            for (int i = 0; i < rows.Count; i++)
-            {
-                dataRow = rows[i];
-                Car car = new Car(Int32.Parse(dataRow[0].ToString()), (string)dataRow[1], (string)dataRow[2], (string)dataRow[3], Int32.Parse(dataRow[4].ToString()), Int32.Parse(dataRow[5].ToString()), (string)dataRow[6], (string)dataRow[7], (string)dataRow[8], Int32.Parse(dataRow[9].ToString()), dataRow[10].ToString(), dataRow[11].ToString(), (string)dataRow[12]);
-                cars[i] = car;
-            }
-            return cars;
+            
+            return car;
         }
 
         /// <summary>
-        /// Adds car to Favourites
+        /// Adds car to favourites table.
         /// </summary>
-        /// <param name="carId"></param>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="carId">Car that wanted to add.</param>
+        /// <param name="userId">User that adds the car into favourites.</param>
+        /// <returns>Boolean value whether the transaction is happened or not.</returns>
         internal static int AddToFavourites(string carId, string userId)
         {
             string sqlQuery = "insert into favourites (UserId,carId) values('" + userId + "'," + carId + ");";
@@ -100,10 +99,10 @@ namespace Carpare.Models.Repository
         }
 
         /// <summary>
-        /// Returns favorite cars from databse
+        /// Checks the car if it is in the favourite table or not.
         /// </summary>
-        /// <param name="carId"></param>
-        /// <param name="userId"></param>
+        /// <param name="carId">Car that wanted to be searched.</param>
+        /// <param name="userId">User that wants to search.</param>
         /// <returns></returns>
         internal static bool CheckFavCar(string carId, string userId)
         {
@@ -119,9 +118,9 @@ namespace Carpare.Models.Repository
         }
 
         /// <summary>
-        /// Gets the users cars
+        /// Gets the user's cars.
         /// </summary>
-        /// <param name="UserId"></param>
+        /// <param name="UserId">User that wants his/her cars.</param>
         /// <returns></returns>
         public static Car[] GetUserCar(string UserId)
         {
@@ -147,12 +146,12 @@ namespace Carpare.Models.Repository
         }
 
         /// <summary>
-        /// Searchs for the car with given parameters
+        /// Searchs for the car with given parameters.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="userId"></param>
-        /// <param name="option"></param>
-        /// <returns></returns>
+        /// <param name="value">Value that user entered to search.</param>
+        /// <param name="userId">User that makes the search.</param>
+        /// <param name="option">The value (Ranged from 1 to 10) to determine which field will be searched.</param>
+        /// <returns>Cars that matches to the query.</returns>
         internal static Car[] SearchCar(string value, string userId, int option)
         {
             List<object[]> rows = new List<object[]>();
@@ -217,12 +216,12 @@ namespace Carpare.Models.Repository
             }
             return cars;
         }
-      
+
         /// <summary>
-        /// Adds car to database
+        /// Adds the car into the database.
         /// </summary>
-        /// <param name="car"></param>
-        /// <returns></returns>
+        /// <param name="car">Car that is wanted to add into database.</param>
+        /// <returns>Boolean value whether the transaction is happened or not.</returns>
         public static bool AddCar(Car car)
         {
             string sql = "select max(carId) AS num from car;";
@@ -230,11 +229,11 @@ namespace Carpare.Models.Repository
             sql = "select * from car";
             List<object[]> rows2 = RepositoryManager.Repository.DoQuery(sql);
 
-            if (rows2.Count == 0)
+            if (rows2.Count == 0) // If there is no car found in the database, start the Car ID from 1000.
             {
                 car.carId = 1000;
             }
-            else
+            else // Else, find the max value for the CarID which is in the database, add 1 to it and assign it to the new car.
             {
                 car.carId = Int32.Parse(rows[0][0].ToString()) + 1;
             }
@@ -258,10 +257,10 @@ namespace Carpare.Models.Repository
         }
 
         /// <summary>
-        /// Deletes car from car table and favorites table
+        /// Deletes car from car table and favorites table.
         /// </summary>
-        /// <param name="CarId"></param>
-        /// <returns></returns>
+        /// <param name="CarId">Car that is wanted to be deleted.</param>
+        /// <returns>Boolean value whether the transaction is happened or not.</returns>
         internal static bool DeleteCar(string CarId)
         {
             string sql = "delete from car where carId = " + CarId + ";";
@@ -275,12 +274,12 @@ namespace Carpare.Models.Repository
         }
 
         /// <summary>
-        /// Updates with given value as input
+        /// Updates the car with given value as input.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="option"></param>
-        /// <param name="carId"></param>
-        /// <returns></returns>
+        /// <param name="value">New value which is wanted to change.</param>
+        /// <param name="option">Car that is wanted to update.</param>
+        /// <param name="carId">The value (Ranged from 1 to 11) to determine which field will be changed.</param>
+        /// <returns>Boolean value whether the transaction is happened or not.</returns>
         public static bool UpdateCar(string value, int option, string carId)
         {
             int result = 0;
@@ -347,7 +346,10 @@ namespace Carpare.Models.Repository
                 return false;
         }
 
-        //returns every car from database
+        /// <summary>
+        /// Returns every car from the database.
+        /// </summary>
+        /// <returns>List of Cars which contains every car in the database.</returns>
         public static List<Car> GetAllCars()
         {
             List<Car> cars = new List<Car>();
