@@ -73,19 +73,19 @@ namespace Carpare.Controllers
             bool result = false;
             if (Url != "")
             {
-                result = CarManager.ChangeCar(Url, carId, 1);
+                result = CarManager.ChangeCar(Url.Replace("'", "&apos;"), carId, 1);
             }
             if (Brand != "")
             {
-                result = CarManager.ChangeCar(Brand, carId, 2);
+                result = CarManager.ChangeCar(Brand.Replace("'", "&apos;"), carId, 2);
             }
             if (Model != "")
             {
-                result = CarManager.ChangeCar(Model, carId, 3);
+                result = CarManager.ChangeCar(Model.Replace("'", "&apos;"), carId, 3);
             }
             if (YearOfProduction != "")
             {
-                result = CarManager.ChangeCar(YearOfProduction, carId, 4);
+                result = CarManager.ChangeCar(YearOfProduction.Replace("'", "&apos;"), carId, 4);
             }
             if (km != "")
             {

@@ -22,7 +22,7 @@
         <!--PHOTO-->
         <sDiv id="lel">
             <p> <img src="@c.Url" alt="Car's Photo" width="300" height="300" /> </p>
-            <p>Car Brand And Model: @c.Brand    @c.Model</p>
+            <p>Car Brand And Model: @c.Brand.Replace("&apos;", "'")    @c.Model.Replace("&apos;", "'")</p>
             <p>Owner: @c.Owner</p>    <p>Year Of Production: @c.YearOfProduction</p>
             <p>KM: @c.km</p>
             <p>Transmission Type: @c.TransmissionType</p>

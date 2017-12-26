@@ -14,7 +14,7 @@ namespace SqliteTest.Models.Repository
     public class SqliteRepository : IRepository
     {
         // Location of the database file 
-        private string databaseFile = "F:\\MyDatabase.sqlite";
+        private string databaseFile = "C:\\Users\\kcaglar.guler\\MyDatabase.sqlite";
 
         private SQLiteConnection dbConnection;
 
@@ -109,7 +109,7 @@ namespace SqliteTest.Models.Repository
         {
             bool openResult;
 
-            if (File.Exists("F:\\MyDatabase.sqlite") && new FileInfo(databaseFile).Length > 10)
+            if (File.Exists(databaseFile) && new FileInfo(databaseFile).Length > 10)
             {
                 openResult = Open();
                 return openResult;

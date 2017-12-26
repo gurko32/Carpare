@@ -1,4 +1,6 @@
 ﻿using Carpare.Models.Repository;
+using System.Diagnostics;
+using System.IO;
 using System.Web.Mvc;
 
 namespace Carpare.Controllers

@@ -49,8 +49,8 @@
             {
                 <tr>
                     <td>@car.carId</td>
-                    <td>@car.Brand</td>
-                    <td>@car.Model</td>
+                    <td>@car.Brand.Replace("&apos;", "'")</td>
+                    <td>@car.Model.Replace("&apos;", "'")</td>
                     <td>@car.YearOfProduction</td>
                     <td>@car.km</td>
                     <td>@car.TransmissionType</td>

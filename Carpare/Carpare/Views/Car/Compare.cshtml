@@ -4,7 +4,7 @@
     ViewBag.Title = "Compare";
 }
 
-<h2>Compare</h2>
+
 <head>
     <style>
         table {
@@ -26,6 +26,7 @@
 </head>
 <div id="main">
     <span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; MENU</span>
+    <h2>Compare</h2>
     <br />
     <br />
     <br />
@@ -40,8 +41,8 @@
         </tr>
         <tr>
             <td>Brand And Model</td>
-            <td>@Model[0].Brand @Model[0].Model</td>
-            <td>@Model[1].Brand @Model[1].Model</td>
+            <td>@Model[0].Brand.Replace("&apos;", "'") @Model[0].Model.Replace("&apos;", "'")</td>
+            <td>@Model[1].Brand.Replace("&apos;", "'") @Model[1].Model.Replace("&apos;", "'")</td>
         </tr>
         <tr>
             <td>Year Of Production</td>

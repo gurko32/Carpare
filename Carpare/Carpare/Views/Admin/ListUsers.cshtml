@@ -39,13 +39,13 @@
         @foreach (User user in Model)
         {
             <tr>
-                <td>@user.UserId</td>
-                <td>@user.Name</td>
-                <td>@user.email</td>
+                <td>@user.UserId.Replace("&apos;", "'")</td>
+                <td>@user.Name.Replace("&apos;", "'")</td>
+                <td>@user.email.Replace("&apos;", "'")</td>
                 <td>@user.status</td>
                 <td>@user.gender</td>
                 <td>@user.BirthDate</td>
-                <td>@user.Location</td>
+                <td>@user.Location.Replace("&apos;", "'")</td>
             </tr>
         }
     </table>

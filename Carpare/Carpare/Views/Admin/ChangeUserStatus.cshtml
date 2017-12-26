@@ -35,7 +35,7 @@
         @foreach (User user in Model)
         {
             <tr>
-                <td>@user.UserId</td>
+                <td>@user.UserId.Replace("&apos;", "'")</td>
                 <td>
                     <form action="~/Admin/ChangeStatus" method="post">
                         <input type="text" name="Status">

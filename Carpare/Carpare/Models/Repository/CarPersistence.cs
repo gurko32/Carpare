@@ -63,7 +63,7 @@ namespace Carpare.Models.Repository
         }
         
         /// <summary>
-        /// Gets the cars with given ID from database.
+        /// Gets the car with given ID from database.
         /// </summary>
         /// <param name="carId">Car that user wants.</param>
         /// <returns>A Car object which is desired.</returns>
@@ -240,18 +240,18 @@ namespace Carpare.Models.Repository
 
             sql = "insert into car (carId, brand, model,owner, yearOfProduction, km, url,TransmissionType,Fuel,TopSpeed,Acceleration,UrbanConsumption,WheelDrive) values ('"
                 + car.carId + "', '"
-                + car.Brand + "', '"
-                + car.Model + "', '"
-                + car.Owner + "', "
+                + car.Brand.Replace("'", "&apos;") + "', '"
+                + car.Model.Replace("'", "&apos;") + "', '"
+                + car.Owner.Replace("'", "&apos;") + "', "
                 + car.YearOfProduction + ", "
                 + car.km + ",'"
-                + car.Url + "','"
+                + car.Url.Replace("'", "&apos;") + "','"
                 + car.TransmissionType + "', '"
                 + car.Fuel + "', "
                 + car.TopSpeed + ", "
                 + car.Acceleration + ","
                 + car.UrbanConsumption + ",'"
-                + car.WheelDrive + "')";
+                + car.WheelDrive.Replace("'", "&apos;") + "')";
             RepositoryManager.Repository.DoCommand(sql);
             return true;
         }

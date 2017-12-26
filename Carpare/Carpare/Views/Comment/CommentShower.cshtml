@@ -35,7 +35,7 @@
             foreach (Comment c in Model)
             {
                 <p><em><ins>@c.UserId</ins></em></p>
-                <p class="double">@c.comment</p>
+                <p class="double">@c.comment.Replace("&apos;", "'")</p>
             }
         }
         else

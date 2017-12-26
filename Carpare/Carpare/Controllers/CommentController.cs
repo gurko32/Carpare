@@ -20,7 +20,7 @@ namespace Carpare.Controllers
         [HttpPost]
         public ActionResult CommentAdder(string comment, int carId)
         {
-            Comment com = new Comment(10, carId, (String)Session["UserId"], comment);
+            Comment com = new Comment(10, carId, (String)Session["UserId"], comment.Replace("'", "&apos;"));
             CommentManager.AddNewComment(com);
             TempData["CommentMessage"] = "Comment successfully added.";
             return RedirectToAction("CarLister", "Car");  // returns /Views/Car/CarLister.cshtml
