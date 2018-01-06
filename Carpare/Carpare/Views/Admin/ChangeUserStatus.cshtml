@@ -38,7 +38,10 @@
                 <td>@user.UserId.Replace("&apos;", "'")</td>
                 <td>
                     <form action="~/Admin/ChangeStatus" method="post">
-                        <input type="text" name="Status">
+                        <select name="Status">
+                            <option selected="selected">A</option>
+                            <option>I</option>
+                        </select> 
                         <input type="hidden" name="UserId" value="@user.UserId" />
                         <input type="submit" value="Update">
                     </form>

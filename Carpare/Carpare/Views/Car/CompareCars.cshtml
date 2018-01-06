@@ -20,14 +20,14 @@
                 <option selected="selected"></option>
                 @foreach (Car a in Model)
                 {
-                    <option>@a.carId: @a.Brand @a.Model</option>
+                    <option>@a.carId: @a.Brand.Replace("&apos;", "'") @a.Model.Replace("&apos;", "'")</option>
                 }
             </select>
             <select name="Car2">
                 <option selected="selected"></option>
                 @foreach (Car a in Model)
                 {
-                    <option>@a.carId: @a.Brand @a.Model</option>
+                    <option>@a.carId: @a.Brand.Replace("&apos;", "'") @a.Model.Replace("&apos;", "'")</option>
                 }
             </select>
             <input type="submit" value="Compare">

@@ -43,8 +43,8 @@
                 <tr>
                     <td>@comment.commentId</td>
                     <td>@comment.carId</td>
-                    <td>@comment.UserId</td>
-                    <td>@comment.comment</td>
+                    <td>@comment.UserId.Replace("&apos;", "'")</td>
+                    <td>@comment.comment.Replace("&apos;", "'")</td>
                     <td>
                         <form action="~/Comment/DeleteComment" method="post">
                             <input type="hidden" name="CommentId" value="@comment.commentId" />

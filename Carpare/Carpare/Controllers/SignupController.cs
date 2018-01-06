@@ -45,8 +45,8 @@ namespace Carpare.Controllers
                 return View(credential);
             }
 
-            string validUserId = @"^[a-z][a-z0-9]{8,12}$";
-            string validPassword = @"^[a-z0-9!@#$*]{4,12}$";
+            string validUserId = @"^[a-z][a-z0-9]{7,13}$";
+            string validPassword = @"^[a-z0-9!@#$*]{3,13}$";
             string validLocation = @"^[A-Za-z]*$";
 
             

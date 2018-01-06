@@ -142,6 +142,7 @@ namespace Carpare.Controllers
         public ActionResult DeleteCar(string carId)
         {
             bool result = CarManager.DeleteCar(carId);
+
             if (result)
                 ViewBag.message = "Car successfully deleted.";
             else

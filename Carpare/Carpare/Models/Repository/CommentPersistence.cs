@@ -95,6 +95,20 @@ namespace Carpare.Models.Repository
             RepositoryManager.Repository.DoCommand(sql);
             return true;
         }
+        /// <summary>
+        /// Deletes that comments if the car is deleted.
+        /// </summary>
+        /// <param name="carId">Car that is deleted from the database.</param>
+        /// <returns>Boolean value whether the transaction is happened or not.</returns>
+        internal static bool DeleteCommentFromCarID(string carId)
+        {
+            string sql = "delete from comment where carId = " + carId + ";";
+            int result = RepositoryManager.Repository.DoCommand(sql);
+            if (result == 0)
+                return false;
+            else
+                return true;
+        }
 
         /// <summary>
         /// Deletes the comment from the database.

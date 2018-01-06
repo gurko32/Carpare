@@ -76,7 +76,7 @@ namespace SqliteDemo.Models.Transaction
         {
 
             bool result = CarPersistence.DeleteCar(carId);
-
+            result = CommentPersistence.DeleteCommentFromCarID(carId);
             return result;
         }
 
